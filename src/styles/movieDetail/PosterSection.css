@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
+
+.image-wrapper {
+    position: relative;
+    width: 600.6px;
+    height: 319.8px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 11.7px;
+  }
+  
+  /* 배경 */
+  .background-image {
+    width: 600.6px;
+    height: 319.8px;
+  }
+  
+  .background-image .poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+    transform: scale(1.05);
+  }
+  
+  /* 겹쳐진 포스터 */
+  .poster-container {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 210.74px;
+    height: 300.3px;
+    z-index: 2;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    border-radius: 3.9px;
+    overflow: hidden;
+  }
+  
+  .poster-container .poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3.9px;
+  }
+  
+  /* 글자와 버튼 오버레이 */
+  .overlay-text {
+    position: absolute;
+    top: 30%;
+    left: 250px; /* 포스터 오른쪽으로 띄움 */
+    transform: translateY(-50%);
+    font-family: "Gajraj One", sans-serif;
+    color: white;
+    z-index: 3;
+    max-width: 600px;
+  }
+  
+  .overlay-text .title {
+    font-size: 50.7px;
+    font-family: "Gajraj One", sans-serif;
+    font-weight: bold;
+    color: #1ED863;
+    margin-bottom: 1rem;
+  }
+  
+  .overlay-text .description {
+    font-size: 15.6px;
+    font-family: "Gajraj One", sans-serif;
+    margin-bottom: 1.5rem;
+  }
+  
+  .overlay-text .details-button {
+    font-family: "Gajraj One", sans-serif;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .overlay-text .details-button:hover {
+    background-color: rgba(255,255,255,0.3);
+  }
+
+  /* 제공업체 로고 영역 */
+.provider-container {
+  position: absolute;
+  top: 80%;
+  left: 250px; /* 포스터 오른쪽 기준 */
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
+
+/* 로고 이미지 스타일 */
+.provider-logo {
+  width: 31.2px;
+  height: 31.2px;
+  object-fit: contain;
+  border-radius: 5px;
+  padding: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}

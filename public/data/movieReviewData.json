@@ -1,0 +1,119 @@
+{
+    "isSuccess": true,
+    "code": "string",
+    "message": "string",
+    "result": {
+        "review": [
+            {
+                "id": 1,
+                "userId": 1,
+                "name": "홍길동",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "100",
+                "dislike": "10"
+            },
+            {
+                "id": 2,
+                "userId": 2,
+                "name": "김철수",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "129",
+                "dislike": "80"
+            },
+            {
+                "id": 1,
+                "userId": 1,
+                "name": "홍길동",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "100",
+                "dislike": "10"
+            },
+            {
+                "id": 2,
+                "userId": 2,
+                "name": "김철수",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "129",
+                "dislike": "80"
+            },
+            {
+                "id": 1,
+                "userId": 1,
+                "name": "홍길동",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "100",
+                "dislike": "10"
+            },
+            {
+                "id": 2,
+                "userId": 2,
+                "name": "김철수",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "129",
+                "dislike": "80"
+            },
+            {
+                "id": 1,
+                "userId": 1,
+                "name": "홍길동",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "100",
+                "dislike": "10"
+            },
+            {
+                "id": 2,
+                "userId": 2,
+                "name": "김철수",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "129",
+                "dislike": "80"
+            },
+            {
+                "id": 1,
+                "userId": 1,
+                "name": "홍길동",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "100",
+                "dislike": "10"
+            },
+            {
+                "id": 2,
+                "userId": 2,
+                "name": "김철수",
+                "email": "example@gmail.com",
+                "imageUrl": "images/popfriLogo.png",
+                "content": "영화가 너무 재밌어요!",
+                "createdAt": "2023-10-01T00:00:00.000Z",
+                "like": "129",
+                "dislike": "80"
+            }
+        ]
+    }
+  }

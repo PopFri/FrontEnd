@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
+
+.review-pagination-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;   /* 페이지네이션 전체를 가로 가운데 */
+    align-items: center;       /* (세로 가운데 필요 시) */
+    margin-top: 2rem;
+  }
+  
+  .review-pagination-content {
+    display: flex;
+    gap: 1rem;                 /* 버튼과 숫자 간격 */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .review-pagination-button {
+    padding: 0.5rem 1rem;
+    font-size: 15.6px;
+    background-color: #191414;
+    font-family: "Gajraj One", sans-serif;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .review-pagination-button:disabled {
+    background-color: #191414;
+    cursor: not-allowed;
+  }
+  
+  .review-page {
+    font-size: 15.6px;
+    color: #1ED863;
+    font-family: "Gajraj One", sans-serif;
+    font-weight: bold;
+  }

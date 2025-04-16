@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
+
+.review-wrapper {
+    color: white;
+    padding: 2rem;
+    font-family: 'Pretendard', sans-serif;
+    padding-top: 0%;
+  }
+  
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .review-title {
+    font-family: "Gajraj One", sans-serif;
+    font-size: 39px;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+  }
+  
+  .review-count {
+    font-size: 19.5px;
+    color: #FFFFFF;
+  }
+  
+  .review-sort-wrapper {
+    position: relative;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center;
+    margin-left: auto;         /* 다른 요소들과 함께 있을 경우 오른쪽으로 밀기 */
+  }
+
+  .sort-modal {
+    position: absolute;
+    top: 100%; /* 버튼 바로 아래 */
+    right: 0;
+    background-color: #191414;
+    border-radius: 6px;
+    z-index: 10;
+    margin-top: 8px;
+    width: 89.7px;
+  }
+  
+  .sort-option-new {
+    background-color: #656363;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    align-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 15.6px;
+    height: 15px;
+    margin: 4px;
+  }
+  .sort-option-like {
+    background-color: #656363;
+    padding: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    align-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 15.6px;
+    height: 15px;
+    margin: 4px;
+  }
+
+  .sort-option-new:hover {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #1ED863;
+  }
+
+  .sort-option-like:hover {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #1ED863;
+  }
+
+  .sort-icon {
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+    width: 27.3px;
+    height: 27.3px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .review-sort {
+    background-color: #191414;
+    color: white;
+    padding: 0.4rem 1rem 0.4rem 2rem; /* 왼쪽 아이콘 공간 확보 */
+    border: none;
+    border-radius: 4px;
+    font-size: 15.6px;
+  }
+
+  .review-sort:hover {
+    outline: none; /* 기본 파란 테두리 제거 */
+    box-shadow: 0 0 0 2px #1ED863; /* 원하는 색상으로 포커스 테두리 */
+    transition: box-shadow 0.2s ease;
+  }
+
+  .review-user-avatar {
+    width: 39px;
+    height: 39px;
+    border-radius: 19.5px;
+    object-fit: cover;
+  }
+  
+  .review-write-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .review-write {
+    width: 557.7px;
+    height: 27.3px;
+    padding: 0.6rem 1rem;
+    border: none; /* 기본 테두리 제거 */
+    border-bottom: 3px solid; /* 기본 테두리 제거 */
+    margin-bottom: 2rem;
+    background: #191414;
+    color: white;
+  }
+  
+  .review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .review-card {
+    display: flex;
+    background-color: #D9D9D920;
+    border-radius: 12px;
+    padding: 1rem;
+    align-items: flex-start;
+  }
+  
+  .review-avatar {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  
+  .review-body {
+    flex: 1;
+  }
+  
+  .review-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+  }
+  
+  .review-user {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .review-name {
+    color: #32ff87;
+    font-size: 15.6px;
+  }
+  
+  .review-email {
+    font-size: 7.8px;
+    color: #FFFFFF;
+  }
+  
+  .review-date {
+    font-size: 11.7px;
+    color: #FFFFFF;
+  }
+  
+  .review-text {
+    font-size: 15.6px;
+    margin: 0.5rem 0;
+    color: #FFFFFF;
+  }
+  
+  .review-actions {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .like {
+    display: flex;
+    align-items: center;      /* 수직 가운데 정렬 */
+    font-size: 15.6px;
+    font-family: "Gajraj One", sans-serif;
+    color: #FFFFFF;
+  }
+  .like-count {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;      /* 수직 가운데 정렬 */
+  }
+  
+  .dislike {
+    display: flex;
+    align-items: center;      /* 수직 가운데 정렬 */
+    color: #ff4d4d;
+  }
+
+.like-button,
+.dislike-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 👍 Like 버튼 hover */
+.like-button:hover {
+  background-color: rgba(50, 255, 135, 0.2); /* 연한 초록 */
+}
+
+/* 👎 Dislike 버튼 hover */
+.dislike-button:hover {
+  background-color: rgba(255, 77, 77, 0.2); /* 연한 빨강 */
+}

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
+
+.trailer-wrapper {
+    width: 615.52px;
+    height: 234px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem;
+}
+.video-title {
+    font-size: 39px;
+    margin-bottom: 1rem;
+    font-family: "Gajraj One", sans-serif;
+    color: #FFFFFF;
+}
+.video-wrapper {
+    display: flex;
+    flex-direction: row; /* 가로 방향 정렬 */
+    gap: 16px;           /* 영상 간 간격 */
+    overflow-x: auto;    /* 넘칠 경우 가로 스크롤 */
+    padding: 1rem 0;
+  }
+  
+  .video-container {
+    flex: 0 0 auto;       /* 영상 크기 고정 */
+  }

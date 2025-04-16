@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
+
+.credits-wrapper {
+  width: 534.3px;
+  height: 235.3px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2rem;
+}
+  
+.credits-inline-item {
+  font-size: 19.5px;
+  margin-right: 0.5rem; /* ← 공백 대신 강제 여백 */
+  color: #1ED863;
+}
+.credits-title {
+  font-size: 39px;
+  margin-bottom: 1rem;
+  font-family: "Gajraj One", sans-serif;
+  color: #FFFFFF;
+}
+
+.credits-container {
+  display: flex;
+  flex-direction: row;     /* ✅ 가로 정렬 */
+  overflow-x: auto;        /* ✅ 넘칠 경우 가로 스크롤 */
+  gap: 10px;
+  justify-content: start;
+  align-items: center;
+}
+
+.actor-card {
+  text-align: center;
+  color: white;
+}
+
+.actor-image {
+  width: 97.5px;
+  height: 148.2px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.actor-name {
+  margin-top: 0.4rem;
+  color: #FFFFFF;
+  font-size: 15.6px;
+  line-height: 1.2;
+}

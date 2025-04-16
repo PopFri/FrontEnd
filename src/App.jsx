@@ -1,10 +1,13 @@
-function App() {
+import React from 'react';
+import { Routes, Route } from 'react-router-dom'; 
+import MovieDetailPage from './pages/MovieDetailPage.jsx';
 
+function App() {
   return (
-    <div>
-      
-    </div>
-  )
+    <Routes>
+      <Route path="/movie" element={<MovieDetailPage />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
