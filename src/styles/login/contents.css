@@ -1,1 +1,34 @@
-/* login css */
+.login-contents{
+    width: 1020px;
+    height: 507px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #00000075;
+}
+
+.contents-title{
+    margin-left: 70px;
+    height: fit-content;
+    .title-introduce{
+        height: 53px;
+        font-family: 'Freesentation-7Bold';
+        color: #FFFFFF;
+        font-size: 30px;
+        margin: 2px 12px;
+    }
+    .title-detail{
+        color: #FFFFFF;
+        font-family: 'Freesentation-5Medium';
+        font-size: 25px;
+    }
+}
+
+.contents-button{
+    margin-right: 90px;
+    width: 320px;
+    img{
+        margin: 5px 0;
+    }
+}
