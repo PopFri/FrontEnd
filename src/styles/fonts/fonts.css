@@ -1,27 +1,27 @@
 @font-face {
-    font-family: "Pretendard";
-    font-style: normal;
-    font-weight: 300;
-    src: url("../../assets/fonts/Pretendard-Light.woff2") format("woff2");
-  }
-  
-  @font-face {
-    font-family: "Pretendard";
-    font-style: normal;
-    font-weight: 400;
-    src: url("../../assets/fonts/Pretendard-Regular.woff2") format("woff2");
-  }
-  
-  @font-face {
-    font-family: "Pretendard";
-    font-style: normal;
-    font-weight: 600;
-    src: url("../../assets/fonts/Pretendard-SemiBold.woff2") format("woff2");
-  }
-  
-  @font-face {
-    font-family: "Pretendard";
-    font-style: normal;
-    font-weight: 700;
-    src: url("../../assets/fonts/Pretendard-Bold.woff2") format("woff2");
-  }
+  font-family: 'Freesentation-9Black';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Freesentation-7Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-7Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Freesentation-6SemiBold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-6SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Freesentation-5Medium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-5Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}

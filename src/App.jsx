@@ -1,12 +1,16 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom'; 
 import MovieDetailPage from './pages/MovieDetailPage.jsx';
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Login from "./pages/login"
 
 function App() {
   return (
-    <Routes>
-      <Route path="/movie" element={<MovieDetailPage />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/movie" element={<MovieDetailPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
