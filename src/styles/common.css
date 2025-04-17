@@ -1,3 +1,38 @@
 body{
     margin: 0;
+    background-color: #272727;
+}
+
+.header{
+    display: flex;
+    height: 38.96px;
+    margin: 27.3px 39px;
+    align-items: center;
+    justify-content: space-between;
+
+    .header-link{
+        display: flex;
+        margin-right: 100px;
+        .link-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 66.3px;
+            height: 27.3px;
+            margin: 0 8px;
+            text-decoration: none;
+            border-bottom: 3.9px solid;
+            .contianer-text{
+                text-decoration: none;
+                font-family: 'GasoekOne-Regular';
+                font-size: 15.6px;
+            }
+        }
+    }
+    .header-profile{
+        width: 31.2px;
+        height: 31.2px;
+        border-radius: 50%;
+        background-color: #656363;
+    }   
 }
