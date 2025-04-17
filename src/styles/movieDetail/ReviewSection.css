@@ -15,7 +15,8 @@
     font-family: 'Gajraj One';
     font-size: 39px;
     color: #FFFFFF;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
   }
   
   .review-count {
@@ -35,35 +36,33 @@
     position: absolute;
     top: 100%; /* 버튼 바로 아래 */
     right: 0;
+    align-items: center;
+    justify-content: center; /* 필요 시 수직 중앙 정렬 */
     background-color: #191414;
-    border-radius: 6px;
+    border-radius: 20px;
     z-index: 10;
-    margin-top: 8px;
+    margin-top: 0px;
     width: 89.7px;
   }
   
-  .sort-option-new {
-    background-color: #656363;
+  .sort-option-recent {
     padding: 10px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    align-content: center;
-    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;     /* 텍스트 중앙 정렬 */
     cursor: pointer;
     font-size: 15.6px;
-    height: 15px;
+    height: 12px;
     margin: 4px;
   }
   .sort-option-like {
-    background-color: #656363;
     padding: 10px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    align-content: center;
-    color: white;
+    text-align: center;     /* 텍스트 중앙 정렬 */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     cursor: pointer;
     font-size: 15.6px;
-    height: 15px;
+    height: 12px;
     margin: 4px;
   }
 
@@ -102,8 +101,6 @@
 
   .review-sort:hover {
     outline: none; /* 기본 파란 테두리 제거 */
-    box-shadow: 0 0 0 2px #1ED863; /* 원하는 색상으로 포커스 테두리 */
-    transition: box-shadow 0.2s ease;
   }
 
   .review-user-avatar {
@@ -116,18 +113,31 @@
   .review-write-wrapper {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 7.8px;
   }
 
   .review-write {
     width: 557.7px;
     height: 27.3px;
     padding: 0.6rem 1rem;
+    font-size: 19.5px;
+    font-family: 'Freesentation-5Medium';
+    color: #ffffff;
     border: none; /* 기본 테두리 제거 */
     border-bottom: 3px solid; /* 기본 테두리 제거 */
-    margin-bottom: 2rem;
+    margin-bottom:2%;
     background: #191414;
     color: white;
+  }
+
+  .review-write::placeholder {
+    font-size: 19.5px;
+    font-family: 'Freesentation-5Medium';
+    color: #ffffff;
+  }
+
+  .review-write:focus {
+    outline: none; /* 기본 파란 테두리 제거 */
   }
   
   .review-list {
@@ -149,14 +159,10 @@
     height: 39px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 1rem;
+    margin-right: 15px;
   }
   
-  .review-body {
-    flex: 1;
-  }
-  
-  .review-top {
+  .review-user-wrapper {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.3rem;
@@ -165,6 +171,7 @@
   .review-user {
     display: flex;
     flex-direction: column;
+    margin-right: 30px;
   }
   
   .review-name {
@@ -183,8 +190,13 @@
     font-family: 'Freesentation-7Bold';
     font-size: 11.7px;
     color: #FFFFFF;
+    margin-left: 350px;
   }
   
+  .review-content-wrapper {
+    
+  }
+
   .review-text {
     font-family: 'Freesentation-6SemiBold';
     font-size: 15.6px;

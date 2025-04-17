@@ -5,6 +5,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 2rem;
+  padding-top: 1rem;
 }
   
 .credits-inline-item {

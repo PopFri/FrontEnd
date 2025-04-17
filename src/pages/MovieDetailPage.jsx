@@ -56,7 +56,7 @@ const MovieDetailPage = () => {
     const [sort, setSort] = useState('recent'); // 'recent' 또는 'like'
 
     const fetchReviews = () => {
-        const url = `data/movieReviewData.json`;
+        const url = `data/movieReviewData.json`/* like, new*/;
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -134,7 +134,7 @@ const MovieDetailPage = () => {
             <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
             <TrailerSection videoId={videoId} />
             <ImageSection image={image} />
-            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={id} token={token} setSort={setSort}/>
+            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={id} token={token} sort={sort} setSort={setSort}/>
             <ReviewPagination page={page} setPage={setPage} hasNext={hasNext} />  
         </div>
     );

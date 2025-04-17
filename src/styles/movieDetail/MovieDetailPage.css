@@ -4,7 +4,5 @@
     margin: 0 auto;      /* 가운데 정렬 */
     width: 686.4px;
     overflow-x: hidden;  /* 가로 스크롤 방지 */
-    padding: 0 1rem;     /* 모바일 대응 여백 */
     box-sizing: border-box;
-    
 }

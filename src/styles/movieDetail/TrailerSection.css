@@ -16,10 +16,10 @@
 }
 .video-wrapper {
     display: flex;
+    padding-bottom: 0%;
     flex-direction: row; /* 가로 방향 정렬 */
     gap: 16px;           /* 영상 간 간격 */
     overflow-x: auto;    /* 넘칠 경우 가로 스크롤 */
-    padding: 1rem 0;
   }
   
   .video-wrapper::-webkit-scrollbar {

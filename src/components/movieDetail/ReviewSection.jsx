@@ -2,11 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/movieDetail/ReviewSection.css';
 
-const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, setSort }) => {
+const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sort, setSort }) => {
     const navigate = useNavigate;
     const [showSortModal, setShowSortModal] = useState(false);
     const [inputText, setInputText] = useState('');
     const [user, setUser] = useState(null);
+
+    let recentColor = "#656363", likeColor = "#656363";
+    switch (sort) {
+        case "recent":
+            recentColor = "#1ED863"
+            break;
+
+        case "like":
+            likeColor = "#1ED863"
+            break;
+
+        default:
+            break;
+    }
+
+    let recentFontColor = "#ffffff", likeFontColor = "#ffffff";
+    switch (sort) {
+        case "recent":
+            recentFontColor = "#000000"
+            break;
+
+        case "like":
+            likeFontColor = "#000000"
+            break;
+
+        default:
+            break;
+    }
 
     const toggleSortModal = () => {
         setShowSortModal(prev => !prev);
@@ -105,8 +133,8 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, set
                     </button>
                     {showSortModal && (
                         <div className="sort-modal">
-                            <div onClick={() => { setShowSortModal(false); setSort('recent')}} className="sort-option-new">최신순</div>
-                            <div onClick={() => { setShowSortModal(false); setSort('like')}} className="sort-option-like">좋아요순</div>
+                            <div onClick={() => { setShowSortModal(false); setSort('recent')}} style={{backgroundColor: `${recentColor}`, color: `${recentFontColor}`}} className="sort-option-recent">최신순</div>
+                            <div onClick={() => { setShowSortModal(false); setSort('like')}} style={{backgroundColor: `${likeColor}`, color: `${likeFontColor}`}} className="sort-option-like">추천순</div>
                         </div>
                     )}
                 </div>
@@ -129,13 +157,13 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, set
             <div className="review-list">
                 {reviews.map((review, index) => (
                     <div key={index} className="review-card">
-                        <img
-                            src={review.imageUrl}
-                            alt="profile"
-                            className="review-avatar"
-                        />
                         <div className="review-body">
-                            <div className="review-top">
+                            <div className="review-user-wrapper">
+                                <img
+                                src={review.imageUrl}
+                                alt="profile"
+                                className="review-avatar"
+                                />
                                 <div className="review-user">
                                     <span className="review-name">{review.name}</span>
                                     <span className="review-email">{review.email}</span>
@@ -147,19 +175,21 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, set
                                     })}일
                                 </span>
                             </div>
-                            <p className="review-text">{review.content}</p>
-                            <div className="review-actions">
-                                <button className="like-button" onClick={() => handleLike(review.id)}>
-                                    <span className="like">
-                                        <img src="images/likeIcon.png" alt="like" />
-                                    </span>
-                                </button>
-                                <span className="like-count">{review.like}</span>
-                                <button className="dislike-button">
-                                    <span className="dislike" onClick={() => handleDislike(review.id)}>
-                                        <img src="images/dislikeIcon.png" alt="dislike" />
-                                    </span>
-                                </button>
+                            <div className="review-comtent-wrapper">
+                                <p className="review-text">{review.content}</p>
+                                <div className="review-actions">
+                                    <button className="like-button" onClick={() => handleLike(review.id)}>
+                                        <span className="like">
+                                            <img src="images/likeIcon.png" alt="like" />
+                                        </span>
+                                    </button>
+                                    <span className="like-count">{review.like}</span>
+                                    <button className="dislike-button">
+                                        <span className="dislike" onClick={() => handleDislike(review.id)}>
+                                            <img src="images/dislikeIcon.png" alt="dislike" />
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

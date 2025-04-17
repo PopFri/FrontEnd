@@ -5,14 +5,16 @@
     display: flex;
     flex-direction: column;     /* ✅ 제목 + 이미지 가로 리스트 세로로 정렬 */
     padding: 2rem;
-    gap: 1rem;
+    padding-bottom: 0%;
+    gap: 0%;
   }
   
   .image-title {
     font-size: 39px;
     font-family: "Gajraj One", sans-serif;
     color: #FFFFFF;
-    margin-bottom: 1rem;
+    padding-bottom: 0%;
+    margin-bottom: 0;
   }
   
   .image-scroll-wrapper {
@@ -21,6 +23,7 @@
     overflow-x: auto;
     gap: 16px;
     padding: 1rem;
+    padding-bottom: 0%;
     width: 615.52px;
     box-sizing: border-box;
   }
