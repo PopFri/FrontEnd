@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
-
 .image-wrapper {
     position: relative;
     width: 600.6px;
@@ -58,31 +56,16 @@
   
   .overlay-text .title {
     font-size: 50.7px;
-    font-family: "Gajraj One", sans-serif;
+    font-family: 'GasoekOne-Regular';
     font-weight: bold;
     color: #1ED863;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
   }
   
   .overlay-text .description {
     font-size: 15.6px;
-    font-family: "Gajraj One", sans-serif;
-    margin-bottom: 1.5rem;
-  }
-  
-  .overlay-text .details-button {
-    font-family: "Gajraj One", sans-serif;
-    padding: 0.5rem 1rem;
-    background-color: rgba(255,255,255,0.15);
-    color: white;
-    border: 1px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .overlay-text .details-button:hover {
-    background-color: rgba(255,255,255,0.3);
+    font-family: 'GasoekOne-Regular';
+    margin-left: 8px;
   }
 
   /* 제공업체 로고 영역 */
@@ -103,8 +86,7 @@
 .provider-logo {
   width: 31.2px;
   height: 31.2px;
-  object-fit: contain;
-  border-radius: 5px;
-  padding: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  border-radius: 3.9px;
+  overflow: hidden;
 }

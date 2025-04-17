@@ -9,6 +9,7 @@ import TrailerSection from '../components/movieDetail/TrailerSection';
 import ImageSection from '../components/movieDetail/ImageSection';
 import ReviewSection from '../components/movieDetail/ReviewSection';
 import ReviewPagination from '../components/movieDetail/ReviewPagination';
+import '../styles/common.css'
 
 const MovieDetailPage = () => {
     //movie
@@ -35,6 +36,7 @@ const MovieDetailPage = () => {
     //creditsSection
     const [actorImages, setActorImages] = useState([]);
     const [actors, setActors] = useState([]);
+    const [actorsCharacter, setActorsCharacter] = useState([]);
 
     //trailerSection
     const [videoId, setVideoIds] = useState([]);
@@ -44,10 +46,26 @@ const MovieDetailPage = () => {
 
     //reviewSection
     const [review, setReview] = useState([]);
+    const [totalReview, setTotalReveiw] = useState(0);
 
     //reviewPagination
     const [page, setPage] = useState(1);
     const [hasNext, setHasNext] = useState(true);
+
+    //reviewPatch
+    const [sort, setSort] = useState('recent'); // 'recent' 또는 'like'
+
+    const fetchReviews = () => {
+        const url = `data/movieReviewData.json`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+            setReview(data.result.review);
+            setHasNext(data.result.hasNext);
+            setTotalReveiw(data.result.totalReview);
+            })
+            .catch(err => console.error('리뷰 불러오기 실패:', err));
+    };
 
     useEffect(() => {
         // if (!token) {
@@ -55,7 +73,7 @@ const MovieDetailPage = () => {
         //     navigate('/login');
         // }
       
-        fetch('/data/movieDetailData.json')
+        fetch('/data/movieDetailData.json'/* {movieId} */)
             .then(res => res.json())
             .then(data => {
                 const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
@@ -82,49 +100,41 @@ const MovieDetailPage = () => {
                 setGenres(genres); // 상태 업데이트
 
                 // creditsSection
-                const actors = data.result.cast.slice(0, 5).map(actor => actor.name);
-                const actorImages = data.result.cast.slice(0, 5).map(image => baseImageUrl + image.profile_path);
+                const actors = data.result.cast.map(actor => actor.name);
+                const actorsCharacter = data.result.cast.map(actor => actor.character);
+                const actorImages = data.result.cast.map(image => baseImageUrl + image.profile_path);
                 setActorImages(actorImages);
                 setActors(actors);
+                setActorsCharacter(actorsCharacter);
 
                 // trailerSection
-                const videoId = data.result.videos.slice(0, 2).map(video => video.key);
+                const videoId = data.result.videos.map(video => video.key);
                 setVideoIds(videoId);
 
                 // imageSection
-                const image = data.result.images.slice(0, 6).map(image => baseImageUrl + image.file_path);
+                const image = data.result.images.map(image => baseImageUrl + image.file_path);
                 setImage(image);
-
-                // reviewSection
-                const review = data.result.review;
-                setReview(review);
 
         })
         .catch(err => {
             console.error('Error fetching movie details:', err);
         });
 
-        fetch('/data/movieReviewData.json' /* {page} */)
-            .then(res => res.json())
-            .then(data => {
-                // reviewSection
-                const review = data.result.review;
-                setReview(review);
-
-        })
-        .catch(err => {
-            console.error('Error fetching review list:', err);
-        });
         }, []);
+
+        useEffect(() => {
+            fetchReviews();
+
+        }, [page, sort]);
 
     return (
         <div className="movie-detail-wrapper">
             <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} releaseDate={releaseDate} runtime={runtime} providers={providers} />
             <OverviewSection overView={overView} genres={genres} />
-            <CreditsSection  actors={actors} actorImages={actorImages} />
+            <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
             <TrailerSection videoId={videoId} />
             <ImageSection image={image} />
-            <ReviewSection reviews={review} />
+            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={id} token={token} setSort={setSort}/>
             <ReviewPagination page={page} setPage={setPage} hasNext={hasNext} />  
         </div>
     );

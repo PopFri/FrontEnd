@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
-
 .credits-wrapper {
   width: 534.3px;
   height: 235.3px;
@@ -44,8 +42,16 @@
 }
 
 .actor-name {
+  font-family: 'Freesentation-6SemiBold';
   margin-top: 0.4rem;
+  margin-bottom: 0%;
   color: #FFFFFF;
   font-size: 15.6px;
   line-height: 1.2;
+}
+
+.actor-character {
+  font-family: 'Freesentation-5Medium';
+  font-size: 7.8px;
+  color: #FFFFFF;
 }

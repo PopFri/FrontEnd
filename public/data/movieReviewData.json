@@ -3,6 +3,8 @@
     "code": "string",
     "message": "string",
     "result": {
+        "hasNext": true,
+        "totalReview": "108",
         "review": [
             {
                 "id": 1,

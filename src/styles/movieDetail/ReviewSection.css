@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
-
 .review-wrapper {
     color: white;
     padding: 2rem;
@@ -14,13 +12,14 @@
   }
   
   .review-title {
-    font-family: "Gajraj One", sans-serif;
+    font-family: 'Gajraj One';
     font-size: 39px;
     color: #FFFFFF;
     margin-bottom: 1rem;
   }
   
   .review-count {
+    font-family: 'Freesentation-7Bold';
     font-size: 19.5px;
     color: #FFFFFF;
   }
@@ -92,6 +91,7 @@
   }
 
   .review-sort {
+    font-family: 'Freesentation-7Bold';
     background-color: #191414;
     color: white;
     padding: 0.4rem 1rem 0.4rem 2rem; /* 왼쪽 아이콘 공간 확보 */
@@ -168,21 +168,25 @@
   }
   
   .review-name {
+    font-family: 'Freesentation-7Bold';
     color: #32ff87;
     font-size: 15.6px;
   }
   
   .review-email {
+    font-family: 'Freesentation-7Bold';
     font-size: 7.8px;
     color: #FFFFFF;
   }
   
   .review-date {
+    font-family: 'Freesentation-7Bold';
     font-size: 11.7px;
     color: #FFFFFF;
   }
   
   .review-text {
+    font-family: 'Freesentation-6SemiBold';
     font-size: 15.6px;
     margin: 0.5rem 0;
     color: #FFFFFF;
@@ -190,7 +194,7 @@
   
   .review-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: 3px;
     font-size: 0.9rem;
   }
   
@@ -198,11 +202,12 @@
     display: flex;
     align-items: center;      /* 수직 가운데 정렬 */
     font-size: 15.6px;
-    font-family: "Gajraj One", sans-serif;
     color: #FFFFFF;
   }
   .like-count {
+    font-family: 'Gajraj One';
     margin-right: 20px;
+    font-size: 15.6px;
     display: flex;
     align-items: center;      /* 수직 가운데 정렬 */
   }

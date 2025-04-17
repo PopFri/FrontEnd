@@ -17,14 +17,13 @@ const TrailerSection = ({videoId}) => {
                             height: '171.6',
                             width: '302.98',
                             playerVars: {
-                                autoplay: 1,
+                                autoplay: 0,
                                 controls: 1,
                                 modestbranding: 1,
                                 showinfo: 0,
                                 rel: 0,
                             },
                         }}
-                        onReady={(event) => event.target.playVideo()}   
                     />
                 </div>
             ))}

@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/movieDetail/CreditsSection.css';
 
 
-const CreditsSection = ({actors, actorImages}) => {
+const CreditsSection = ({actors, actorsCharacter, actorImages}) => {
   
     return (
         <div className="credits-wrapper">
@@ -16,6 +16,7 @@ const CreditsSection = ({actors, actorImages}) => {
                     className="actor-image"
                     />
                     <p className="actor-name">{actors[index]}</p>
+                    <p className="actor-character">{actorsCharacter[index]}</p>
                 </div>
                 ))}
             </div>
