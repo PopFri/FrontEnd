@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <div className='header'>
-        <img src={logo} alt="" />
+        <img src={logo} alt="" className='header-logo'/>
         <div className='header-link'>
             <Link to="/home" className='link-container' style={{borderBottomColor: `${homeColor}`}}>
                 <p className='contianer-text' style={{color: `${homeColor}`}}>홈</p>
