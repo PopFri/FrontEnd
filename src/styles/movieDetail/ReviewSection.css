@@ -119,19 +119,19 @@
   .review-write {
     width: 557.7px;
     height: 27.3px;
-    padding: 0.6rem 1rem;
-    font-size: 19.5px;
+    margin-top: 2px;
+    padding-left: 5px; /* 왼쪽 아이콘 공간 확보 */
+    font-size: 15.6px;
     font-family: 'Freesentation-5Medium';
     color: #ffffff;
     border: none; /* 기본 테두리 제거 */
     border-bottom: 3px solid; /* 기본 테두리 제거 */
-    margin-bottom:2%;
     background: #191414;
     color: white;
   }
 
   .review-write::placeholder {
-    font-size: 19.5px;
+    font-size: 15.6px;
     font-family: 'Freesentation-5Medium';
     color: #ffffff;
   }
