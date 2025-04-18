@@ -9,6 +9,7 @@ import TrailerSection from '../components/movieDetail/TrailerSection';
 import ImageSection from '../components/movieDetail/ImageSection';
 import ReviewSection from '../components/movieDetail/ReviewSection';
 import ReviewPagination from '../components/movieDetail/ReviewPagination';
+import Header from '../components/Header'
 import '../styles/common.css'
 
 const MovieDetailPage = () => {
@@ -25,6 +26,7 @@ const MovieDetailPage = () => {
     const [backgroundImageUrl, setBackgroundImageUrl] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
     const [title, setTitle] = useState(null);
+    const [directing, setDirecting] = useState(null);
     const [releaseDate, setReleaseDate] = useState(null);
     const [runtime, setRuntime] = useState(null);
     const [providers, setProviders] = useState(null);
@@ -82,11 +84,13 @@ const MovieDetailPage = () => {
                 const backgroundImageUrl = baseImageUrl + data.result.backgroundImageUrl;
                 const poster = baseImageUrl + data.result.imageUrl;
                 const title = data.result.title;
+                const directing = data.result.directing;
                 const releaseDate = data.result.release_date;
                 const runtime = data.result.runtime;
                 const providers = data.result.providers;
                 setProviders(providers); // 상태 업데이트
                 setTitle(title); // 상태 업데이트
+                setDirecting(directing);
                 setReleaseDate(releaseDate); // 상태 업데이트
                 setRuntime(runtime); // 상태 업데이트
                 setBackgroundImageUrl(backgroundImageUrl); // 상태 업데이트
@@ -129,7 +133,8 @@ const MovieDetailPage = () => {
 
     return (
         <div className="movie-detail-wrapper">
-            <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} releaseDate={releaseDate} runtime={runtime} providers={providers} />
+            <Header />
+            <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} directing={directing} releaseDate={releaseDate} runtime={runtime} providers={providers} />
             <OverviewSection overView={overView} genres={genres} />
             <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
             <TrailerSection videoId={videoId} />

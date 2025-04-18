@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;     /* ✅ 제목 + 이미지 가로 리스트 세로로 정렬 */
     padding: 2rem;
-    padding-bottom: 0%;
+    padding-bottom: 76.05px;
     gap: 0%;
   }
   
@@ -22,8 +22,7 @@
     flex-direction: row;
     overflow-x: auto;
     gap: 16px;
-    padding: 1rem;
-    padding-bottom: 0%;
+    padding: 0px;
     width: 615.52px;
     box-sizing: border-box;
   }
