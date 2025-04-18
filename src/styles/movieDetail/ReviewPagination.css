@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;   /* 페이지네이션 전체를 가로 가운데 */
     align-items: center;       /* (세로 가운데 필요 시) */
-    margin-top: 2rem;
+    margin-top: 0;
   }
   
   .review-pagination-content {
@@ -13,7 +13,7 @@
     gap: 1rem;                 /* 버튼과 숫자 간격 */
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 27.3px;
   }
   
   .review-pagination-button {
@@ -27,10 +27,11 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
   }
+
   
-  .review-pagination-button:disabled {
-    background-color: #191414;
-    cursor: not-allowed;
+  .review-pagination-button.active {
+    color: #32ff87;
+    font-weight: bold;
   }
   
   .review-page {

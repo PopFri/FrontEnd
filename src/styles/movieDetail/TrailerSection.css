@@ -11,7 +11,8 @@
 }
 .video-title {
     font-size: 39px;
-    margin-bottom: 1rem;
+    margin-bottom: 0px;
+    margin-top: 38px;
     font-family: "Gajraj One", sans-serif;
     color: #FFFFFF;
 }

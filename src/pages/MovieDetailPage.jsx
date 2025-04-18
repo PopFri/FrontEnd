@@ -52,7 +52,7 @@ const MovieDetailPage = () => {
 
     //reviewPagination
     const [page, setPage] = useState(1);
-    const [hasNext, setHasNext] = useState(true);
+    const [totalPage, setTotalPage] = useState(0);
 
     //reviewPatch
     const [sort, setSort] = useState('recent'); // 'recent' 또는 'like'
@@ -63,8 +63,8 @@ const MovieDetailPage = () => {
             .then(res => res.json())
             .then(data => {
             setReview(data.result.review);
-            setHasNext(data.result.hasNext);
             setTotalReveiw(data.result.totalReview);
+            setTotalPage(data.result.totalPage);
             })
             .catch(err => console.error('리뷰 불러오기 실패:', err));
     };
@@ -140,7 +140,7 @@ const MovieDetailPage = () => {
             <TrailerSection videoId={videoId} />
             <ImageSection image={image} />
             <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={id} token={token} sort={sort} setSort={setSort}/>
-            <ReviewPagination page={page} setPage={setPage} hasNext={hasNext} />  
+            <ReviewPagination page={page} setPage={setPage} totalPage={totalPage} />  
         </div>
     );
 }

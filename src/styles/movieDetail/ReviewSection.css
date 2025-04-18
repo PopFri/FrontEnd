@@ -3,13 +3,13 @@
     padding: 2rem;
     font-family: 'Pretendard', sans-serif;
     padding-top: 0%;
+    padding-bottom: 27px;
   }
   
   .review-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
   }
   
   .review-title {
@@ -17,7 +17,7 @@
     font-size: 39px;
     color: #FFFFFF;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 9px;
   }
   
   .review-count {
@@ -113,6 +113,7 @@
     display: flex;
     align-items: center;
     gap: 7.8px;
+    margin-bottom: 35.6px;
   }
 
   .review-write {
@@ -142,7 +143,7 @@
   .review-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 15.6px;
   }
   
   .review-card {

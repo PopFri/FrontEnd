@@ -19,8 +19,8 @@
 
 .overview-title {
     font-size: 39px;
-    margin-top: 0px;
-    margin-bottom: 1rem;
+    margin-top: 12px;
+    margin-bottom: 2px;
     font-family: "Gajraj One", sans-serif;
     color: #FFFFFF;
 }
@@ -28,5 +28,6 @@
 .overview-content {
     font-family: 'Freesentation-5Medium';
     font-size: 15.6px;
+    margin-top: 0;
     color: #FFFFFF;
 }

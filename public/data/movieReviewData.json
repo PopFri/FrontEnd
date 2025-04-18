@@ -5,6 +5,7 @@
     "result": {
         "hasNext": true,
         "totalReview": "108",
+        "totalPage": "11",
         "review": [
             {
                 "id": 1,
