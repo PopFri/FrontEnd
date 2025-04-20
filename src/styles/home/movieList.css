@@ -1,0 +1,54 @@
+
+.recResult-movieList{
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+
+    .movieList-movie{
+        width: 101.4px;
+        height: 179.4px;
+        margin: 15.5px 10px 7px 10px;
+        background-color: #103F21;
+        border-radius: 3.9px;
+        text-decoration: none;
+
+        .movie-image{
+            width: 101.4px;
+            height: 144.3px;
+            border-radius: 3.9px 3.9px 0 0;
+            background-size: cover;
+        }
+
+        .movie-name{
+            height: calc(100% - 144.3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .name-text{
+                color: #FFFFFF;
+                font-family: "Freesentation-9Black";
+                font-size: 16.9px;
+                margin: 0;
+            }
+        }
+    }
+
+}
+
+.recResult-movieList::-webkit-scrollbar {
+    height: 3.9px;
+}
+
+.recResult-movieList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.recResult-movieList::-webkit-scrollbar-thumb {
+    background-color: #1ED863;
+    border-radius: 4px;
+}
+
+.recResult-movieList::-webkit-scrollbar-thumb:hover {
+    background-color: #15a04c;
+}
