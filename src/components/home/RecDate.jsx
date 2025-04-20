@@ -3,7 +3,7 @@ import backImgsrc from "/images/recSituationBackground.png";
 import "../../styles/home/recDate.css";
 import movieDummy from "../../../public/data/movieDummy";
 import DateSelect from "./DateSelect";
-import MovieList from "./MovieList";
+import MovieList from "../MovieList";
 
 export default function RecDate() {
     const [isSubmit, setIsSubmit] = useState(false);
