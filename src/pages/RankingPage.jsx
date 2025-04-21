@@ -34,7 +34,7 @@ const RankingPage = () => {
 
     useEffect(() => {
         fetchRanking();
-    }, [platform]);
+    }, [platform, rankingPeriod]);
 
     return (
         <div className="ranking-wrapper">

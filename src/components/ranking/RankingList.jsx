@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/ranking/RankingList.css';
 
 const RankingList = ({rankingList, platform}) => {
@@ -23,7 +24,9 @@ const RankingList = ({rankingList, platform}) => {
                             <h1 className="ranking-item-rank">{String(index + 1).padStart(2, '0')}</h1>
                             {rankingCount(movie)}
                             <img src={baseImageUrl + movie.backdrop_path} alt={movie.title} className="ranking-item-image" />
-                            <div className="ranking-item-title">{movie.title}</div>
+                            <Link to={`/movie`} className="ranking-item-title">
+                                {movie.title}
+                            </Link>
                         </div>
                         <div className="ranking-item-overview">{movie.overview}</div>
                     </div>
