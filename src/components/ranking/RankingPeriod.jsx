@@ -22,16 +22,16 @@ const RankingPeriod = ({platform, rankingPeriod, setRankingPeriod}) => {
             case "boxoffice":
                 return (
                     <div className="ranking-period-button-wrapper">
-                        <button className="ranking-period-button" onClick={() => setRankingPeriod('day')} style={{color: `${dayColor}`}}>Day</button>
-                        <button className="ranking-period-button" onClick={() => setRankingPeriod('week')} style={{color: `${weekColor}`}}>Week</button>
+                        <button className="ranking-period-button" onClick={() => setRankingPeriod('day')} style={{color: `${dayColor}`}}>일간</button>
+                        <button className="ranking-period-button" onClick={() => setRankingPeriod('week')} style={{color: `${weekColor}`}}>주간</button>
                     </div>
                 );
             case "popfri":
                 return (
                     <div className="ranking-period-button-wrapper">
-                        <button className="ranking-period-button" onClick={() => setRankingPeriod('day')} style={{color: `${dayColor}`}}>Day</button>
-                        <button className="ranking-period-button" onClick={() => setRankingPeriod('week')} style={{color: `${weekColor}`}}>Week</button>
-                        <button className="ranking-period-button" onClick={() => setRankingPeriod('month')} style={{color: `${monthColor}`}}>Month</button>
+                        <button className="ranking-period-button" onClick={() => setRankingPeriod('day')} style={{color: `${dayColor}`}}>일간</button>
+                        <button className="ranking-period-button" onClick={() => setRankingPeriod('week')} style={{color: `${weekColor}`}}>주간</button>
+                        <button className="ranking-period-button" onClick={() => setRankingPeriod('month')} style={{color: `${monthColor}`}}>월간</button>
                     </div>
                 );
             default:
