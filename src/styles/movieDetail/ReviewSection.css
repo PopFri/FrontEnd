@@ -1,239 +1,239 @@
 .review-wrapper {
-    color: white;
-    padding: 2rem;
-    font-family: 'Pretendard', sans-serif;
-    padding-top: 0%;
-    padding-bottom: 27px;
-  }
+  color: white;
+  padding: 2rem;
+  font-family: 'Pretendard', sans-serif;
+  padding-top: 0%;
+  padding-bottom: 27px;
+}
   
-  .review-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .review-title {
-    font-family: 'Gajraj One';
-    font-size: 39px;
-    color: #FFFFFF;
-    margin-top: 0;
-    margin-bottom: 9px;
-  }
-  
-  .review-count {
-    font-family: 'Freesentation-7Bold';
-    font-size: 19.5px;
-    color: #FFFFFF;
-  }
-  
-  .review-sort-wrapper {
-    position: relative;
-  }
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .sort-modal {
-    position: absolute;
-    top: 100%; /* 버튼 바로 아래 */
-    right: 0;
-    align-items: center;
-    justify-content: center; /* 필요 시 수직 중앙 정렬 */
-    background-color: #191414;
-    border-radius: 20px;
-    z-index: 10;
-    margin-top: 0px;
-    width: 89.7px;
-  }
+.review-title {
+  font-family: 'Gajraj One';
+  font-size: 39px;
+  color: #FFFFFF;
+  margin-top: 0;
+  margin-bottom: 9px;
+}
+
+.review-count {
+  font-family: 'Freesentation-7Bold';
+  font-size: 19.5px;
+  color: #FFFFFF;
+}
+
+.review-sort-wrapper {
+  position: relative;
+}
+
+.sort-modal {
+  position: absolute;
+  top: 100%; /* 버튼 바로 아래 */
+  right: 0;
+  align-items: center;
+  justify-content: center; /* 필요 시 수직 중앙 정렬 */
+  background-color: #191414;
+  border-radius: 20px;
+  z-index: 10;
+  margin-top: 0px;
+  width: 89.7px;
+}
   
-  .sort-option-recent {
-    font-family: 'Freesentation-7Bold';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    cursor: pointer;
-    font-size: 15.6px;
-    height: 30px;
+.sort-option-recent {
+  font-family: 'Freesentation-7Bold';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  cursor: pointer;
+  font-size: 15.6px;
+  height: 30px;
+  margin: 0px;
+  margin-bottom: 4px;
+  p{
     margin: 0px;
-    margin-bottom: 4px;
-    p{
-      margin: 0px;
-    }
   }
+}
   
-  .sort-option-like {
-    font-family: 'Freesentation-7Bold';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    cursor: pointer;
-    font-size: 15.6px;
-    height: 30px;
+.sort-option-like {
+  font-family: 'Freesentation-7Bold';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  font-size: 15.6px;
+  height: 30px;
+  margin: 0px;
+  p{
     margin: 0px;
-    p{
-      margin: 0px;
-    }
   }
+}
 
-  .sort-icon {
-    position: absolute;
-    top: 50%;
+.sort-icon {
+  position: absolute;
+  top: 50%;
 
-    transform: translateY(-50%);
-    width: 27.3px;
-    height: 27.3px;
-    pointer-events: none;
-    z-index: 2;
-  }
+  transform: translateY(-50%);
+  width: 27.3px;
+  height: 27.3px;
+  pointer-events: none;
+  z-index: 2;
+}
 
-  .review-sort {
-    font-family: 'Freesentation-7Bold';
-    background-color: #191414;
-    width: auto;
-    color: white;
-    padding: 0.4rem 0 0.4rem 2rem; /* 왼쪽 아이콘 공간 확보 */
-    border: none;
-    border-radius: 4px;
-    font-size: 15.6px;
-  }
+.review-sort {
+  font-family: 'Freesentation-7Bold';
+  background-color: #191414;
+  width: auto;
+  color: white;
+  padding: 0.4rem 0 0.4rem 2rem; /* 왼쪽 아이콘 공간 확보 */
+  border: none;
+  border-radius: 4px;
+  font-size: 15.6px;
+}
 
-  .review-sort:hover {
-    outline: none; /* 기본 파란 테두리 제거 */
-  }
+.review-sort:hover {
+  outline: none; /* 기본 파란 테두리 제거 */
+}
 
-  .review-user-avatar {
-    width: 39px;
-    height: 39px;
-    border-radius: 19.5px;
-    object-fit: cover;
-  }
+.review-user-avatar {
+  width: 39px;
+  height: 39px;
+  border-radius: 19.5px;
+  object-fit: cover;
+}
   
-  .review-write-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 7.8px;
-    margin-bottom: 35.6px;
-  }
+.review-write-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 7.8px;
+  margin-bottom: 35.6px;
+}
 
-  .review-write {
-    width: 557.7px;
-    height: 27.3px;
-    margin-top: 2px;
-    padding-left: 5px; /* 왼쪽 아이콘 공간 확보 */
-    font-size: 15.6px;
-    font-family: 'Freesentation-5Medium';
-    color: #ffffff;
-    border: none; /* 기본 테두리 제거 */
-    border-bottom: 3px solid; /* 기본 테두리 제거 */
-    background: #191414;
-    color: white;
-  }
+.review-write {
+  width: 557.7px;
+  height: 27.3px;
+  margin-top: 2px;
+  padding-left: 5px; /* 왼쪽 아이콘 공간 확보 */
+  font-size: 15.6px;
+  font-family: 'Freesentation-5Medium';
+  color: #ffffff;
+  border: none; /* 기본 테두리 제거 */
+  border-bottom: 3px solid; /* 기본 테두리 제거 */
+  background: #191414;
+  color: white;
+}
 
-  .review-write::placeholder {
-    font-size: 15.6px;
-    font-family: 'Freesentation-5Medium';
-    color: #ffffff;
-  }
+.review-write::placeholder {
+  font-size: 15.6px;
+  font-family: 'Freesentation-5Medium';
+  color: #ffffff;
+}
 
-  .review-write:focus {
-    outline: none; /* 기본 파란 테두리 제거 */
-  }
-  
-  .review-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15.6px;
-  }
-  
-  .review-card {
-    display: flex;
-    flex-direction: column; /* ✅ 수직 정렬 */
-    align-items: flex-start; /* 좌측 정렬 */
-    position: relative;
-    background-color: #D9D9D920;
-    border-radius: 12px;
-    padding: 1rem;
-  }
-  
-  .review-avatar {
-    width: 39px;
-    height: 39px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-  }
-  
-  .review-user-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .review-user {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 495px;
-  }
-  
-  .review-name {
-    font-family: 'Freesentation-7Bold';
-    color: #32ff87;
-    font-size: 15.6px;
-  }
-  
-  .review-email {
-    font-family: 'Freesentation-7Bold';
-    font-size: 7.8px;
-    color: #FFFFFF;
-  }
-  
-  .review-date {
-    font-family: 'Freesentation-7Bold';
-    font-size: 11.7px;
-    color: #FFFFFF;
-  }
+.review-write:focus {
+  outline: none; /* 기본 파란 테두리 제거 */
+}
 
-  .review-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15.6px;
+}
 
-  .review-text {
-    font-family: 'Freesentation-6SemiBold';
-    font-size: 15.6px;
-    color: #FFFFFF;
-    margin-top: 4px;
-    margin-bottom: 10px;
-  }
+.review-card {
+  display: flex;
+  flex-direction: column; /* ✅ 수직 정렬 */
+  align-items: flex-start; /* 좌측 정렬 */
+  position: relative;
+  background-color: #D9D9D920;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.review-avatar {
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
   
-  .review-actions {
-    display: flex;
-    gap: 3px;
-    font-size: 0.9rem;
-  }
+.review-user-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 495px;
+}
+
+.review-name {
+  font-family: 'Freesentation-7Bold';
+  color: #32ff87;
+  font-size: 15.6px;
+}
+
+.review-email {
+  font-family: 'Freesentation-7Bold';
+  font-size: 7.8px;
+  color: #FFFFFF;
+}
   
-  .like {
-    display: flex;
-    align-items: center;      /* 수직 가운데 정렬 */
-    font-size: 15.6px;
-    color: #FFFFFF;
-  }
-  .like-count {
-    font-family: 'Gajraj One';
-    margin-right: 20px;
-    font-size: 15.6px;
-    display: flex;
-    align-items: center;      /* 수직 가운데 정렬 */
-  }
+.review-date {
+  font-family: 'Freesentation-7Bold';
+  font-size: 11.7px;
+  color: #FFFFFF;
+}
+
+.review-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.review-text {
+  font-family: 'Freesentation-6SemiBold';
+  font-size: 15.6px;
+  color: #FFFFFF;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+.review-actions {
+  display: flex;
+  gap: 3px;
+  font-size: 0.9rem;
+}
   
-  .dislike {
-    display: flex;
-    align-items: center;      /* 수직 가운데 정렬 */
-    color: #ff4d4d;
-  }
+.like {
+  display: flex;
+  align-items: center;      /* 수직 가운데 정렬 */
+  font-size: 15.6px;
+  color: #FFFFFF;
+}
+.like-count {
+  font-family: 'Gajraj One';
+  margin-right: 20px;
+  font-size: 15.6px;
+  display: flex;
+  align-items: center;      /* 수직 가운데 정렬 */
+}
+
+.dislike {
+  display: flex;
+  align-items: center;      /* 수직 가운데 정렬 */
+  color: #ff4d4d;
+}
 
 .like-button,
 .dislike-button {
