@@ -1,0 +1,18 @@
+.ranking-wrapper {
+    background-color: #191414;
+    max-width: 900px;   /* 너비 제한 */
+    margin: 0 auto;      /* 가운데 정렬 */
+    width: 686.4px;
+    overflow-x: hidden;  /* 가로 스크롤 방지 */
+    box-sizing: border-box;
+}
+
+.ranking-title {
+    font-size: 39px;
+    font-family: "Gajraj One", sans-serif;
+    color: #FFFFFF;
+    padding-bottom: 0%;
+    margin-bottom: 31px;
+    margin-top: 0;
+    margin-left: 23.4px;
+}
