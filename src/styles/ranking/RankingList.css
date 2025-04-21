@@ -82,7 +82,7 @@
 /* 제목 (왼쪽 아래) */
 .ranking-item-title {
   position: absolute;
-  top: 335px;
+  top: 275px;
   left: 5px;
   font-size: 58.5px;
   font-family: 'GasoekOne-Regular';
@@ -92,8 +92,8 @@
   
 /* 설명 */
 .ranking-item-overview {
-  font-size: 14px;
-  margin-top: 10px;
+  font-size: 17px;
+  margin-top: 20px;
   width: 569.4px;
   font-family: 'Freesentation-5Medium';
   color: #FFFFFF;

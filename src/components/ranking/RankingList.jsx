@@ -9,7 +9,7 @@ const RankingList = ({rankingList, platform}) => {
         if (platform === "boxoffice") {
             return <div className="ranking-count">
                 <p className="ranking-total-count">{movie.total_count}</p>
-                <p className="ranking-updown-count">({movie.up_down})</p>
+                <p className="ranking-updown-count">(+{movie.up_down})</p>
                 </div>;
         } else {
             return null;
@@ -23,9 +23,9 @@ const RankingList = ({rankingList, platform}) => {
                         <div className="movie-ranking-wrapper">
                             <h1 className="ranking-item-rank">{String(index + 1).padStart(2, '0')}</h1>
                             {rankingCount(movie)}
-                            <img src={baseImageUrl + movie.backdrop_path} alt={movie.title} className="ranking-item-image" />
-                            <Link to={`/movie`} className="ranking-item-title">
-                                {movie.title}
+                            <Link to={`/movie`}>
+                                <img src={baseImageUrl + movie.backdrop_path} alt={movie.title} className="ranking-item-image" />
+                                <p className="ranking-item-title">{movie.title}</p>
                             </Link>
                         </div>
                         <div className="ranking-item-overview">{movie.overview}</div>
