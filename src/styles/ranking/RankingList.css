@@ -1,0 +1,101 @@
+.ranking-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.ranking-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 569.4px;
+  gap: 16px;
+  padding: 20px;
+}
+  
+.ranking-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #191414;
+}
+
+.movie-ranking-wrapper {
+  width: 585px;
+  height: 397.8px;
+  background-color: #191414;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* 제목과 순위를 위한 기준 위치 */
+}
+  
+  /* 순위 */
+.ranking-item-rank {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 0px;
+  margin-bottom: 0;
+  font-size: 117px;
+  font-family: 'Gajraj One';
+  color: #1ED863;
+  z-index: 1;
+}
+
+.ranking-total-count {
+  position: absolute;
+  top: 315px;
+  right: 10px;
+  font-size: 27.3px;
+  font-family: 'GasoekOne-Regular';
+  color: #1ED863;
+  z-index: 1;
+}
+
+.ranking-updown-count {
+  position: absolute;
+  top: 345px;
+  right: 10px;
+  font-size: 27.3px;
+  font-family: 'GasoekOne-Regular';
+  color: #1ED863;
+  z-index: 1;
+}
+
+/* 이미지 */
+.ranking-item-image {
+  width: 475.8px;
+  height: 304.2px;
+  margin-top: 60px;
+  border-radius: 8px;
+
+  z-index: 0;
+}
+  
+/* 제목 (왼쪽 아래) */
+.ranking-item-title {
+  position: absolute;
+  top: 275px;
+  left: 5px;
+  font-size: 58.5px;
+  font-family: 'GasoekOne-Regular';
+  text-decoration: none;
+  color: #1ED863;
+}
+  
+/* 설명 */
+.ranking-item-overview {
+  font-size: 17px;
+  margin-top: 20px;
+  width: 569.4px;
+  font-family: 'Freesentation-5Medium';
+  color: #FFFFFF;
+  line-height: 1.4;
+}

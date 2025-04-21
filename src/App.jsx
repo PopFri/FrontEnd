@@ -3,6 +3,7 @@ import MovieDetailPage from './pages/MovieDetailPage.jsx';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Login from "./pages/login"
 import Home from "./pages/Home"
+import RankingPage from "./pages/RankingPage"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/movie" element={<MovieDetailPage />} />
+        <Route path="/rank" element={<RankingPage />} />
       </Routes>
     </BrowserRouter>
   );

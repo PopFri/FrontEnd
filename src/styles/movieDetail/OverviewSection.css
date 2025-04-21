@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
-
 .overview-wrapper {
     width: 600.6px;
     height: 187.2px;
@@ -21,7 +19,7 @@
     font-size: 39px;
     margin-top: 12px;
     margin-bottom: 2px;
-    font-family: "Gajraj One", sans-serif;
+    font-family: "Gajraj One";
     color: #FFFFFF;
 }
 
