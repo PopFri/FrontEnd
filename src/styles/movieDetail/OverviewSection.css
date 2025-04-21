@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
+
+.overview-wrapper {
+    width: 600.6px;
+    height: 187.2px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem;
+    padding-top: 0%;
+}
+
+.genre-inline-item {
+    font-family: 'Freesentation-9Black';
+    font-size: 19.5px;
+    margin-right: 0.5rem; /* ← 공백 대신 강제 여백 */
+    color: #1ED863;
+}
+
+.overview-title {
+    font-size: 39px;
+    margin-top: 12px;
+    margin-bottom: 2px;
+    font-family: "Gajraj One", sans-serif;
+    color: #FFFFFF;
+}
+
+.overview-content {
+    font-family: 'Freesentation-5Medium';
+    font-size: 15.6px;
+    margin-top: 0;
+    color: #FFFFFF;
+}

@@ -1,0 +1,107 @@
+/* ✅ 전체 감싸는 wrapper */
+.poster-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+  width: 600.6px;
+  height: 319.8px;
+  margin: 0 auto;
+}
+
+/* ✅ 배경 이미지 */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 600.6px;
+  max-height: 319.8px;
+  object-fit: cover;
+  filter: blur(8px);
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* ✅ 실제 콘텐츠 박스 */
+.poster-image-wrapper {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ✅ 포스터 */
+.poster-container {
+  width: 210px;
+  height: 300px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay-provider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  margin-bottom: 20px;
+  max-width: 600px;
+  color: white;
+  z-index: 2;
+}
+/* ✅ 텍스트 */
+.overlay-text {
+  max-width: 300px;
+  overflow: hidden;
+}
+
+.overlay-text .title {
+  font-size: 2.5rem;
+  font-family: 'GasoekOne-Regular';
+  font-weight: bold;
+  color: #1ED863;
+  margin-bottom: 0px;
+}
+
+.overlay-text .description {
+  color: white;
+  font-family: "Gajraj One", sans-serif;
+  font-size: 15.6px;
+  font-family: 'GasoekOne-Regular';
+  margin: 0px;
+}
+
+.overlay-text .director {
+  font-family: 'Freesentation-7Bold';
+  color: white;
+  font-size: 11.7px;
+  margin: 0px;
+}
+
+/* ✅ 제공업체 로고 */
+.provider-container {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.provider-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+}

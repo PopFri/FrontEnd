@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
+
+.image-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;     /* ✅ 제목 + 이미지 가로 리스트 세로로 정렬 */
+    padding: 2rem;
+    padding-bottom: 76.05px;
+    gap: 0%;
+  }
+  
+  .image-title {
+    font-size: 39px;
+    font-family: "Gajraj One", sans-serif;
+    color: #FFFFFF;
+    padding-bottom: 0%;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  
+  .image-scroll-wrapper {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 0px;
+    width: 615.52px;
+    box-sizing: border-box;
+  }
+/* Chrome, Safari, Edge */
+.image-scroll-wrapper::-webkit-scrollbar {
+    height: 3.9px;
+  }
+  
+  .image-scroll-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .image-scroll-wrapper::-webkit-scrollbar-thumb {
+    background-color: #1ED863;
+    border-radius: 4px;
+  }
+  
+  .image-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #15a04c;
+  }
+  
+  .scrollable-image {
+    width: 302.98px;
+    height: 171.6px;
+    object-fit: cover;
+    flex: 0 0 auto;
+  }
+  
+  .image-container {
+    flex: 0 0 auto;
+  }
