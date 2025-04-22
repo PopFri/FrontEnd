@@ -1,0 +1,176 @@
+.discovery-movie-wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0px; /* 카드 간격 */
+    padding: 0 20px; /* 좌우 패딩 */
+    padding-bottom: 70px;
+}  
+
+.discovery-list-name {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: right;
+    margin-bottom: 43px;
+}
+
+.discovery-list-name-text {
+    font-size: 19.5px;
+    font-family: 'GasoekOne-Regular';
+    color: #2DB15E;
+}
+
+.discovery-video {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.discovery-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex; /* ✅ 가로 배치 */
+    flex-direction: row;
+    align-items: flex-start; /* 위쪽 정렬 */
+    gap: 20px; /* 포스터와 썸네일 사이 간격 */
+    margin-top: 35px;
+    overflow: hidden;
+}
+
+.discovery-poster {
+    width: 198.8px;
+    height: 292.5px;
+    object-fit: cover;
+}
+
+.discovery-image-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+}
+  
+.discovery-image-title {
+    font-size: 19.5px;
+    font-family: 'Freesentation-7Bold';
+    color: #FFFFFF;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.discovery-image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.discovery-image {
+    width: 131.38px;
+    height: 74.1px;
+    object-fit: cover;
+}
+
+.empty-image {
+    width: 131.38px;
+    height: 74.1px;
+    background-color: #383838;
+}
+
+.discovery-movieinfo-wrapper {
+    position: relative; /* ✅ 기준이 되는 부모 */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 27px;
+}
+.discovery-movie-title {
+    font-size: 39px;
+    font-family: 'GasoekOne-Regular';
+    margin-top: 0px;
+    margin-bottom: 2px;
+    color: #1ED863;
+}
+
+.discovery-overview {
+    font-family: 'Freesentation-5Medium';
+    font-size: 15.6px;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: #FFFFFF;
+}
+
+.discovery-genre {
+    font-family: 'Freesentation-9Black';
+    font-size: 19.5px;
+    color: #1ED863;
+}
+
+.button-panel {
+    position: absolute;
+    top: 817px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* 오른쪽 정렬 */
+    gap: 3px;
+    width: auto;
+  }
+  
+  .button-container {
+    width: auto;
+    position: relative;
+  }
+  
+  .side-button {
+    width: 23px;
+    height: 60.2px;
+    color: white;
+    border: none;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 19.5px 0 0 19.5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    transform-origin: right center;
+  }
+  
+  .bad-button {
+    background-color: #C73131;
+  }
+
+  .skip-button {
+    background-color: #EBD036;
+  }
+
+  .good-button {
+    background-color: #1ED863;
+  }
+  
+  .side-button:hover {
+    width: 277px;
+  }
+
+  /* ✅ 텍스트 숨김 초기 상태 */
+.button-text {
+    font-family: 'GasoekOne-Regular';
+    font-size: 39px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    color: transparent; /* ✅ 글자 색은 투명 */
+    -webkit-text-stroke: 3px black; /* ✅ 외곽선만 보이게 */
+}
+  
+  /* ✅ hover 시 등장 */
+  .side-button:hover .button-text {
+    opacity: 1;
+    transform: translateX(0);
+  }
