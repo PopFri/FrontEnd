@@ -1,0 +1,59 @@
+.myPage-profile{
+    width: 640.6px;
+    height: 289.6px;
+    background-size: 100% 100%;
+    display: flex;
+    align-items: start;
+    .profile-img{
+        width: 195px;
+        height: 195px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-color: #656363;
+        margin: 47.3px 20.7px;
+    }
+    .profile-detail{
+        width: 350px;
+        height: 195px;
+        margin: 47.3px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .detail-text{
+            p{
+                margin: 0;
+            }
+            .text-name{
+                font-size: 42.9px;
+                font-family: "GasoekOne-Regular";
+                color: #1ED863;
+                margin-top: 12px;
+            }
+            .text-email{
+                font-size: 15.6px;
+                font-family: "GasoekOne-Regular";
+                color: #FFFFFF;
+            }
+        }
+        .detail-logout{
+            width: 101.4px;
+            height: 23.4px;
+            border: 0;
+            border-radius: 7.8px;
+            background-color: #656363;
+            font-size: 11.7px;
+            font-family: "Freesentation-5Medium";
+            color: #FFFFFF;
+            margin: 20px 0;
+        }
+        .detail-logout:hover{
+            cursor: pointer;
+        }
+    }
+    .profile-setting{
+        width: 19.5px;
+        height: 19.5px;
+        margin-top: 35.3px;
+    }
+}
