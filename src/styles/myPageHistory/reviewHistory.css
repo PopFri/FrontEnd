@@ -42,6 +42,9 @@
                     width: 28.2px;
                     height: 28.2px;
                 }
+                .title-delBtn:hover{
+                    cursor: pointer;
+                }
             }
             .detail-review{
                 display: flex;
