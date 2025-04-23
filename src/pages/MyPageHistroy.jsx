@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../styles/myPageHistory/myPageHistory.css'
 import Profile from '../components/myPage/Profile'
 import Header from '../components/Header'
@@ -8,13 +8,12 @@ import VisitHistory from '../components/myPageHistory/VisitHistory';
 import ReviewHistory from '../components/myPageHistory/ReviewHistory';
 
 export default function MyPageHistroy() {
-  const [isSetting, setSetting] = useState(false);
   const location = useLocation().pathname;
 
   return (
     <div className='myPageHistory'>
         <Header />
-        <Profile setSetting={setSetting}/>
+        <Profile />
         {location == "/mypage/popfri" ? <PopFriHistory /> : <></>}
         {location == "/mypage/review" ? <ReviewHistory /> : <></>}
         {location == "/mypage/visit" ? <VisitHistory /> : <></>}

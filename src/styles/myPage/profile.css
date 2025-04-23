@@ -36,7 +36,7 @@
                 color: #FFFFFF;
             }
         }
-        .detail-logout{
+        button{
             width: 101.4px;
             height: 23.4px;
             border: 0;
@@ -46,14 +46,34 @@
             font-family: "Freesentation-5Medium";
             color: #FFFFFF;
             margin: 20px 0;
+            margin-right: 5px;
         }
         .detail-logout:hover{
             cursor: pointer;
+        }
+        .detail-button{
+            .detail-danger{
+                background-color: #ce7e7e;
+                color: #141414;
+            }
+            .detail-cancel{
+                margin-left: 5px;
+                width: 55.2px;
+            }
+            .detail-danger:hover{
+                cursor: pointer;
+            }
+            .detail-cancel:hover{
+                cursor: pointer;
+            }
         }
     }
     .profile-setting{
         width: 19.5px;
         height: 19.5px;
         margin-top: 35.3px;
+    }
+    .profile-setting:hover{
+        cursor: pointer;
     }
 }

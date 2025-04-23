@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../styles/myPage/myPage.css'
 import Header from '../components/Header'
 import Profile from '../components/myPage/Profile'
@@ -7,12 +7,11 @@ import ReviewHistory from '../components/myPage/ReviewHistory';
 import VisitHistory from '../components/myPage/VisitHistory';
 
 export default function MyPage() {
-  const [isSetting, setSetting] = useState(false);
 
   return (
     <div className='myPage'>
         <Header />
-        <Profile setSetting={setSetting}/>
+        <Profile />
         <PopFriHistory />
         <ReviewHistory />
         <VisitHistory />
