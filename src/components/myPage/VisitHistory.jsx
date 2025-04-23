@@ -9,7 +9,7 @@ export default function VisitHistory() {
     <div className='myPage-history'>
         <div className='history-title'>
             <p className='title-name'>Visit History</p>
-            <Link to="popfri" style={{textDecoration: 'none'}}>
+            <Link to="visit" style={{textDecoration: 'none'}}>
                 <p className='title-more'>더보기</p>
             </Link>
         </div>

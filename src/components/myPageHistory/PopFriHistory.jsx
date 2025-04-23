@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../../styles/myPageHistory/popFriHistory.css'
 import recomHistoryDummy from '../../../public/data/recomHistoryDummy'
 import MovieList from '../MovieList'
+import { Link } from 'react-router-dom'
 
 export default function PopFriHistory() {
   const [select, setSelect] = useState('discovery')
@@ -23,7 +24,10 @@ export default function PopFriHistory() {
   return (
     <div className='myPageHistory-history'>
         <div className='history-title'>
-            <p className='title-name'>Visit History</p>
+            <p className='title-name'>PopFri History</p>
+            <Link to="/mypage" style={{textDecoration: 'none'}}>
+                <p className='title-more'>뒤로가기</p>
+            </Link>
         </div>
         <div className='popfriHistory-sort'>
             <div className='sort-container' onClick={()=>{setSelect("discovery")}}
