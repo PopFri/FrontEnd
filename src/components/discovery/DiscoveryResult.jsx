@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../styles/discovery/DiscoveryResult.css';
 import { Link } from 'react-router-dom';
-import MovieList from '../MovieList';
+import { useNavigate } from 'react-router-dom';
 
 const DiscoveryResult = ({resultList}) => {
+    const navigate = useNavigate();
 
     return (
         <div className="discovery-result-wrapper">
@@ -54,7 +55,7 @@ const DiscoveryResult = ({resultList}) => {
                 </div>
             </div>
             <div className="discovery-button-container">
-                <button className="discovery-button back-button" onClick={() => window.location.reload()}>
+                <button className="discovery-button back-button" onClick={() => navigate('/discovery')}>
                     <span className="discovery-button-text">뒤로 가기</span>
                     <img src="/images/back-line.png" alt="뒤로가기" className="button-icon" />
                 </button>
