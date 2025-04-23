@@ -13,7 +13,7 @@ export default function PopFriHistory() {
               <p className='title-more'>더보기</p>
             </Link>
         </div>
-        <MovieList movieList = {movieDummy} />
+        <MovieList movieList = {movieDummy.result} />
     </div>
   )
 }

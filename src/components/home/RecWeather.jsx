@@ -13,7 +13,7 @@ export default function RecWeather() {
           {weather}
         </p>
       </div>
-      <MovieList movieList = {movieDummy} />
+      <MovieList movieList = {movieDummy.result} />
     </div>
   )
 }

@@ -13,7 +13,7 @@ export default function RecTime() {
           {time}
         </p>
       </div>
-      <MovieList movieList = {movieDummy} />
+      <MovieList movieList = {movieDummy.result} />
     </div>
   )
 }
