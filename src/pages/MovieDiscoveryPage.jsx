@@ -40,7 +40,7 @@ const MovieDiscoveryPage = () => {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ movieIds: selectedMovies }),
-              })
+                })
                 .then((response) => response.json())
                 .then((data) => {
                     const resultList = data.result;
