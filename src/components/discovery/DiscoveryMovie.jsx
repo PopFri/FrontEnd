@@ -2,17 +2,21 @@ import React from 'react';
 import '../../styles/discovery/DiscoveryMovie.css';
 import YouTube from 'react-youtube';
 
-const DiscoveryMovie = ({movie, listName, setMovieCount}) => {
+const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => {
+    const toggleMovie = (id) => {
+        setSelectedMovies((prev) =>
+        prev.includes(id) ? prev.filter((movieId) => movieId !== id) : [...prev, id]
+        );
+    };
+
     const handleBadButtonClick = () => {
         setMovieCount((prevCount) => prevCount + 1);
-        console.log('Bad button clicked');
     }
     const handleSkipButtonClick = () => {
         setMovieCount((prevCount) => prevCount + 1);
-        console.log('Skip button clicked');
     }
     const handleGoodButtonClick = () => {
-        setMovieCount((prevCount) => prevCount + 1);
+        toggleMovie(movie.id);
         setMovieCount((prevCount) => prevCount + 1);
     }
 

@@ -14,6 +14,7 @@ const MovieDiscoveryPage = () => {
     const [listName, setListName] = useState(null);
     const [movieCount, setMovieCount] = useState(0);
     const [resultList, setResultList] = useState([]);
+    const [selectedMovies, setSelectedMovies] = useState([]);
 
     useEffect(() => {
         fetch('data/movieDiscoveryData.json')
@@ -33,7 +34,13 @@ const MovieDiscoveryPage = () => {
         if (movieList.length === 0) return; // 데이터 아직 없음
         if (movieCount >= movieList.length) {
             setResult("result");
-            fetch('data/movieDiscoveryResultData.json')
+            fetch('data/movieDiscoveryResultData.json',{
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ movieIds: selectedMovies }),
+              })
                 .then((response) => response.json())
                 .then((data) => {
                     const resultList = data.result;
@@ -51,7 +58,7 @@ const MovieDiscoveryPage = () => {
 
     const renderSerchOrResurt = (result) => {
         if (result === "search") {
-            return <DiscoveryMovie movie={movie} listName={listName} setMovieCount={setMovieCount} />;
+            return <DiscoveryMovie movie={movie} listName={listName} setMovieCount={setMovieCount} setSelectedMovies={setSelectedMovies} />;
         } else {
             return <DiscoveryResult resultList={resultList} />;
         }
