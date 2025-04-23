@@ -13,6 +13,7 @@ const MovieDiscoveryPage = () => {
     const [movie, setMovie] = useState(null);
     const [listName, setListName] = useState(null);
     const [movieCount, setMovieCount] = useState(0);
+    const [resultList, setResultList] = useState([]);
 
     useEffect(() => {
         fetch('data/movieDiscoveryData.json')
@@ -32,6 +33,15 @@ const MovieDiscoveryPage = () => {
         if (movieList.length === 0) return; // 데이터 아직 없음
         if (movieCount >= movieList.length) {
             setResult("result");
+            fetch('data/movieDiscoveryResultData.json')
+                .then((response) => response.json())
+                .then((data) => {
+                    const resultList = data.result;
+                    setResultList(resultList);
+                })
+                .catch((error) => {
+                    console.error('Error fetching movie data:', error);
+                });
         } else {
             setResult("search");
             const movie = movieList[movieCount];
@@ -43,7 +53,7 @@ const MovieDiscoveryPage = () => {
         if (result === "search") {
             return <DiscoveryMovie movie={movie} listName={listName} setMovieCount={setMovieCount} />;
         } else {
-            return <DiscoveryResult />;
+            return <DiscoveryResult resultList={resultList} />;
         }
     }
 
