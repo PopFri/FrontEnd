@@ -24,7 +24,7 @@ export default function RecSituation() {
             {userInput.length > 20 ? userInput.slice(0, 20) + "..." : userInput}
           </p>
         </div>
-        <MovieList movieList = {movieDummy} />
+        <MovieList movieList = {movieDummy.result} />
       </div>:
       <div className='home-recSituation' style={{backgroundImage: `url(${backImgsrc})`}}>
         <p className='recSituation-question'>Q. 지금 어떤 상황이신가요?</p>

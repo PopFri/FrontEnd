@@ -19,7 +19,7 @@ export default function RecDate() {
                             {`${inputDate.year}년 ${inputDate.month}월 ${inputDate.week}주차`}
                         </p>
                     </div>
-                    <MovieList movieList={movieDummy} />
+                    <MovieList movieList={movieDummy.result} />
                 </div>
             ) : (
                 <div
