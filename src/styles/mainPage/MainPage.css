@@ -125,6 +125,7 @@
   .personal-recommend-option {
     display: flex;
     justify-content: space-between;
+    position: relative;
   }
 
   .personal-recommend-text {
@@ -138,4 +139,32 @@
   .tooltip-icon {
     width: 16px;
     height: 16px;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: -45px;           /* 버튼 위에 배치 */
+    right: 30px;             /* 오른쪽 정렬 */
+    background-color: #383838;
+    width: 158px;
+    height: 67px;
+    border-radius: 10px 10px 0 10px;
+    color: white;
+    font-size: 14px;
+    font-family: 'Freesentation-5Medium';
+    white-space: nowrap;
+    z-index: 3000;
+
+    display: flex;
+    align-items: center;      
+    justify-content: center;  
+    text-align: center;      
+    white-space: normal;         
+    padding: 8px;
+    box-sizing: border-box;       
+    overflow-wrap: break-word;    
+  }
+  
+  .tooltip-text {
+    margin: 0;
   }

@@ -11,6 +11,7 @@ const MainPage = () => {
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
     const [showCriterionModal, setShowCriterionModal] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState(null);
 
@@ -28,6 +29,14 @@ const MainPage = () => {
         if (showCriterionModal) closeModal();
         else openModal();
     };
+
+    const toggleTooltipModal = () => {
+        setShowTooltip(!showTooltip);
+    }
+
+    const closeTooltipModal = () => {
+        setShowTooltip(false);
+    }
 
     const chooseAgeRangeButton = (criterion) => {
         if (criterion === "연령별 추천") {
@@ -74,20 +83,25 @@ const MainPage = () => {
                         <img src="images/Vector.png" alt="vector" className="vector-icon" />
                     </button>
                     {showCriterionModal && (
-                    <div className="main-page-criterion-modal-wrapper" onClick={closeModal}>
+                    <div className="main-page-criterion-modal-wrapper" onClick={() => {closeModal(); closeTooltipModal();}}>
                         <div className={`main-page-criterion-modal ${isClosing ? 'slide-down' : 'slide-up'}`}>
                             <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); closeModal(); }}>
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
-                                <button className="criterion-info">
+                                <button className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
                                     <img src="images/criterion_info_icon.png" alt="tooltip" className="tooltip-icon" />
                                 </button>
+                                {showTooltip && (
+                                    <div className="tooltip">
+                                        <p className="tooltip-text">PopFri 내 활동을 기반으로 추천합니다.</p>
+                                    </div>
+                                )}
                             </button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); closeModal(); }}>전체 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); closeModal(); }}>남성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); closeModal(); }}>여성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); }}>연령별 추천</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); closeModal(); closeTooltipModal(); }}>전체 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); closeModal(); closeTooltipModal(); }}>남성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); closeModal(); closeTooltipModal(); }}>여성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); closeTooltipModal(); }}>연령별 추천</button>
                         </div>
                     </div>
                     )}
