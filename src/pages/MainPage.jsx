@@ -85,6 +85,9 @@ const MainPage = () => {
                     {showCriterionModal && (
                     <div className="main-page-criterion-modal-wrapper" onClick={() => {closeModal(); closeTooltipModal();}}>
                         <div className={`main-page-criterion-modal ${isClosing ? 'slide-down' : 'slide-up'}`}>
+                        <button className="main-page-criterion-close" onClick={() => { closeModal(); closeTooltipModal(); }}>
+
+                        </button>
                             <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); closeModal(); }}>
                                 <div className="personal-recommend-text">
                                     개인 추천
@@ -94,6 +97,7 @@ const MainPage = () => {
                                 </button>
                                 {showTooltip && (
                                     <div className="tooltip">
+                                        <img src="images/CancelLogo.png" alt="close" className="tooltip-close-icon" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}} />
                                         <p className="tooltip-text">PopFri 내 활동을 기반으로 추천합니다.</p>
                                     </div>
                                 )}

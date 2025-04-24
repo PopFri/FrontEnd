@@ -30,7 +30,7 @@
     width: 290.83px;
     height: 173,66px;
     background-color: #191414;
-  
+    margin-bottom: 9px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,4 +73,5 @@
     font-family: 'Freesentation-5Medium';
     color: #FFFFFF;
     line-height: 1.4;
+    margin-bottom: 20px;
 }
