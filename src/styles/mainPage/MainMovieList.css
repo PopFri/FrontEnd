@@ -1,0 +1,76 @@
+.main-movie-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+  
+.main-movie-card {
+    display: flex;
+    flex-wrap: wrap;             
+    justify-content: space-between;
+    width: 100%;
+    padding: 40px;
+    padding-top: 34px;
+    box-sizing: border-box;
+}
+    
+.main-movie-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #191414;
+}
+  
+.main-movie-wrapper {
+    width: 290.83px;
+    height: 173,66px;
+    background-color: #191414;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* 제목과 순위를 위한 기준 위치 */
+}
+  
+  /* 이미지 */
+.main-movie-item-background {
+    width: 243.02px;
+    height: 155.38px;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+.main-movie-item-poster {
+    width: 105.3px;
+    height: 150.05px;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    z-index: 1;
+}
+    
+  /* 제목 (왼쪽 아래) */
+.main-movie-item-title {
+    position: absolute;
+    top: 100px;
+    right: 5px;
+    font-size: 29.88px;
+    font-family: 'GasoekOne-Regular';
+    text-decoration: none;
+    color: #1ED863;
+}
+    
+  /* 설명 */
+.main-movie-item-overview {
+    font-size: 12.26px;
+    margin-top: 13px;
+    width: 290.83px;
+    font-family: 'Freesentation-5Medium';
+    color: #FFFFFF;
+    line-height: 1.4;
+}
