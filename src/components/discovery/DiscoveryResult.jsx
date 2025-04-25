@@ -40,15 +40,15 @@ const DiscoveryResult = ({resultList}) => {
 
                     return (
                         <Link key={movie.id || index} to={movieUrl} className="movieList-movie">
-                        <div
-                            className="movie-image"
-                            style={{
-                            backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.imageUrl})`,
-                            }}
-                        />
-                        <div className="movie-name">
-                            <p className="name-text">{movieName}</p>
-                        </div>
+                            <div
+                                className="movie-image"
+                                style={{
+                                backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.imageUrl})`,
+                                }}
+                            />
+                            <div className="movie-name">
+                                <p className="name-text">{movieName}</p>
+                            </div>
                         </Link>
                     );
                 })}

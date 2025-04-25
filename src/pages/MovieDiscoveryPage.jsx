@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
@@ -17,7 +17,7 @@ const MovieDiscoveryPage = () => {
     const [selectedMovies, setSelectedMovies] = useState([]);
 
     useEffect(() => {
-        fetch('data/movieDiscoveryData.json')
+        fetch('/data/movieDiscoveryData.json')
             .then((response) => response.json())
             .then((data) => {
                 const movieList = data.result.movies;
@@ -34,7 +34,7 @@ const MovieDiscoveryPage = () => {
         if (movieList.length === 0) return; // 데이터 아직 없음
         if (movieCount >= movieList.length) {
             setResult("result");
-            fetch('data/movieDiscoveryResultData.json',{
+            fetch('/data/movieDiscoveryResultData.json',{
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
