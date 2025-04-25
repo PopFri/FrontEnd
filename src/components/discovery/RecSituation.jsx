@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../styles/home/recSituation.css'
+import '../../styles/discovery/recSituation.css'
 import backImgsrc from '/images/recSituationBackground.png'
 import movieDummy from '../../../public/data/movieDummy'
 import MovieList from '../MovieList';

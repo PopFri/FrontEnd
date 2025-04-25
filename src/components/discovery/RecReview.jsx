@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/home/recReview.css";
+import "../../styles/discovery/recReview.css";
 import backImgsrc from "/images/reviewBackground.png";
 import resultBackImgsrc from "/images/recReviewBackground.png";
 import like1Imgsrc from "/images/clickedLike.png";

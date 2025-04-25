@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import backImgsrc from "/images/recSituationBackground.png";
-import "../../styles/home/recDate.css";
+import "../../styles/discovery/recDate.css";
 import movieDummy from "../../../public/data/movieDummy";
 import DateSelect from "./DateSelect";
 import MovieList from "../MovieList";

@@ -34,9 +34,9 @@ export default function Header() {
             <Link to="/discovery" className='link-container' style={{borderBottomColor: `${discoveryColor}`}}>
                 <p className='contianer-text' style={{color: `${discoveryColor}`}}>탐색</p>
             </Link>
-            <Link to="/rank" className='link-container' style={{borderBottomColor: `${rankColor}`}}>
+            {/* <Link to="/rank" className='link-container' style={{borderBottomColor: `${rankColor}`}}>
                 <p className='contianer-text' style={{color: `${rankColor}`}}>랭킹</p>
-            </Link>
+            </Link> */}
         </div>
         <Link to="/mypage" className='header-profile' style={{backgroundImage: `url(${profileImg})`}}/>
     </div>

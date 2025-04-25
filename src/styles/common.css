@@ -16,7 +16,7 @@ body{
     }
     .header-link{
         display: flex;
-        margin-right: 100px;
+        width: 330px;
         .link-container{
             display: flex;
             justify-content: center;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/mainPage/MainMovieList.css';
+import '../../styles/home/MainMovieList.css';
 import { Link } from 'react-router-dom';
 
 const MainMovieList = ({movieList}) => {
