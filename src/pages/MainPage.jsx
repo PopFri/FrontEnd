@@ -44,6 +44,26 @@ const MainPage = () => {
         }
     }
 
+    let optionColorPersonal = "#FFFFFF", optionColorAll = "#FFFFFF", optionColorMale = "#FFFFFF", optionColorFemale = "#FFFFFF", optionColorAge = "#FFFFFF";
+    switch (criterion) {
+        case "개인 추천":
+            optionColorPersonal = "#1ED863"
+            break;
+        case "전체 인기순":
+            optionColorAll = "#1ED863"
+            break;
+        case "남성 인기순":
+            optionColorMale = "#1ED863"
+            break;
+        case "여성 인기순":
+            optionColorFemale = "#1ED863"
+            break;
+        case "연령별 추천":
+            optionColorAge = "#1ED863"
+            break;
+        default:
+    }
+
     useEffect(() => {
         if(criterion !== "연령별 추천") {
             setAgeRange(null);
@@ -88,7 +108,7 @@ const MainPage = () => {
                         <button className="main-page-criterion-close" onClick={() => { closeModal(); closeTooltipModal(); }}>
 
                         </button>
-                            <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); closeModal(); }}>
+                            <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); closeModal(); }} style={{color: `${optionColorPersonal}`}}>
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
@@ -102,10 +122,10 @@ const MainPage = () => {
                                     </div>
                                 )}
                             </button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); closeModal(); closeTooltipModal(); }}>전체 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); closeModal(); closeTooltipModal(); }}>남성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); closeModal(); closeTooltipModal(); }}>여성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); closeTooltipModal(); }}>연령별 추천</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorFemale}`}}>여성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAge}`}}>연령별 추천</button>
                         </div>
                     </div>
                     )}
