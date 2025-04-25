@@ -6,15 +6,16 @@ import RecWeather from '../components/home/RecWeather'
 import RecTime from '../components/home/RecTime'
 import RecReview from '../components/home/RecReview'
 import Header from '../components/Header'
+import DiscoveryFilm from '../components/home/DiscoveryFilm'
 
 export default function Home() {
   return (
     <div className='home'>
         <Header />
+        <DiscoveryFilm />
         <RecSituation></RecSituation>
         <RecDate></RecDate>
         <RecReview></RecReview>
-        <RecWeather></RecWeather>
         <RecTime></RecTime>
     </div>
   )
