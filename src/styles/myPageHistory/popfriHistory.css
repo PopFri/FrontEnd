@@ -1,0 +1,29 @@
+.myPageHistory-history{
+    .popfriHistory-sort{
+        display: flex;
+        justify-content: space-between;
+    }
+    .sort-container{
+        width: 198px;
+        height: 35px;
+        border-bottom: 3px solid;
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        .container-text{
+            font-size: 19.5px;
+            font-family: "GasoekOne-Regular";
+            margin: 0;
+        }
+    }
+
+    .popfriHistory-result{
+        .result-date{
+            font-family: "GasoekOne-Regular";
+            font-size: 23.4px;
+            color: #FFFFFF;
+            margin: 0;
+            margin-top: 30px;
+        }
+    }
+}

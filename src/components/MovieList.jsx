@@ -5,7 +5,7 @@ import "../styles/home/movieList.css";
 export default function MovieList(props) {
     return (
         <div className="recResult-movieList">
-            {props.movieList.result.map((movie) => {
+            {props.movieList.map((movie) => {
                 let movieName = movie.name;
                 if (movieName.length > 6)
                     movieName = movieName.slice(0, 6) + "...";

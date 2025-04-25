@@ -1,0 +1,22 @@
+.myPage-history{
+    width: calc(100% - 78px);
+    margin: 16px 39px;
+    .history-title{
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        p{
+            margin: 0 5px;
+        }
+        .title-name{
+            font-size: 39px;
+            font-family: "Gajraj One";
+            color: #FFFFFF;
+        }
+        .title-more{
+            font-size: 11.7px;
+            font-family: 'Freesentation-7Bold';
+            color: #FFFFFF;
+        }
+    }
+}

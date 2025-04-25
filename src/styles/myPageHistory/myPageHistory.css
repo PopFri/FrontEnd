@@ -1,0 +1,36 @@
+.myPageHistory{
+    background-color: #191414;
+    max-width: 900px;   /* 너비 제한 */
+    margin: 0 auto;      /* 가운데 정렬 */
+    width: 686.4px;
+    overflow-x: hidden;  /* 가로 스크롤 방지 */
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+.myPageHistory-history{
+    width: calc(100% - 78px);
+    margin: 16px 39px;
+    .history-title{
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        p{
+            margin: 0 5px;
+        }
+        .title-name{
+            font-size: 39px;
+            font-family: "Gajraj One";
+            color: #FFFFFF;
+        }
+        .title-more{
+            font-size: 11.7px;
+            font-family: 'Freesentation-7Bold';
+            color: #FFFFFF;
+        }
+    }
+}
