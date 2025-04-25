@@ -7,12 +7,14 @@ import RankingPage from "./pages/RankingPage"
 import MyPage from './pages/MyPage.jsx';
 import MyPageHistroy from './pages/MyPageHistroy.jsx';
 import MovieDiscoveryPage from "./pages/MovieDiscoveryPage"
+import MainPage from './pages/MainPage.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<MainPage />} />
+        <Route path="/discovery" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/movie" element={<MovieDetailPage />} />
         <Route path="/rank" element={<RankingPage />} />
@@ -20,7 +22,6 @@ function App() {
         <Route path='/mypage/popfri' element={<MyPageHistroy />} />
         <Route path='/mypage/review' element={<MyPageHistroy />} />
         <Route path='/mypage/visit' element={<MyPageHistroy />} />
-        <Route path="/discovery" element={<MovieDiscoveryPage />} />
       </Routes>
     </BrowserRouter>
   );
