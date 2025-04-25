@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/discovery/DiscoveryMovie.css';
+import '../../styles/discoveryFilm/DiscoveryMovie.css';
 import YouTube from 'react-youtube';
 
 const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => {

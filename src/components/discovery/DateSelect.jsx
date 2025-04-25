@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/home/recDate.css";
+import "../../styles/discovery/recDate.css";
 
 export default function DateSelect(props) {
     const today = new Date();

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/discovery/DiscoveryResult.css';
+import '../../styles/discoveryFilm/DiscoveryResult.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
-import '../styles/discovery/MovieDiscoveryPage.css';
-import DiscoveryMovie from '../components/discovery/DiscoveryMovie';
-import DiscoveryResult from '../components/discovery/DiscoveryResult';
+import '../styles/discoveryFilm/MovieDiscoveryPage.css';
+import DiscoveryMovie from '../components/discoveryFilm/DiscoveryMovie';
+import DiscoveryResult from '../components/discoveryFilm/DiscoveryResult';
 import '../styles/common.css'
 
 const MovieDiscoveryPage = () => {

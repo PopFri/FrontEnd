@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../styles/home/discoveryFilm.css";
+import "../../styles/discovery/discoveryFilm.css";
 import arrowsrc from "/images/discoveryArrow.png";
 import { Link } from 'react-router-dom';
 

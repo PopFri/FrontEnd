@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/mainPage/ChooseAgeRange.css';
+import '../../styles/home/ChooseAgeRange.css';
 
 
 const ChooseAgeRange = ({ageRange, setAgeRange}) => {
