@@ -3,9 +3,6 @@
     "code": "string",
     "message": "string",
     "result": {
-      "userId": 1,
-      "name": "홍길동",
-      "email": "example@gmail.com",
       "backgroundImageUrl": "/8sNiAPPYU14PUepFNeSNGUTiHW.jpg",
       "imageUrl": "/evoEi8SBSvIIEveM3V6nCJ6vKj8.jpg",
       "title": "인터스텔라",

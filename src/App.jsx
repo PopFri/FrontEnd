@@ -8,23 +8,35 @@ import MyPage from './pages/MyPage.jsx';
 import MyPageHistroy from './pages/MyPageHistroy.jsx';
 import MovieDiscoveryPage from "./pages/MovieDiscoveryPage"
 import Home from './pages/Home.jsx';
+import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
+import { RouteChangeTracker } from './RouteChangeTracker';
+
+const instance = createInstance({
+  urlBase: 'http://localhost:8080/',         // Matomo 서버 주소
+  siteId: 1,                                 // 웹사이트 등록할 때 받은 Site ID
+  trackerUrl: 'http://localhost:8080/matomo.php',
+  srcUrl: 'http://localhost:8080/matomo.js',
+});
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/discovery" element={<Discovery />} />
-        <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/movie" element={<MovieDetailPage />} />
-        <Route path="/rank" element={<RankingPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path='/mypage/popfri' element={<MyPageHistroy />} />
-        <Route path='/mypage/review' element={<MyPageHistroy />} />
-        <Route path='/mypage/visit' element={<MyPageHistroy />} />
-      </Routes>
-    </BrowserRouter>
+    <MatomoProvider value={instance}>
+      <BrowserRouter>
+        <RouteChangeTracker />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/discovery" element={<Discovery />} />
+          <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/movie" element={<MovieDetailPage />} />
+          <Route path="/rank" element={<RankingPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path='/mypage/popfri' element={<MyPageHistroy />} />
+          <Route path='/mypage/review' element={<MyPageHistroy />} />
+          <Route path='/mypage/visit' element={<MyPageHistroy />} />
+        </Routes>
+      </BrowserRouter>
+    </MatomoProvider>
   );
 }
 
