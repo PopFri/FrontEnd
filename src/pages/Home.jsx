@@ -106,7 +106,6 @@ const Home = () => {
                     <div className="main-page-criterion-modal-wrapper" onClick={() => {closeModal(); closeTooltipModal();}}>
                         <div className={`main-page-criterion-modal ${isClosing ? 'slide-down' : 'slide-up'}`}>
                         <button className="main-page-criterion-close" onClick={() => { closeModal(); closeTooltipModal(); }}>
-
                         </button>
                             <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); closeModal(); }} style={{color: `${optionColorPersonal}`}}>
                                 <div className="personal-recommend-text">

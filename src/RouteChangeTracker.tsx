@@ -7,7 +7,21 @@ export const RouteChangeTracker = () => {
   const { trackPageView } = useMatomo();
 
   useEffect(() => {
-    trackPageView(); // 경로 바뀔 때마다 Matomo에 페이지뷰 기록
+    trackPageView({
+      documentTitle: document.title,
+    });
+
+    fetch("/matomo.access", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        event: "pageview",
+        page: window.location.pathname,
+        timestamp: new Date().toISOString()
+      })
+    });
   }, [location]);
 
   return null;

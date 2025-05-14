@@ -12,6 +12,7 @@
   "dependencies": {
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "dotenv": "^16.5.0",
+    "http-proxy-middleware": "^3.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.0",
