@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
 import '../styles/discoveryFilm/MovieDiscoveryPage.css';
 import DiscoveryMovie from '../components/discoveryFilm/DiscoveryMovie';
@@ -39,7 +37,7 @@ const MovieDiscoveryPage = () => {
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ movieIds: selectedMovies }),
+                body: JSON.stringify(selectedMovies),
                 })
                 .then((response) => response.json())
                 .then((data) => {
@@ -54,6 +52,7 @@ const MovieDiscoveryPage = () => {
             const movie = movieList[movieCount];
             setMovie(movie);
         }
+        console.log(selectedMovies);
     }, [movieCount, movieList.length]);
 
     const renderSerchOrResurt = (result) => {
