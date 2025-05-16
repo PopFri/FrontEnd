@@ -3,10 +3,13 @@ import '../../styles/discoveryFilm/DiscoveryMovie.css';
 import YouTube from 'react-youtube';
 
 const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => {
-    const toggleMovie = (id) => {
-        setSelectedMovies((prev) =>
-        prev.includes(id) ? prev.filter((movieId) => movieId !== id) : [...prev, id]
-        );
+    const toggleMovie = (movie) => {
+        setSelectedMovies((prev) => {
+            const exists = prev.some((m) => m.id === movie.id);
+            return exists
+                ? prev.filter((m) => m.id !== movie.id)
+                : [...prev, movie];
+        });
     };
 
     const handleBadButtonClick = () => {
@@ -16,7 +19,6 @@ const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => 
         setMovieCount((prevCount) => prevCount + 1);
     }
     const handleGoodButtonClick = () => {
-        toggleMovie(movie.id);
         setMovieCount((prevCount) => prevCount + 1);
     }
 
@@ -95,7 +97,13 @@ const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => 
                     </button>
                 </div>
                 <div className="button-container">
-                    <button className="side-button good-button" onClick={handleGoodButtonClick}>
+                    <button
+                        className="side-button good-button"
+                        onClick={() => {
+                            handleGoodButtonClick();
+                            toggleMovie({ id: movie.id, name: movie.title, imageUrl: movie.imageUrl });
+                        }}
+                    >
                         <span className="button-text">Good</span>
                     </button>
                 </div>
