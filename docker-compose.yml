@@ -1,0 +1,17 @@
+services:
+  popfri:
+    build: .
+    ports:
+      - "5173:5173"
+    command: ["npm", "run", "preview"]
+  matomo:
+    image: matomo:latest
+    restart: always
+    ports:
+      - "8080:80"  # 브라우저에서 http://<85번IP>:8080 으로 접속
+    volumes:
+      - matomo_data:/var/www/html
+      - ./matomo-js:/var/www/html/js/container
+        # container JS 파일이 생성될 경로를 로컬에 마운트
+volumes:
+  matomo_data:
