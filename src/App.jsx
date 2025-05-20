@@ -12,13 +12,14 @@ import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
 import { RouteChangeTracker } from './RouteChangeTracker';
 
 const instance = createInstance({
-  urlBase: 'http://localhost:8080/',         // Matomo 서버 주소
-  siteId: 1,                                 // 웹사이트 등록할 때 받은 Site ID
-  trackerUrl: 'http://localhost:8080/matomo.php',
-  srcUrl: 'http://localhost:8080/matomo.js',
+  urlBase: 'http://localhost/', // nginx 또는 matomo가 노출되는 주소
+  siteId: 1,
+  trackerUrl: 'http://localhost/matomo.php',
+  srcUrl: 'http://localhost/js/container_D2fxXTpR.js',
 });
 
 function App() {
+  
   return (
     <MatomoProvider value={instance}>
       <BrowserRouter>
@@ -28,7 +29,7 @@ function App() {
           <Route path="/discovery" element={<Discovery />} />
           <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/movie" element={<MovieDetailPage />} />
+          <Route path="/movie/:movieId" element={<MovieDetailPage />} />
           <Route path="/rank" element={<RankingPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path='/mypage/popfri' element={<MyPageHistroy />} />

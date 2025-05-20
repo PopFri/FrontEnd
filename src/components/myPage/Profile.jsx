@@ -3,7 +3,7 @@ import backgroundSrc from '/images/myPageBackground.png'
 import settingIconSrc from '/images/settingIcon.png'
 import profileImgSrc from '/images/profileImg.png'
 import "../../styles/myPage/profile.css";
-import ResignModal from './resignModal';
+import ResignModal from './ResignModal';
 import InitDataModal from './InitDataModal';
 import { useNavigate } from 'react-router-dom';
 

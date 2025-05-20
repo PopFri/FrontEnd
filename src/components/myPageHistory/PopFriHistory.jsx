@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../styles/myPageHistory/popFriHistory.css'
+import '../../styles/myPageHistory/popfriHistory.css'
 import recomHistoryDummy from '../../../public/data/recomHistoryDummy'
 import MovieList from '../MovieList'
 import { Link } from 'react-router-dom'

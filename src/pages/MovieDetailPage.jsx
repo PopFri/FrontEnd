@@ -14,7 +14,9 @@ import '../styles/common.css'
 
 const MovieDetailPage = () => {
     //movie
-    const { id } = useParams();
+    const { movieId } = useParams();
+
+    const BASE_URL = import.meta.env.VITE_API_URL;
 
     //navigate
     const navigate = useNavigate();
@@ -58,7 +60,7 @@ const MovieDetailPage = () => {
     const [sort, setSort] = useState('recent'); // 'recent' 또는 'like'
 
     const fetchReviews = () => {
-        const url = `data/movieReviewData.json`/* like, new*/;
+        const url = `${BASE_URL}/api/v1/movie/review/${movieId}/${sort}`/* like, new*/;
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -75,7 +77,7 @@ const MovieDetailPage = () => {
         //     navigate('/login');
         // }
       
-        fetch('/data/movieDetailData.json'/* {movieId} */)
+        fetch(`${BASE_URL}/api/v1/movie/${movieId}`/* {movieId} */)
             .then(res => res.json())
             .then(data => {
                 const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
@@ -139,7 +141,7 @@ const MovieDetailPage = () => {
             <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
             <TrailerSection videoId={videoId} />
             <ImageSection image={image} />
-            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={id} token={token} sort={sort} setSort={setSort}/>
+            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={movieId} token={token} sort={sort} setSort={setSort}/>
             <ReviewPagination page={page} setPage={setPage} totalPage={totalPage} />  
         </div>
     );
