@@ -23,7 +23,7 @@ function App() {
     <MatomoProvider value={instance}>
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/discovery" element={<Discovery />} />
           <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
           <Route path="/login" element={<Login />} />
