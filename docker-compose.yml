@@ -6,8 +6,7 @@ services:
     command: ["npm", "run", "preview"]
   matomo:
     image: matomo:5.3.2
-    build:
-      context: ./matomo
+    restart: always
     ports:
       - "8080:80"
     volumes:
