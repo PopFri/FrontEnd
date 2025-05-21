@@ -7,8 +7,8 @@ echo "[entrypoint] Starting Matomo..."
 docker-entrypoint.sh apache2-foreground &
 
 # 복사 대상 파일 이름 (Matomo가 만든 JS)
-SOURCE_FILE="./js/container/container_XigVTZYK.js"
-DEST_DIR="./js-export"
+SOURCE_FILE="/var/www/html/container_XigVTZYK.js"
+DEST_DIR="/var/www/html/js-export"
 
 # 파일 복사
 if [ -f "$SOURCE_FILE" ]; then
