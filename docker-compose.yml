@@ -23,5 +23,5 @@ services:
       - container_js:/usr/share/nginx/html/js
 
 volumes:
-  matomo-data:
-  container-js:  # container.js 공유용
+  matomo_data:
+  container_js:  # container.js 공유용
