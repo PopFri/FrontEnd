@@ -25,8 +25,6 @@ export default function Discovery() {
       
           setUser(userData.result);
       } catch (err) {
-          console.error(" 에러 발생:", err.message);
-          console.error("전체 에러 객체:", err);
           navigate('/login');
       }
   };

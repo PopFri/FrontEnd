@@ -14,32 +14,42 @@ export default function RecReview() {
     const [reviewResult, setReviewResult] = useState({});
 
     const clickReview = (index) => {
-        setIsSubmit(true);
         setInput(index);
-
-        setReviewResult(reviewList[userInput]);
+        setReviewResult(reviewList[index]); 
+        setIsSubmit(true);
     };
 
     useEffect(() => {
-          fetch(`${Server_IP}/api/v1/movie/recom/review`, {
+        const saved = localStorage.getItem("recReviewResult");
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            setReviewList(parsed.reviewList || []);
+            setInput(parsed.userInput || 0);
+            setReviewResult((parsed.reviewList || [])[parsed.userInput] || {});
+            setIsSubmit(true);
+        } else {
+            fetch(`${Server_IP}/api/v1/movie/recom/review`, {
             method: "GET",
             credentials: "include"
           })
             .then((response) => response.json())
             .then((data) => {
                 setReviewList(data.result);
-                localStorage.setItem("recReviewResult", JSON.stringify({
-                    reviewList: reviewList,
-                    userInput: userInput
-                }));
             })
             .catch((error) => {
                 console.error('Error fetching movie data:', error);
             });
-            console.log(reviewList);
+        }
     }, [isSubmit]);
 
-    const movieUrl = `/movie`;
+    useEffect(() => {
+        if (isSubmit) {
+            localStorage.setItem("recReviewResult", JSON.stringify({
+                reviewList,
+                userInput
+            }));
+        }
+    }, [isSubmit, reviewList, userInput]);
 
     return (
         <>
@@ -48,12 +58,12 @@ export default function RecReview() {
                     <p className="result-title">
                         한줄평 영화 선택
                         <button className="recReview-button" > 
-                            <img src="/images/recom_restart_button.png" alt="재시작" className="recReview-restart-icon" />
-                        </button>
+                            <img src="/images/recom_restart_button.png" alt="재시작" className="recReview-restart-icon" onClick={() => {setIsSubmit(false); setInput(0); setReviewResult({}); localStorage.removeItem("recReviewResult");}}/>
+                        </button> 
                     </p>
                     <Link
                         className="result-container"
-                        to={movieUrl}
+                        to={`/movie/${reviewResult.movieId}`}
                         style={{
                             backgroundImage: `url(${resultBackImgsrc})`,
                         }}
@@ -61,14 +71,14 @@ export default function RecReview() {
                         <div
                             className="contanier-poster"
                             style={{
-                                backgroundImage: `url(${reviewResult.imageUrl})`,
+                                backgroundImage: `url(${reviewResult.posterUrl})`,
                             }}
                         />
                         <div className="container-detail">
                             <p className="detail-name">{reviewResult.movieName}</p>
                             <div className="detail-review">
                                 <p className="review-text">
-                                    {reviewResult.text}
+                                    {reviewResult.reviewContents}
                                 </p>
                                 <div className="review-user">
                                     <div className="user-like">
@@ -88,7 +98,7 @@ export default function RecReview() {
                                         <div
                                             className="profile-img"
                                             style={{
-                                                backgroundImage: `url(${reviewResult.profileImg})`,
+                                                backgroundImage: `url(${reviewResult.profileUrl})`,
                                             }}
                                         />
                                     </div>
@@ -103,7 +113,7 @@ export default function RecReview() {
                         Q. 확인하고 싶은 영화한줄평을 선택해주세요!
                     </p>
                     <div className="recReview-reviewList">
-                        {Array.isArray(reviewResult) && reviewResult.map((review, index) => {
+                        {Array.isArray(reviewList) && reviewList.map((review, index) => {
                             return (
                                 <div
                                     className="reviewList-review"
@@ -112,7 +122,7 @@ export default function RecReview() {
                                     }}
                                     onClick={() => clickReview(index)}
                                 >
-                                    <p className="review-text">{review.reviewContent}</p>
+                                    <p className="review-text">{review.reviewContents}</p>
                                     <div className="review-detail">
                                         <div className="detail-like">
                                             <img
@@ -131,7 +141,7 @@ export default function RecReview() {
                                             <div
                                                 className="profile-img"
                                                 style={{
-                                                    backgroundImage: `url(${review.profileImg})`,
+                                                    backgroundImage: `url(${review.profileUrl})`,
                                                 }}
                                             />
                                         </div>

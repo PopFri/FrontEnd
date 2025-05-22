@@ -40,7 +40,7 @@ export default function Header({user}) {
                 <Link
                     to="/mypage"
                     className="header-profile"
-                    style={{ backgroundImage: `url(${user.imageUrl})` }}
+                    style={{ backgroundImage: user.imageUrl ? `url(${user.imageUrl})` : '/images/popfriLogo.png' }}
                 />
             )}
         </div>
