@@ -14,6 +14,26 @@ const Home = () => {
     const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState(null);
+    const [user, setUser] = useState(null);
+    const token = localStorage.getItem('token');
+    const Server_IP = import.meta.env.VITE_SERVER_IP;
+    const navigate = useNavigate();
+    const loadUserData = async (token) => {
+        try {
+            const userRes = await fetch(`${Server_IP}/api/v1/user`, {
+            method: 'GET',
+            headers: { Authorization: `Bearer ${token}` },
+            credentials: 'include'
+            });
+            const userData = await userRes.json();
+        
+            setUser(userData.result);
+        } catch (err) {
+            console.error(" 에러 발생:", err.message);
+            console.error("전체 에러 객체:", err);
+            navigate('/login');
+        }
+    };
 
     const openModal = () => setShowCriterionModal(true);
 
@@ -65,6 +85,7 @@ const Home = () => {
     }
 
     useEffect(() => {
+        loadUserData(token);
         if(criterion !== "연령별 추천") {
             setAgeRange(null);
             fetch('data/mainPageData.json'/* ${criterion} */)
@@ -92,7 +113,7 @@ const Home = () => {
 
     return (
         <div className="main-page-wrapper">
-            <Header />
+            <Header user={user}/>
             <div className="main-page-title-wrapper">
                 <div className="main-page-title">
                     PopFri Recommend

@@ -36,6 +36,10 @@ body{
     .header-profile{
         width: 31.2px;
         height: 31.2px;
+        display: inline-block;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         border-radius: 50%;
         background-color: #656363;
         border: 3px solid #1ED863;

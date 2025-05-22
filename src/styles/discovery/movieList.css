@@ -5,6 +5,7 @@
     width: 100%;
 
     .movieList-movie{
+        position: relative;
         width: 101.4px;
         height: 179.4px;
         margin: 15.5px 10px 7px 10px;
@@ -31,6 +32,17 @@
                 font-size: 16.9px;
                 margin: 0;
             }
+        }
+
+        .movie-rank {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            color: #1ED863;
+            background-color: #272727;
+            border-radius: 3px;
+            font-size: 18px;
+            font-weight: bold;
         }
     }
 

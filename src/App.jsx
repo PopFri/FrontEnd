@@ -10,6 +10,7 @@ import MovieDiscoveryPage from "./pages/MovieDiscoveryPage"
 import Home from './pages/Home.jsx';
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -17,7 +18,7 @@ function App() {
         <Route path="/discovery" element={<Discovery />} />
         <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/movie" element={<MovieDetailPage />} />
+        <Route path="/movie/:movieId" element={<MovieDetailPage />} />
         <Route path="/rank" element={<RankingPage />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path='/mypage/popfri' element={<MyPageHistroy />} />

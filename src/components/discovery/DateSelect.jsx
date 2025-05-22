@@ -6,7 +6,7 @@ export default function DateSelect(props) {
     const oneWeekAgo = new Date(today);
     oneWeekAgo.setDate(today.getDate() - 7);
 
-    const minYear = 2002;
+    const minYear = 2004;
     const maxYear = oneWeekAgo.getFullYear();
 
     const [selectedYear, setSelectedYear] = useState("");
@@ -54,16 +54,24 @@ export default function DateSelect(props) {
     };
 
     const submitDate = () => {
+        const dateObj = getWeekStartDate(
+            Number(selectedYear),
+            Number(selectedMonth),
+            Number(selectedWeek)
+        );
+
+        const yyyy = dateObj.getFullYear();
+        const mm = String(dateObj.getMonth() + 1).padStart(2, "0");
+        const dd = String(dateObj.getDate()).padStart(2, "0");
+        const formattedDate = `${yyyy}${mm}${dd}`; // ← 여기서 20220101 형태로 만듦
+
         props.setDate({
             year: selectedYear,
             month: selectedMonth,
             week: selectedWeek,
-            day: getWeekStartDate(
-                Number(selectedYear),
-                Number(selectedMonth),
-                Number(selectedWeek)
-            ),
+            day: formattedDate, // ← 날짜 문자열로 전달
         });
+
         props.setIsSubmit(true);
     };
 

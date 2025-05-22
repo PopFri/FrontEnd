@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../../styles/home/MainMovieList.css';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +11,7 @@ const MainMovieList = ({movieList}) => {
                 {movieList.map((movie, index) => (
                     <div className="main-movie-item" key={index}>
                         <div className="main-movie-wrapper">
-                            <Link to={`/movie`/*${movie.id} */}>
+                            <Link to={`/movie/${movie.id}`}>
                                 <img src={baseImageUrl + movie.backdrop_path} alt={movie.title} className="main-movie-item-background" />
                                 <img src={baseImageUrl + movie.poster_path} alt={movie.title} className="main-movie-item-poster" />
                                 <p className="main-movie-item-title">{movie.title}</p>

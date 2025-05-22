@@ -14,7 +14,9 @@ import '../styles/common.css'
 
 const MovieDetailPage = () => {
     //movie
-    const { id } = useParams();
+    const { movieId } = useParams();
+    const [user, setUser] = useState(null);
+    const Server_IP = import.meta.env.VITE_SERVER_IP;
 
     //navigate
     const navigate = useNavigate();
@@ -58,25 +60,49 @@ const MovieDetailPage = () => {
     const [sort, setSort] = useState('recent'); // 'recent' 또는 'like'
 
     const fetchReviews = () => {
-        const url = `data/movieReviewData.json`/* like, new*/;
-        fetch(url)
+        const url = `${Server_IP}/api/v1/movie/review/${movieId}/${sort}/${page}`;
+        fetch(url, {
+            method: 'GET',
+            credentials: "include" 
+        })
             .then(res => res.json())
             .then(data => {
-            setReview(data.result.review);
+            setReview(data.result.reviews);
             setTotalReveiw(data.result.totalReview);
             setTotalPage(data.result.totalPage);
             })
             .catch(err => console.error('리뷰 불러오기 실패:', err));
     };
 
+    const loadUserData = async (token) => {
+        try {
+            const userRes = await fetch(`${Server_IP}/api/v1/user`, {
+            method: 'GET',
+            headers: { Authorization: `Bearer ${token}` },
+            credentials: 'include'
+            });
+            const userData = await userRes.json();
+        
+            setUser(userData.result);
+        } catch (err) {
+            console.error(" 에러 발생:", err.message);
+            console.error("전체 에러 객체:", err);
+            navigate('/login');
+        }
+    };
+
     useEffect(() => {
-        // if (!token) {
-        //     alert('로그인이 필요합니다.');
-        //     navigate('/login');
-        // }
-      
-        fetch('/data/movieDetailData.json'/* {movieId} */)
-            .then(res => res.json())
+        loadUserData(token);
+
+        fetch(`${Server_IP}/api/v1/movie/${movieId}`, {
+            credentials: "include" 
+        })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
                 const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
 
@@ -133,13 +159,13 @@ const MovieDetailPage = () => {
 
     return (
         <div className="movie-detail-wrapper">
-            <Header />
+            <Header user={user}/>
             <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} directing={directing} releaseDate={releaseDate} runtime={runtime} providers={providers} />
             <OverviewSection overView={overView} genres={genres} />
             <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
             <TrailerSection videoId={videoId} />
             <ImageSection image={image} />
-            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={id} token={token} sort={sort} setSort={setSort}/>
+            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={movieId} token={token} sort={sort} setSort={setSort} user={user} title={title} imageUrl={imageUrl}/>
             <ReviewPagination page={page} setPage={setPage} totalPage={totalPage} />  
         </div>
     );

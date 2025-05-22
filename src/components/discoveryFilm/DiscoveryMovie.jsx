@@ -100,8 +100,8 @@ const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => 
                     <button
                         className="side-button good-button"
                         onClick={() => {
+                            toggleMovie({ id: movie.movieId, name: movie.title, imageUrl: movie.imageUrl });
                             handleGoodButtonClick();
-                            toggleMovie({ id: movie.id, name: movie.title, imageUrl: movie.imageUrl });
                         }}
                     >
                         <span className="button-text">Good</span>

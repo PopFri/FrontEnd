@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header'
+import { useNavigate } from 'react-router-dom';
 import '../styles/discoveryFilm/MovieDiscoveryPage.css';
 import DiscoveryMovie from '../components/discoveryFilm/DiscoveryMovie';
 import DiscoveryResult from '../components/discoveryFilm/DiscoveryResult';
@@ -13,13 +14,43 @@ const MovieDiscoveryPage = () => {
     const [movieCount, setMovieCount] = useState(0);
     const [resultList, setResultList] = useState([]);
     const [selectedMovies, setSelectedMovies] = useState([]);
+    const Server_IP = import.meta.env.VITE_SERVER_IP;
+    const [user, setUser] = useState(null);
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
+    const loadUserData = async (token) => {
+        try {
+            const userRes = await fetch(`${Server_IP}/api/v1/user`, {
+            method: 'GET',
+            headers: { Authorization: `Bearer ${token}` },
+            credentials: 'include'
+            });
+            const userData = await userRes.json();
+        
+            setUser(userData.result);
+        } catch (err) {
+            console.error(" 에러 발생:", err.message);
+            console.error("전체 에러 객체:", err);
+            navigate('/login');
+        }
+    };
     useEffect(() => {
-        fetch('/data/movieDiscoveryData.json')
+        loadUserData(token);
+        const saved = localStorage.getItem("discoveryResult");
+            if (saved) {
+                const { resultList } = JSON.parse(saved);
+                setResultList(resultList);
+                setResult("result");
+                return;
+        }
+        fetch(`${Server_IP}/api/v1/movie/recom/discovery`,{
+            credentials: "include" 
+        })
             .then((response) => response.json())
             .then((data) => {
                 const movieList = data.result.movies;
-                const listName = data.result.list_name;
+                const listName = data.result.date;
                 setListName(listName);
                 setMovieList(movieList);
             })
@@ -29,20 +60,24 @@ const MovieDiscoveryPage = () => {
     }, []);
 
     useEffect(() => {
-        if (movieList.length === 0) return; // 데이터 아직 없음
+        if (movieList.length === 0) return;
         if (movieCount >= movieList.length) {
             setResult("result");
-            fetch('/data/movieDiscoveryResultData.json',{
+            fetch(`${Server_IP}/api/v1/movie/recom/user/discovery`,{
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(selectedMovies),
+                    credentials: "include",
                 })
                 .then((response) => response.json())
                 .then((data) => {
                     const resultList = data.result;
                     setResultList(resultList);
+                    localStorage.setItem("discoveryResult", JSON.stringify({
+                        resultList: resultList,
+                    }));
                 })
                 .catch((error) => {
                     console.error('Error fetching movie data:', error);
@@ -52,7 +87,6 @@ const MovieDiscoveryPage = () => {
             const movie = movieList[movieCount];
             setMovie(movie);
         }
-        console.log(selectedMovies);
     }, [movieCount, movieList.length]);
 
     const renderSerchOrResurt = (result) => {
@@ -65,7 +99,7 @@ const MovieDiscoveryPage = () => {
 
     return (
         <div className="discovery-wrapper">
-            <Header />
+            <Header user={user}/>
             <div className="discovery-title">
                 Discovery Film
             </div>
