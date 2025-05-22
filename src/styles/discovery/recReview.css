@@ -112,11 +112,31 @@
     flex-direction: column;
     align-items: center;
     .result-title{
+        display: flex;
+        align-items: center;
         width: calc(100% - 78px);
         font-size: 22.1px;
         font-family: "Freesentation-9Black";
         margin: 0;
         color: #1ED863;
+        .recReview-button {
+            width: 60px;
+            height: 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: transparent;
+            display: flex;         
+            justify-content: center;  
+            align-items: center;    
+            position: relative;
+            margin-left: auto;
+            margin-top: 3px;
+            .recReview-restart-icon {
+                width: 24px;
+                height: 24px;
+            }        
+    }
     }
     .result-container{
         width: 468.5px;

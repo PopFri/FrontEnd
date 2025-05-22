@@ -29,7 +29,12 @@ export default function RecReview() {
         <>
             {isSubmit ? (
                 <div className="recReview-result">
-                    <p className="result-title">한줄평 영화 선택</p>
+                    <p className="result-title">
+                        한줄평 영화 선택
+                        <button className="recReview-button" > 
+                            <img src="/images/recom_restart_button.png" alt="재시작" className="recReview-restart-icon" />
+                        </button>
+                    </p>
                     <Link
                         className="result-container"
                         to={movieUrl}
