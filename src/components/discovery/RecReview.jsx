@@ -116,6 +116,7 @@ export default function RecReview() {
                         {Array.isArray(reviewList) && reviewList.map((review, index) => {
                             return (
                                 <div
+                                    key={index}
                                     className="reviewList-review"
                                     style={{
                                         backgroundImage: `url(${backImgsrc})`,
