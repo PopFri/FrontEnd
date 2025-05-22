@@ -1,33 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/movieDetail/ReviewSection.css';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ko';
 
 const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sort, setSort, user, title, imageUrl }) => {
     const [showSortModal, setShowSortModal] = useState(false);
     const [inputText, setInputText] = useState('');
-    const [userReviewStatus, setUserReviewStatus] = useState({});
     const Server_IP = import.meta.env.VITE_SERVER_IP;
-
-    useEffect(() => {
-        if (!Array.isArray(reviews)) return;
-
-        const loadReviewStatus = async () => {
-            const newStatus = {};
-            for (let review of reviews) {
-                try {
-                    const res = await fetch(`data/${review.id}review.json`);
-                    const data = await res.json();
-                    newStatus[review.id] = data.result;
-                } catch (err) {
-                    console.error(`리뷰 ${review.id} 상태 불러오기 실패`, err);
-                }
-            }
-            setUserReviewStatus(newStatus);
-        };
-
-        if (reviews.length > 0) {
-            loadReviewStatus();
-        }
-    }, [reviews]);
+    dayjs.extend(relativeTime);
+    dayjs.locale('ko');
 
     let recentColor = "#656363", likeColor = "#656363";
     switch (sort) {
@@ -61,12 +43,15 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
         setShowSortModal(prev => !prev);
     };
 
-    const handleLike = async () => {
+    const handleLike = async (reviewId) => {
         try {
             await fetch(`${Server_IP}/api/v1/movie/review/like`, {
-                method: 'PATCH',
+                method: 'POST',
                 credentials: 'include',
-                headers: { Authorization: `Bearer ${token}` },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
             });
             fetchReviews();
         } catch (err) {
@@ -74,12 +59,15 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
         }
     };
 
-    const handleDislike = async () => {
+    const handleDislike = async (reviewId) => {
         try {
             await fetch(`${Server_IP}/api/v1/movie/review/dislike`, {
-                method: 'PATCH',
+                method: 'POST',
                 credentials: 'include',
-                headers: { Authorization: `Bearer ${token}` },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
             });
             fetchReviews();
         } catch (err) {
@@ -89,15 +77,6 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
 
     const handleSubmit = async () => {
         if (!inputText.trim()) return;
-        const payload = {
-            content: inputText,
-            movieId: movieId,
-            userId: user.id,
-            movieName: title,
-            posterUrl: imageUrl
-        };
-
-        console.log('보내는 JSON:', JSON.stringify(payload));
         try {
             await fetch(`${Server_IP}/api/v1/movie/review`, {
                 method: 'POST',
@@ -155,26 +134,26 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
                     <div key={index} className="review-card">
                         <div className="review-user-wrapper">
                             <img
-                                src={review.imageUrl}
+                                src={review.userImageUrl}
                                 alt="profile"
                                 className="review-avatar"
                             />
                             <div className="review-user">
-                                <span className="review-name">{review.name}</span>
-                                <span className="review-email">{review.email}</span>
+                                <span className="review-name">{review.userName}</span>
+                                <span className="review-email">{review.userEmail}</span>
                             </div>
                             <span className="review-date">
-                                {review.date}
+                                {dayjs(review.createdAt).fromNow()}
                             </span>
                         </div>
                         <div className="review-content-wrapper">
-                            <p className="review-text">{review.content}</p>
+                            <p className="review-text">{review.reviewContent}</p>
                             <div className="review-actions">
-                                <button className="like-button" onClick={() => handleLike(review.id)} >
+                                <button className="like-button" onClick={() => handleLike(review.reviewId)} >
                                     <span className="like">
                                     <img
                                         src={
-                                            userReviewStatus[review.id] === "like"
+                                            review.likeStatus === "like"
                                             ? "/images/clickedLike.png"
                                             : "/images/likeIcon.png"
                                         }
@@ -182,12 +161,12 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
                                     />
                                     </span>
                                 </button>
-                                <span className="like-count" style={{color:  userReviewStatus[review.id] === "like" ? "#32ff87" : "#FFFFFF"}}>{review.like}</span>
+                                <span className="like-count" style={{color: review.likeStatus === "like" ? "#32ff87" : "#FFFFFF"}}>{review.likeCount}</span>
                                 <button className="dislike-button">
-                                    <span className="dislike" onClick={() => handleDislike(review.id)}>
+                                    <span className="dislike" onClick={() => handleDislike(review.reviewId)}>
                                     <img
                                         src={
-                                            userReviewStatus[review.id] === "dislike"
+                                            review.likeStatus === "dislike"
                                             ? "/images/clickedDislike.png"
                                             : "/images/dislikeIcon.png"
                                         }
