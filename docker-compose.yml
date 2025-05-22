@@ -11,7 +11,7 @@ services:
       - "8080:80"
     volumes:
       - matomo_data:/var/www/html
-      - container_js:/var/www/html/js-export
+      - container_js:/var/www/html/js
 
   nginx:
     image: nginx:latest
