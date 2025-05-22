@@ -78,7 +78,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
     const handleSubmit = async () => {
         if (!inputText.trim()) return;
         try {
-            await fetch(`${Server_IP}/api/v1/movie/review`, {
+            const res = await fetch(`${Server_IP}/api/v1/movie/review`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -87,10 +87,19 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
                 },
                 body: JSON.stringify({ movieId: movieId, reviewContent: inputText, movieName: title, posterUrl: imageUrl }),
             });
-            setInputText('');
+            const data = await res.json();
+
+            if (!res.ok || !data.isSuccess) {
+                alert(data.message); // 여기서 경고창 뜨는 거
+                return;
+            }
+
+            setInputText("");
             fetchReviews();
+
         } catch (err) {
-            console.error('리뷰 작성 실패:', err);
+            console.error("리뷰 작성 실패:", err);
+            alert("리뷰 작성 중 오류가 발생했습니다.");
         }
     };
 
