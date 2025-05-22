@@ -72,6 +72,8 @@ const MovieDetailPage = () => {
             setTotalPage(data.result.totalPage);
             })
             .catch(err => console.error('리뷰 불러오기 실패:', err));
+            console.log('총 리뷰:', totalReview);
+            console.log('페이지:', page);
     };
 
     const loadUserData = async (token) => {
