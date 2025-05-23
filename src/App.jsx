@@ -16,6 +16,7 @@ const instance = createInstance({
   siteId: 1,
   trackerUrl: 'http://localhost/matomo.php',
   srcUrl: 'http://localhost/js/container_D2fxXTpR.js',
+  requestMethod: 'GET',
 });
 
 function App() {
