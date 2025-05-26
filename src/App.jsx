@@ -11,10 +11,10 @@ import MovieDiscoveryPage from "./pages/MovieDiscoveryPage"
 import Home from './pages/Home.jsx';
 
 const instance = createInstance({
-  urlBase: 'http://43.203.83.109:8080',
+  urlBase: 'http://43.203.83.109:80',
   siteId: 1,
   userId: 'UID76903202', // optional, default value: `undefined`.
-  trackerUrl: 'http://43.203.83.109:8080/matomo.php', // optional, default value: `${urlBase}matomo.php`
+  trackerUrl: 'http://43.203.83.109:80/matomo.php', // optional, default value: `${urlBase}matomo.php`
   srcUrl: 'http://43.203.83.109:80/js/container_pTPCTfku.js', // optional, default value: `${urlBase}matomo.js`
 })
 

@@ -6,7 +6,6 @@ services:
     command: ["npm", "run", "preview"]
   matomo:
     image: matomo:latest
-    restart: always
     ports:
       - "8080:80"
     volumes:
@@ -15,7 +14,6 @@ services:
 
   nginx:
     image: nginx:latest
-    restart: always
     ports:
       - "80:80"
     volumes:
