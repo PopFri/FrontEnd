@@ -8,24 +8,37 @@ import MyPage from './pages/MyPage.jsx';
 import MyPageHistroy from './pages/MyPageHistroy.jsx';
 import MovieDiscoveryPage from "./pages/MovieDiscoveryPage"
 import Home from './pages/Home.jsx';
+import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
+
+
+
+const instance = createInstance({
+  urlBase: 'http://localhost:8080/', // nginx 또는 matomo가 노출되는 주소
+  siteId: 1,
+  trackerUrl: 'http://localhost/matomo.php',
+  srcUrl: 'http://localhost/js/container_D2fxXTpR.js',
+});
 
 function App() {
   
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/discovery" element={<Discovery />} />
-        <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/movie/:movieId" element={<MovieDetailPage />} />
-        <Route path="/rank" element={<RankingPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path='/mypage/popfri' element={<MyPageHistroy />} />
-        <Route path='/mypage/review' element={<MyPageHistroy />} />
-        <Route path='/mypage/visit' element={<MyPageHistroy />} />
-      </Routes>
-    </BrowserRouter>
+
+    <MatomoProvider value={instance}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/discovery" element={<Discovery />} />
+          <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/movie/:movieId" element={<MovieDetailPage />} />
+          <Route path="/rank" element={<RankingPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path='/mypage/popfri' element={<MyPageHistroy />} />
+          <Route path='/mypage/review' element={<MyPageHistroy />} />
+          <Route path='/mypage/visit' element={<MyPageHistroy />} />
+        </Routes>
+      </BrowserRouter>
+    </MatomoProvider>
   );
 }
 
