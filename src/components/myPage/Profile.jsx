@@ -75,8 +75,8 @@ export default function Profile({user}) {
                     {isSetting ? null : <img src={settingIconSrc} alt="" className='profile-setting' onClick={()=>setSetting(true)}/>}
                 </div>
             )}
-            {isResign ? <ResignModal setModal={setResign}/> : null }
-            {isInitData ? <InitDataModal setModal={setInitData}/> : null }
+            {isResign ? <ResignModal setModal={setResign} handleDeleteAccount={handleDeleteAccount}/> : null }
+            {isInitData ? <InitDataModal setModal={setInitData} handleDeleteData={handleDeleteData}/> : null }
         </>
     )
 }

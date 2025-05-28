@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import movieDummy from '../../../public/data/movieDummy'
 import resultBackImgsrc from "/images/recReviewBackground.png";
 import likeImgsrc from "/images/likeIcon.png";
 import "../../styles/myPage/review.css";
@@ -22,7 +21,7 @@ export default function ReviewHistory() {
             .catch((error) => {
                 console.error('Error fetching review data:', error);
             });
-        }, []);
+    }, []);
     return (
         <div className='myPage-review'>
             <div className='review-title'>
