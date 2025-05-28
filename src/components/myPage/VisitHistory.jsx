@@ -28,7 +28,7 @@ export default function VisitHistory() {
                 <p className='title-more'>더보기</p>
             </Link>
         </div>
-        <MovieList movieList = {movieList.result} />
+        <MovieList movieList = {movieList[0]?.movieList || []} />
     </div>
   )
 }

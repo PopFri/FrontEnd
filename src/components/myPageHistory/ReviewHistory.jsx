@@ -97,7 +97,7 @@ export default function ReviewHistory() {
                                                         alt=""
                                                     />
                                                     <p className="like-cnt">
-                                                        {/* {review.likeCnt} */}
+                                                        {review.likeCount}
                                                     </p>
                                                 </div>
                                                 <p className='user-date'>
