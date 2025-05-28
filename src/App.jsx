@@ -15,7 +15,7 @@ const instance = createInstance({
   siteId: 1,
   userId: 'UID76903202', // optional, default value: `undefined`.
   trackerUrl: 'http://14.63.178.153:80/matomo.php', // optional, default value: `${urlBase}matomo.php`
-  srcUrl: 'http://14.63.178.153:80/js/container_pTPCTfku.js', // optional, default value: `${urlBase}matomo.js`
+  srcUrl: 'http://14.63.178.153:80/js/container_hCOAARUa.js', // optional, default value: `${urlBase}matomo.js`
 })
 
 function App() {
