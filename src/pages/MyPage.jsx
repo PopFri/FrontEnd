@@ -10,13 +10,12 @@ import VisitHistory from '../components/myPage/VisitHistory';
 export default function MyPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const token = localStorage.getItem('token');
   const Server_IP = import.meta.env.VITE_SERVER_IP;
-  const loadUserData = async (token) => {
+  const loadUserData = async () => {
       try {
         const userRes = await fetch(`${Server_IP}/api/v1/user`, {
           method: 'GET',
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer` },
           credentials: 'include'
         });
         const userData = await userRes.json();
@@ -30,8 +29,8 @@ export default function MyPage() {
   };
     
   useEffect(() => {
-      loadUserData(token);
-  }, [token]);
+      loadUserData();
+  }, []);
 
   return (
     <div className='myPage'>

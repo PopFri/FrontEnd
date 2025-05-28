@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 export default function Profile({user}) {
   const navigate = useNavigate();
   const logout = () => {
-    //로그아웃 서버 요청
-    
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
     navigate('/login');
   }
 

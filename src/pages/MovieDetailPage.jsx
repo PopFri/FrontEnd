@@ -21,9 +21,6 @@ const MovieDetailPage = () => {
     //navigate
     const navigate = useNavigate();
 
-    //token
-    const token = localStorage.getItem('token');
-
     //posterSection
     const [backgroundImageUrl, setBackgroundImageUrl] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
@@ -74,25 +71,23 @@ const MovieDetailPage = () => {
             .catch(err => console.error('리뷰 불러오기 실패:', err));
     };
 
-    const loadUserData = async (token) => {
+    const loadUserData = async () => {
         try {
             const userRes = await fetch(`${Server_IP}/api/v1/user`, {
             method: 'GET',
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer` },
             credentials: 'include'
             });
             const userData = await userRes.json();
         
             setUser(userData.result);
-        } catch (err) {
-            console.error(" 에러 발생:", err.message);
-            console.error("전체 에러 객체:", err);
+        } catch {
             navigate('/login');
         }
     };
 
     useEffect(() => {
-        loadUserData(token);
+        loadUserData();
 
         fetch(`${Server_IP}/api/v1/movie/${movieId}`, {
             credentials: "include" 
@@ -165,7 +160,7 @@ const MovieDetailPage = () => {
             <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
             <TrailerSection videoId={videoId} />
             <ImageSection image={image} />
-            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={movieId} token={token} sort={sort} setSort={setSort} user={user} title={title} imageUrl={imageUrl}/>
+            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={movieId} sort={sort} setSort={setSort} user={user} title={title} imageUrl={imageUrl}/>
             <ReviewPagination page={page} setPage={setPage} totalPage={totalPage} />  
         </div>
     );

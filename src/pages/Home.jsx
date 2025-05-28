@@ -1,5 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/home/MainPage.css';
 import Header from '../components/Header'
@@ -15,22 +14,19 @@ const Home = () => {
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState(null);
     const [user, setUser] = useState(null);
-    const token = localStorage.getItem('token');
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     const navigate = useNavigate();
-    const loadUserData = async (token) => {
+    const loadUserData = async () => {
         try {
             const userRes = await fetch(`${Server_IP}/api/v1/user`, {
             method: 'GET',
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer` },
             credentials: 'include'
             });
             const userData = await userRes.json();
         
             setUser(userData.result);
-        } catch (err) {
-            console.error(" 에러 발생:", err.message);
-            console.error("전체 에러 객체:", err);
+        } catch {
             navigate('/login');
         }
     };
@@ -85,7 +81,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        loadUserData(token);
+        loadUserData();
         if(criterion !== "연령별 추천") {
             setAgeRange(null);
             fetch('data/mainPageData.json'/* ${criterion} */)

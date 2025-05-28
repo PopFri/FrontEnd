@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
 
-const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sort, setSort, user, title, imageUrl }) => {
+const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setSort, user, title, imageUrl }) => {
     const [showSortModal, setShowSortModal] = useState(false);
     const [inputText, setInputText] = useState('');
     const Server_IP = import.meta.env.VITE_SERVER_IP;
@@ -50,7 +50,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
                 credentials: 'include',
                 headers: { 
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}` },
+                    Authorization: `Bearer` },
                 body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
             });
             fetchReviews();
@@ -66,7 +66,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
                 credentials: 'include',
                 headers: { 
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}` },
+                    Authorization: `Bearer` },
                 body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
             });
             fetchReviews();
@@ -83,7 +83,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, token, sor
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer`
                 },
                 body: JSON.stringify({ movieId: movieId, reviewContent: inputText, movieName: title, posterUrl: imageUrl }),
             });

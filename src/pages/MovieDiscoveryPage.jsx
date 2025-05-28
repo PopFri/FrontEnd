@@ -16,27 +16,24 @@ const MovieDiscoveryPage = () => {
     const [selectedMovies, setSelectedMovies] = useState([]);
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     const [user, setUser] = useState(null);
-    const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
-    const loadUserData = async (token) => {
+    const loadUserData = async () => {
         try {
             const userRes = await fetch(`${Server_IP}/api/v1/user`, {
             method: 'GET',
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer` },
             credentials: 'include'
             });
             const userData = await userRes.json();
         
             setUser(userData.result);
-        } catch (err) {
-            console.error(" 에러 발생:", err.message);
-            console.error("전체 에러 객체:", err);
+        } catch {
             navigate('/login');
         }
     };
     useEffect(() => {
-        loadUserData(token);
+        loadUserData();
         const saved = localStorage.getItem("discoveryResult");
             if (saved) {
                 const { resultList } = JSON.parse(saved);
