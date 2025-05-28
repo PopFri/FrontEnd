@@ -34,7 +34,7 @@ export default function RecTime() {
   }, []);
     
   useEffect(() => {
-    if (!timeOfDay || isFetched) return;
+    if (!timeOfDay || isFetched.current) return;
     fetch(`${Server_IP}/api/v1/movie/recom/time`, {
       credentials: "include"
     })
@@ -43,9 +43,10 @@ export default function RecTime() {
         const movieList = data.result;
         setMovieList(movieList);
         localStorage.setItem("recTimeResult", JSON.stringify({
-          movieList,
+          movieList: movieList,
           time: timeOfDay
         }));
+        isFetched.current = true;
       })
     .catch((error) => {
       console.error('Error fetching movie data:', error);
