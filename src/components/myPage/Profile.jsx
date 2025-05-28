@@ -57,11 +57,11 @@ export default function Profile({user}) {
                             isSetting ?
                             <div className='detail-button'>
                                 <button type="button" className='detail-danger'
-                                onClick={() => handleDeleteAccount()}>
+                                onClick={() => setResign(true)}>
                                     회원 탈퇴
                                 </button>
                                 <button type="button" className='detail-danger'
-                                onClick={() => handleDeleteData()}>
+                                onClick={() => setInitData(true)}>
                                     데이터 삭제
                                 </button>
                                 <button type="button" className='detail-cancel' onClick={()=>setSetting(false)}>취소</button>
