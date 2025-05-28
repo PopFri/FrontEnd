@@ -66,7 +66,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setS
                 credentials: 'include',
                 headers: { 
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer` },
+                },
                 body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
             });
             fetchReviews();
@@ -83,7 +83,6 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setS
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer`
                 },
                 body: JSON.stringify({ movieId: movieId, reviewContent: inputText, movieName: title, posterUrl: imageUrl }),
             });

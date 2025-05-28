@@ -75,7 +75,6 @@ const MovieDetailPage = () => {
         try {
             const userRes = await fetch(`${Server_IP}/api/v1/user`, {
             method: 'GET',
-            headers: { Authorization: `Bearer` },
             credentials: 'include'
             });
             const userData = await userRes.json();
