@@ -86,21 +86,20 @@ const MovieDetailPage = () => {
     };
 
     useEffect(() => {
-        loadUserData();
+        const loadPage = async () => {
+            try {
+                await loadUserData(); // 로그인 정보 확인
 
-        fetch(`${Server_IP}/api/v1/movie/${movieId}`, {
-            credentials: "include" 
-        })
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
+                const res = await fetch(`${Server_IP}/api/v1/movie/${movieId}`, {
+                    credentials: "include"
+                });
+
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                const data = await res.json();
+
                 const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
 
-                //posterSection
+                // posterSection
                 const backgroundImageUrl = baseImageUrl + data.result.backgroundImageUrl;
                 const poster = baseImageUrl + data.result.imageUrl;
                 const title = data.result.title;
@@ -108,48 +107,50 @@ const MovieDetailPage = () => {
                 const releaseDate = data.result.release_date;
                 const runtime = data.result.runtime;
                 const providers = data.result.providers;
-                setProviders(providers); // 상태 업데이트
-                setTitle(title); // 상태 업데이트
+
+                setBackgroundImageUrl(backgroundImageUrl);
+                setImageUrl(poster);
+                setTitle(title);
                 setDirecting(directing);
-                setReleaseDate(releaseDate); // 상태 업데이트
-                setRuntime(runtime); // 상태 업데이트
-                setBackgroundImageUrl(backgroundImageUrl); // 상태 업데이트
-                setImageUrl(poster); // 상태 업데이트
+                setReleaseDate(releaseDate);
+                setRuntime(runtime);
                 setProviders(providers);
 
-                //overviewSection
-                const overView = data.result.overView;
-                const genres = data.result.genres;
-                setOverView(overView); // 상태 업데이트
-                setGenres(genres); // 상태 업데이트
+                // overviewSection
+                setOverView(data.result.overView);
+                setGenres(data.result.genres);
 
                 // creditsSection
-                const actors = data.result.cast.map(actor => actor.name);
-                const actorsCharacter = data.result.cast.map(actor => actor.character);
-                const actorImages = data.result.cast.map(image => baseImageUrl + image.profile_path);
-                setActorImages(actorImages);
-                setActors(actors);
-                setActorsCharacter(actorsCharacter);
+                setActors(data.result.cast.map(actor => actor.name));
+                setActorsCharacter(data.result.cast.map(actor => actor.character));
+                setActorImages(data.result.cast.map(image => baseImageUrl + image.profile_path));
 
                 // trailerSection
-                const videoId = data.result.videos.map(video => video.key);
-                setVideoIds(videoId);
+                setVideoIds(data.result.videos.map(video => video.key));
 
                 // imageSection
-                const image = data.result.images.map(image => baseImageUrl + image.file_path);
-                setImage(image);
+                setImage(data.result.images.map(image => baseImageUrl + image.file_path));
 
-        })
-        .catch(err => {
-            console.error('Error fetching movie details:', err);
-        });
+                await fetch(`${Server_IP}/api/v1/user/movie/visit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ movieId: movieId, movieName: title, imageUrl: data.result.imageUrl}),
+                });
 
-        }, []);
+            } catch (error) {
+                console.error('Error loading page:', error);
+            }
+        };
 
-        useEffect(() => {
-            fetchReviews();
+        loadPage();
+    }, []);
 
-        }, [page, sort]);
+    useEffect(() => {
+        fetchReviews();
+    }, [page, sort]);
 
     return (
         <div className="movie-detail-wrapper">
