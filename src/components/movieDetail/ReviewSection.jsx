@@ -50,7 +50,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setS
                 credentials: 'include',
                 headers: { 
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer` },
+                },
                 body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
             });
             fetchReviews();
@@ -90,7 +90,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setS
             const data = await res.json();
 
             if (!res.ok || !data.isSuccess) {
-                alert(data.message); // 여기서 경고창 뜨는 거
+                alert(data.message); 
                 return;
             }
 
@@ -134,7 +134,13 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setS
                     placeholder="텍스트를 입력해주세요."
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+                    onKeyDown={(e) => {
+                        if (e.nativeEvent.isComposing) return;
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleSubmit();
+                        }
+                    }}
                 />
             </div>
 
