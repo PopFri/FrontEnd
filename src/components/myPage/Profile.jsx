@@ -17,7 +17,6 @@ export default function Profile({user}) {
         try {
             await fetch(`${Server_IP}/api/v1/user`, {
                 method: 'DELETE',
-                headers: { Authorization: `Bearer` },
                 credentials: 'include',
             });
             navigate('/login');
@@ -30,7 +29,6 @@ export default function Profile({user}) {
         try {
             await fetch(`${Server_IP}/api/v1/user/data`, {
                 method: 'DELETE',
-                headers: { Authorization: `Bearer` },
                 credentials: 'include',
             });
             window.location.reload();

@@ -21,7 +21,6 @@ export default function ReviewHistory() {
         try {
             await fetch(`${Server_IP}/api/v1/movie/review/${reviewId}`, {
                 method: 'DELETE',
-                headers: { Authorization: `Bearer` },
                 credentials: 'include',
             });
             setDeleteReviewId(null);
