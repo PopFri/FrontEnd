@@ -129,9 +129,9 @@ const Home = () => {
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
-                                <button className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
+                                <div className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
                                     <img src="images/criterion_info_icon.png" alt="tooltip" className="tooltip-icon" />
-                                </button>
+                                </div>
                                 {showTooltip && (
                                     <div className="tooltip">
                                         <img src="images/CancelLogo.png" alt="close" className="tooltip-close-icon" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}} />
