@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/myPageHistory/visitHistory.css'
-import recomHistoryDummy from '../../../public/data/recomHistoryDummy'
 import MovieList from '../MovieList'
 import { Link } from 'react-router-dom'
 
