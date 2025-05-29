@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import '../styles/common.css'
 import MainMovieList from '../components/home/MainMovieList';
 import ChooseAgeRange from '../components/home/ChooseAgeRange';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const Home = () => {
     const [movieList, setMovieList] = useState([]);

@@ -7,6 +7,7 @@ import RecTime from '../components/discovery/RecTime'
 import RecReview from '../components/discovery/RecReview'
 import Header from '../components/Header'
 import DiscoveryFilm from '../components/discovery/DiscoveryFilm'
+import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 export default function Discovery() {
   const Server_IP = import.meta.env.VITE_SERVER_IP;
