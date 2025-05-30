@@ -51,7 +51,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setS
                 headers: { 
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
+                body: JSON.stringify({ reviewId: reviewId }),
             });
             fetchReviews();
         } catch (err) {
@@ -67,7 +67,7 @@ const ReviewSection = ({ reviews, totalReview, fetchReviews, movieId, sort, setS
                 headers: { 
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ reviewId: reviewId, userId: user.userId }),
+                body: JSON.stringify({ reviewId: reviewId }),
             });
             fetchReviews();
         } catch (err) {
