@@ -19,6 +19,7 @@
 
 .recResult-title{
     display: flex;
+    align-items: center;
     p{
         font-size: 19.5px;
         font-family: "Freesentation-9Black";
@@ -30,5 +31,23 @@
     .title-user{
         margin-left: 5px;
         color: #FFFFFF;
+    }
+    .recResult-button {
+        width: 60px;
+        height: 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        background-color: transparent;
+        display: flex;         
+        justify-content: center;  
+        align-items: center;    
+        position: relative;
+        margin-left: auto;
+        margin-top: 2px; 
+        .recResult-restart-icon {
+            width: 24px;
+            height: 24px;
+        }        
     }
 }

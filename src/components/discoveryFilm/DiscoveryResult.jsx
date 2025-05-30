@@ -11,7 +11,7 @@ const DiscoveryResult = ({resultList}) => {
             <div className="discovery-choosed-movie">
                 <p className="choosed-movie-title">내가 선호하는 영화</p>
                 <div className="discovery-movieList">
-                    {resultList?.choosed?.map((movie, index) => {
+                    {Array.isArray(resultList?.choosed) && resultList.choosed.map((movie, index) => {
                         const movieName = movie.name.length > 6 ? movie.name.slice(0, 6) + "..." : movie.name;
                         const movieUrl = `/movie/${movie.id || index}`;
 
@@ -34,12 +34,12 @@ const DiscoveryResult = ({resultList}) => {
             <div className="discovery-recommend-movie">
                 <p className="recommend-movie-title">추천 영화</p>
                 <div className="discovery-movieList">
-                {resultList?.recommend?.map((movie, index) => {
-                    const movieName = movie.name.length > 6 ? movie.name.slice(0, 6) + "..." : movie.name;
-                    const movieUrl = `/movie/${movie.id || index}`;
+                {Array.isArray(resultList?.recommend) && resultList.recommend.map((movie, index) => {
+                    const movieName = movie.movieName.length > 6 ? movie.movieName.slice(0, 6) + "..." : movie.movieName;
+                    const movieUrl = `/movie/${movie.movieId || index}`;
 
                     return (
-                        <Link key={movie.id || index} to={movieUrl} className="movieList-movie">
+                        <Link key={movie.movieId || index} to={movieUrl} className="movieList-movie">
                             <div
                                 className="movie-image"
                                 style={{
@@ -56,10 +56,10 @@ const DiscoveryResult = ({resultList}) => {
             </div>
             <div className="discovery-button-container">
                 <button className="discovery-button back-button" onClick={() => navigate('/discovery')}>
-                    <span className="discovery-button-text">뒤로 가기</span>
+                    <span className="discovery-button-text" onClick={() => {localStorage.removeItem("discoveryResult"); navigate('/discovery');}}> 뒤로 가기</span>
                     <img src="/images/back-line.png" alt="뒤로가기" className="button-icon" />
                 </button>
-                <button className="discovery-button restart-button" onClick={() => window.location.reload()}>
+                <button className="discovery-button restart-button" onClick={() => {localStorage.removeItem("discoveryResult"); window.location.reload();}}>
                     <span className="discovery-button-text">재시작</span>
                     <img src="/images/restart-line.png" alt="재시작" className="button-icon" />
                 </button>

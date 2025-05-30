@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../styles/discovery/home.css'
 import RecSituation from '../components/discovery/RecSituation'
 import RecDate from '../components/discovery/RecDate'
@@ -9,15 +10,29 @@ import DiscoveryFilm from '../components/discovery/DiscoveryFilm'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 export default function Discovery() {
-  const { trackPageView } = useMatomo();
+  const Server_IP = import.meta.env.VITE_SERVER_IP;
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
+  const loadUserData = async () => {
+      try {
+          const userRes = await fetch(`${Server_IP}/api/v1/user`, {
+          method: 'GET',
+          credentials: 'include'
+          });
+          const userData = await userRes.json();
+      
+          setUser(userData.result);
+      } catch {
+          navigate('/login');
+      }
+  };
   useEffect(() => {
-    trackPageView(); // 페이지 방문 트래킹
+      loadUserData();
   }, []);
-
   return (
     <div className='home'>
-        <Header />
+        <Header user={user}/>
         <DiscoveryFilm />
         <RecSituation></RecSituation>
         <RecDate></RecDate>

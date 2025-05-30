@@ -1,4 +1,3 @@
-import React from 'react';
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
 import MovieDetailPage from './pages/MovieDetailPage.jsx';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
@@ -19,6 +18,7 @@ const instance = createInstance({
 })
 
 function App() {
+  
   return (
     <MatomoProvider value={instance}>
       <BrowserRouter>
@@ -27,7 +27,7 @@ function App() {
           <Route path="/discovery" element={<Discovery />} />
           <Route path="/discovery/discoveryfilm" element={<MovieDiscoveryPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/movie" element={<MovieDetailPage />} />
+          <Route path="/movie/:movieId" element={<MovieDetailPage />} />
           <Route path="/rank" element={<RankingPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path='/mypage/popfri' element={<MyPageHistroy />} />

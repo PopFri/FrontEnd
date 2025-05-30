@@ -14,13 +14,12 @@ import '../styles/common.css'
 
 const MovieDetailPage = () => {
     //movie
-    const { id } = useParams();
+    const { movieId } = useParams();
+    const [user, setUser] = useState(null);
+    const Server_IP = import.meta.env.VITE_SERVER_IP;
 
     //navigate
     const navigate = useNavigate();
-
-    //token
-    const token = localStorage.getItem('token');
 
     //posterSection
     const [backgroundImageUrl, setBackgroundImageUrl] = useState(null);
@@ -58,29 +57,49 @@ const MovieDetailPage = () => {
     const [sort, setSort] = useState('recent'); // 'recent' 또는 'like'
 
     const fetchReviews = () => {
-        const url = `data/movieReviewData.json`/* like, new*/;
-        fetch(url)
+        const url = `${Server_IP}/api/v1/movie/review/${movieId}/${sort}/${page}`;
+        fetch(url, {
+            method: 'GET',
+            credentials: "include" 
+        })
             .then(res => res.json())
             .then(data => {
-            setReview(data.result.review);
+            setReview(data.result.reviews);
             setTotalReveiw(data.result.totalReview);
             setTotalPage(data.result.totalPage);
             })
             .catch(err => console.error('리뷰 불러오기 실패:', err));
     };
 
+    const loadUserData = async () => {
+        try {
+            const userRes = await fetch(`${Server_IP}/api/v1/user`, {
+            method: 'GET',
+            credentials: 'include'
+            });
+            const userData = await userRes.json();
+        
+            setUser(userData.result);
+        } catch {
+            navigate('/login');
+        }
+    };
+
     useEffect(() => {
-        // if (!token) {
-        //     alert('로그인이 필요합니다.');
-        //     navigate('/login');
-        // }
-      
-        fetch('/data/movieDetailData.json'/* {movieId} */)
-            .then(res => res.json())
-            .then(data => {
+        const loadPage = async () => {
+            try {
+                await loadUserData(); // 로그인 정보 확인
+
+                const res = await fetch(`${Server_IP}/api/v1/movie/${movieId}`, {
+                    credentials: "include"
+                });
+
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                const data = await res.json();
+
                 const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
 
-                //posterSection
+                // posterSection
                 const backgroundImageUrl = baseImageUrl + data.result.backgroundImageUrl;
                 const poster = baseImageUrl + data.result.imageUrl;
                 const title = data.result.title;
@@ -88,58 +107,60 @@ const MovieDetailPage = () => {
                 const releaseDate = data.result.release_date;
                 const runtime = data.result.runtime;
                 const providers = data.result.providers;
-                setProviders(providers); // 상태 업데이트
-                setTitle(title); // 상태 업데이트
+
+                setBackgroundImageUrl(backgroundImageUrl);
+                setImageUrl(poster);
+                setTitle(title);
                 setDirecting(directing);
-                setReleaseDate(releaseDate); // 상태 업데이트
-                setRuntime(runtime); // 상태 업데이트
-                setBackgroundImageUrl(backgroundImageUrl); // 상태 업데이트
-                setImageUrl(poster); // 상태 업데이트
+                setReleaseDate(releaseDate);
+                setRuntime(runtime);
                 setProviders(providers);
 
-                //overviewSection
-                const overView = data.result.overView;
-                const genres = data.result.genres;
-                setOverView(overView); // 상태 업데이트
-                setGenres(genres); // 상태 업데이트
+                // overviewSection
+                setOverView(data.result.overView);
+                setGenres(data.result.genres);
 
                 // creditsSection
-                const actors = data.result.cast.map(actor => actor.name);
-                const actorsCharacter = data.result.cast.map(actor => actor.character);
-                const actorImages = data.result.cast.map(image => baseImageUrl + image.profile_path);
-                setActorImages(actorImages);
-                setActors(actors);
-                setActorsCharacter(actorsCharacter);
+                setActors(data.result.cast.map(actor => actor.name));
+                setActorsCharacter(data.result.cast.map(actor => actor.character));
+                setActorImages(data.result.cast.map(image => baseImageUrl + image.profile_path));
 
                 // trailerSection
-                const videoId = data.result.videos.map(video => video.key);
-                setVideoIds(videoId);
+                setVideoIds(data.result.videos.map(video => video.key));
 
                 // imageSection
-                const image = data.result.images.map(image => baseImageUrl + image.file_path);
-                setImage(image);
+                setImage(data.result.images.map(image => baseImageUrl + image.file_path));
 
-        })
-        .catch(err => {
-            console.error('Error fetching movie details:', err);
-        });
+                await fetch(`${Server_IP}/api/v1/user/movie/visit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ movieId: movieId, movieName: title, imageUrl: data.result.imageUrl}),
+                });
 
-        }, []);
+            } catch (error) {
+                console.error('Error loading page:', error);
+            }
+        };
 
-        useEffect(() => {
-            fetchReviews();
+        loadPage();
+    }, []);
 
-        }, [page, sort]);
+    useEffect(() => {
+        fetchReviews();
+    }, [page, sort]);
 
     return (
         <div className="movie-detail-wrapper">
-            <Header />
+            <Header user={user}/>
             <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} directing={directing} releaseDate={releaseDate} runtime={runtime} providers={providers} />
             <OverviewSection overView={overView} genres={genres} />
             <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
             <TrailerSection videoId={videoId} />
             <ImageSection image={image} />
-            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={id} token={token} sort={sort} setSort={setSort}/>
+            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={movieId} sort={sort} setSort={setSort} user={user} title={title} imageUrl={imageUrl}/>
             <ReviewPagination page={page} setPage={setPage} totalPage={totalPage} />  
         </div>
     );

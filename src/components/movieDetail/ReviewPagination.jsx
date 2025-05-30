@@ -15,7 +15,7 @@ const ReviewPagination = ({ page, setPage, totalPage }) => {
     const handleNextBlock = () => {
         if (endPage < totalPage) setPage(endPage + 1);
     };
-
+    
     return (
         <div className="review-pagination-wrapper">
             <div className="review-pagination-content">

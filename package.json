@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@datapunt/matomo-tracker-react": "^0.5.1",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

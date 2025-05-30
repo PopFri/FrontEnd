@@ -1,11 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../styles/myPageHistory/popfriHistory.css'
-import recomHistoryDummy from '../../../public/data/recomHistoryDummy'
 import MovieList from '../MovieList'
 import { Link } from 'react-router-dom'
 
 export default function PopFriHistory() {
   const [select, setSelect] = useState('discovery')
+  const Server_IP = import.meta.env.VITE_SERVER_IP;
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    fetch(`${Server_IP}/api/v1/user/movie/recom?option=${select}`, {
+        credentials: "include"
+    })
+      .then((response) => response.json())
+      .then((data) => {
+          const movieList = data.result.historyList;
+          setMovieList(movieList);
+      })
+      .catch((error) => {
+          console.error('Error fetching movie data:', error);
+      });
+  }, [select]);
 
   let discoveryColor = "#FFFFFF", situationColor = "#FFFFFF", timeColor = "#FFFFFF";
   switch (select) {
@@ -47,14 +62,12 @@ export default function PopFriHistory() {
             </div>
         </div>
         <div className='popfriHistory-result'>
-          {recomHistoryDummy.result.map((result) => {
-            return (
-              <div>
-                <p className='result-date'>{result.date}</p>
-                <MovieList movieList = {result.movieList} />
-              </div>
-            );
-          })}
+          {movieList.map((movie, idx) => (
+            <div key={idx}>
+              <p className='result-date'>{movie.date}</p>
+              <MovieList movieList={movie.movieList || []} />
+            </div>
+          ))}
         </div>
     </div>          
   )

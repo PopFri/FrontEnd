@@ -1,5 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/home/MainPage.css';
 import Header from '../components/Header'
@@ -9,18 +8,28 @@ import ChooseAgeRange from '../components/home/ChooseAgeRange';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const Home = () => {
-    const { trackPageView } = useMatomo();
-
-    useEffect(() => {
-        trackPageView(); // 페이지 방문 트래킹
-    }, []);
-
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
     const [showCriterionModal, setShowCriterionModal] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState(null);
+    const [user, setUser] = useState(null);
+    const Server_IP = import.meta.env.VITE_SERVER_IP;
+    const navigate = useNavigate();
+    const loadUserData = async () => {
+        try {
+            const userRes = await fetch(`${Server_IP}/api/v1/user`, {
+            method: 'GET',
+            credentials: 'include'
+            });
+            const userData = await userRes.json();
+        
+            setUser(userData.result);
+        } catch {
+            navigate('/login');
+        }
+    };
 
     const openModal = () => setShowCriterionModal(true);
 
@@ -72,6 +81,7 @@ const Home = () => {
     }
 
     useEffect(() => {
+        loadUserData();
         if(criterion !== "연령별 추천") {
             setAgeRange(null);
             fetch('data/mainPageData.json'/* ${criterion} */)
@@ -99,7 +109,7 @@ const Home = () => {
 
     return (
         <div className="main-page-wrapper">
-            <Header />
+            <Header user={user}/>
             <div className="main-page-title-wrapper">
                 <div className="main-page-title">
                     PopFri Recommend
@@ -119,9 +129,9 @@ const Home = () => {
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
-                                <button className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
+                                <div className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
                                     <img src="images/criterion_info_icon.png" alt="tooltip" className="tooltip-icon" />
-                                </button>
+                                </div>
                                 {showTooltip && (
                                     <div className="tooltip">
                                         <img src="images/CancelLogo.png" alt="close" className="tooltip-close-icon" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}} />
