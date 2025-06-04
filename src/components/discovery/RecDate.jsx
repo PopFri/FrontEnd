@@ -3,11 +3,13 @@ import backImgsrc from "/images/recSituationBackground.png";
 import "../../styles/discovery/recDate.css";
 import DateSelect from "./DateSelect";
 import MovieList from "../MovieList";
+import LoadingPage from '../../pages/LoadingPage';
 
 export default function RecDate() {
     const [isSubmit, setIsSubmit] = useState(false);
     const [inputDate, setDate] = useState();
     const [movieList, setMovieList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     
     useEffect(() => {
@@ -17,12 +19,13 @@ export default function RecDate() {
             setDate(inputDate);
             setMovieList(resultList); 
             setIsSubmit(true);
+            setIsLoading(false);
         }
     }, []);
 
     useEffect(() => {
         if (!isSubmit || !inputDate) return;
-
+        setIsLoading(true);
         fetch(`${Server_IP}/api/v1/movie/recom/boxoffice/${inputDate.day}`, {
             credentials: "include"
         })
@@ -34,6 +37,7 @@ export default function RecDate() {
                     resultList: movieList,
                     inputDate: inputDate
                 }));
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.error('Error fetching movie data:', error);
@@ -54,7 +58,7 @@ export default function RecDate() {
                             <img src="/images/recom_restart_button.png" alt="재시작" className="recResult-restart-icon" />
                         </button>
                     </div>
-                    <MovieList movieList={movieList} />
+                    {isLoading ? <LoadingPage page={'rec'} /> : <MovieList movieList={movieList} />}
                 </div>
             ) : (
                 <div

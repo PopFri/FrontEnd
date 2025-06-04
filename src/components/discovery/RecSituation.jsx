@@ -2,17 +2,20 @@ import React, { useState, useEffect, useRef } from 'react'
 import '../../styles/discovery/recSituation.css'
 import backImgsrc from '/images/recSituationBackground.png'
 import MovieList from '../MovieList';
+import LoadingPage from '../../pages/LoadingPage';
 
 export default function RecSituation() {
   const Server_IP = import.meta.env.VITE_SERVER_IP;
   const [isSubmit, setIsSubmit] = useState(false);
   const [userInput, setInput] = useState("");
   const [movieList, setMovieList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const isFetched = useRef(false);
 
   const activeEnter = (e) => {
     if(e.key === "Enter") {
       setIsSubmit(true);
+      setIsLoading(true);
       setInput(e.target.value);
     }
   }
@@ -43,6 +46,7 @@ export default function RecSituation() {
                   userInput: userInput
               }));
               isFetched.current = true;
+              setIsLoading(false);
           })
           .catch((error) => {
               console.error('Error fetching movie data:', error);
@@ -62,8 +66,9 @@ export default function RecSituation() {
               <img src="/images/recom_restart_button.png" alt="재시작" className="recResult-restart-icon" />
           </button>
         </div>
-        <MovieList movieList = {movieList} />
-      </div>:
+        {isLoading ? <LoadingPage page={'rec'}/> : <MovieList movieList = {movieList} />}
+      </div>
+      :
       <div className='home-recSituation' style={{backgroundImage: `url(${backImgsrc})`}}>
         <p className='recSituation-question'>Q. 지금 어떤 상황이신가요?</p>
         <div className='recSituation-container'>
