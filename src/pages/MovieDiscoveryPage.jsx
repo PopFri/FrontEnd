@@ -93,7 +93,7 @@ const MovieDiscoveryPage = () => {
     const renderSerchOrResurt = (result) => {
         if (result === "search") {
             if (isLoading) {
-                return <LoadingPage />;
+                return <LoadingPage page={'movie'}/>;
             }
             return <DiscoveryMovie movie={movie} listName={listName} setMovieCount={setMovieCount} setSelectedMovies={setSelectedMovies} />;
         } else {

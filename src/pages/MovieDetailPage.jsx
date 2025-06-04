@@ -160,7 +160,7 @@ const MovieDetailPage = () => {
             <Header user={user}/>
             {isLoading ? 
             (
-            <LoadingPage /> 
+            <LoadingPage page={'movie'}/> 
         ): (
                 <div>
                     <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} directing={directing} releaseDate={releaseDate} runtime={runtime} providers={providers} />
