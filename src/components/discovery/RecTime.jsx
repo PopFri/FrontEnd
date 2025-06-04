@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import MovieList from '../MovieList'
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import LoadingPage from '../../pages/LoadingPage';
 
 export default function RecTime() {
   const [timeOfDay, setTimeOfDay] = useState('');
   const Server_IP = import.meta.env.VITE_SERVER_IP;
   const [movieList, setMovieList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const isFetched = useRef(false);
 
   const getCurrentTimeOfDay = () => {
@@ -26,7 +28,8 @@ export default function RecTime() {
       if (parsed.time === calculated) {
         setTimeOfDay(parsed.time);
         setMovieList(parsed.movieList);
-        isFetched.current = true; 
+        isFetched.current = true;
+        setIsLoading(false);
         return;
       }
     }
@@ -35,6 +38,7 @@ export default function RecTime() {
     
   useEffect(() => {
     if (!timeOfDay || isFetched.current) return;
+    setIsLoading(true);
     fetch(`${Server_IP}/api/v1/movie/recom/time`, {
       credentials: "include"
     })
@@ -47,6 +51,7 @@ export default function RecTime() {
           time: timeOfDay
         }));
         isFetched.current = true;
+        setIsLoading(false);
       })
     .catch((error) => {
       console.error('Error fetching movie data:', error);
@@ -61,7 +66,7 @@ export default function RecTime() {
           <p className='title-user'>{timeOfDay}</p>
         )}
       </div>
-      <MovieList movieList = {movieList} />
+      {isLoading ? <LoadingPage page={'rec'}/> : <MovieList movieList = {movieList} />}
     </div>
   )
 }

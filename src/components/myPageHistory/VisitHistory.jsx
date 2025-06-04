@@ -29,7 +29,12 @@ export default function VisitHistory() {
             </Link>
         </div>
         <div className='visitHistory-result'>
-            {movieList.map((movie) => {
+            {movieList.length === 0 && (
+                <div className='no-popfriHistory-container'>
+                    <p className='no-popfriHistory'>방문 기록이 없습니다.</p>
+                </div>
+            )}
+            {movieList.length > 0 && movieList.map((movie) => {
             return (
                 <div>
                 <p className='result-date'>{movie.date}</p>

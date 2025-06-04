@@ -20,3 +20,18 @@
         }
     }
 }
+
+.no-history-container{
+    width: 570px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .no-history{
+        font-family: 'Freesentation-7Bold';
+        font-size: 20px;
+        color: #FFFFFF;
+        margin-bottom: 10px;
+    }
+}

@@ -31,7 +31,12 @@ export default function ReviewHistory() {
                 </Link>
             </div>
             <div className="review-reviewList">
-            {reviewList.map((review) => {
+            {reviewList.length === 0 && (
+                <div className='no-review-container'>
+                    <p className='no-review'>작성한 리뷰가 없습니다.</p>
+                </div>
+            )}
+            {reviewList.length > 0 && reviewList.map((review) => {
                 return (
                     <Link className="reviewList-container"
                         to={movieUrl + `/${review.movieId}`}

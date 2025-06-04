@@ -62,7 +62,12 @@ export default function PopFriHistory() {
             </div>
         </div>
         <div className='popfriHistory-result'>
-          {movieList.map((movie, idx) => (
+          {movieList.length === 0 && (
+            <div className='no-popfriHistory-container'>
+              <p className='no-popfriHistory'>추천 기록이 없습니다.</p>
+            </div>
+          )}
+          {movieList.length > 0 && movieList.map((movie, idx) => (
             <div key={idx}>
               <p className='result-date'>{movie.date}</p>
               <MovieList movieList={movie.movieList || []} />

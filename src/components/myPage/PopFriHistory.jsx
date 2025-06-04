@@ -28,7 +28,14 @@ export default function PopFriHistory() {
               <p className='title-more'>더보기</p>
             </Link>
         </div>
-        <MovieList movieList = {movieList[0]?.movieList || []} />
+        {movieList.length === 0 && (
+          <div className='no-history-container'>
+            <p className='no-history'>추천 기록이 없습니다.</p>
+          </div>
+        )}
+        { movieList.length > 0 && (
+          <MovieList movieList = {movieList[0]?.movieList || []} />
+        )}
     </div>
   )
 }
