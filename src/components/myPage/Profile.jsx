@@ -9,10 +9,19 @@ import { useNavigate } from 'react-router-dom';
 export default function Profile({user}) {
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     const navigate = useNavigate();
-    const logout = () => {
-        
+    const logout = async() => {
+        try {
+            await fetch(`${Server_IP}/api/v1/user/logout`, {
+                method: 'DELETE',
+                credentials: 'include',
+            });
+            navigate('/login');
+        } catch (err) {
+            console.error('로그아웃 실패:', err);
+        }
         navigate('/login');
     }
+    
     const handleDeleteAccount = async() => {
         try {
             await fetch(`${Server_IP}/api/v1/user`, {
