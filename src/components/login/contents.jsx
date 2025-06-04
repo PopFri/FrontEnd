@@ -43,7 +43,6 @@ export default function Contents() {
         const userData = await userRes.json();
     
         setUser(userData.result);
-        console.log(userData.result);
         if(userData.result.gender === null || userData.result.birth === null) {
             signUp.current = true;
         }else {
