@@ -11,6 +11,7 @@ import ReviewSection from '../components/movieDetail/ReviewSection';
 import ReviewPagination from '../components/movieDetail/ReviewPagination';
 import Header from '../components/Header'
 import '../styles/common.css'
+import LoadingPage from './LoadingPage';
 
 const MovieDetailPage = () => {
     //movie
@@ -55,6 +56,8 @@ const MovieDetailPage = () => {
 
     //reviewPatch
     const [sort, setSort] = useState('recent'); // 'recent' 또는 'like'
+
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchReviews = () => {
         const url = `${Server_IP}/api/v1/movie/review/${movieId}/${sort}/${page}`;
@@ -130,7 +133,7 @@ const MovieDetailPage = () => {
 
                 // imageSection
                 setImage(data.result.images.map(image => baseImageUrl + image.file_path));
-
+                setIsLoading(false);
                 await fetch(`${Server_IP}/api/v1/user/movie/visit`, {
                     method: 'POST',
                     headers: {
@@ -155,13 +158,21 @@ const MovieDetailPage = () => {
     return (
         <div className="movie-detail-wrapper">
             <Header user={user}/>
-            <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} directing={directing} releaseDate={releaseDate} runtime={runtime} providers={providers} />
-            <OverviewSection overView={overView} genres={genres} />
-            <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
-            <TrailerSection videoId={videoId} />
-            <ImageSection image={image} />
-            <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={movieId} sort={sort} setSort={setSort} user={user} title={title} imageUrl={imageUrl}/>
-            <ReviewPagination page={page} setPage={setPage} totalPage={totalPage} />  
+            {isLoading ? 
+            (
+            <LoadingPage /> 
+        ): (
+                <div>
+                    <PosterSection backgroundImageUrl={backgroundImageUrl} imageUrl={imageUrl} title={title} directing={directing} releaseDate={releaseDate} runtime={runtime} providers={providers} />
+                    <OverviewSection overView={overView} genres={genres} />
+                    <CreditsSection  actors={actors} actorsCharacter={actorsCharacter} actorImages={actorImages} />
+                    <TrailerSection videoId={videoId} />
+                    <ImageSection image={image} />
+                    <ReviewSection reviews={review} totalReview={totalReview} fetchReviews={fetchReviews} movieId={movieId} sort={sort} setSort={setSort} user={user} title={title} imageUrl={imageUrl}/>
+                    <ReviewPagination page={page} setPage={setPage} totalPage={totalPage} />  
+                </div>
+            )
+            }
         </div>
     );
 }

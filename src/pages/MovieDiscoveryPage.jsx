@@ -5,6 +5,7 @@ import '../styles/discoveryFilm/MovieDiscoveryPage.css';
 import DiscoveryMovie from '../components/discoveryFilm/DiscoveryMovie';
 import DiscoveryResult from '../components/discoveryFilm/DiscoveryResult';
 import '../styles/common.css'
+import LoadingPage from './LoadingPage';
 
 const MovieDiscoveryPage = () => {
     const [result, setResult] = useState("search");
@@ -14,6 +15,7 @@ const MovieDiscoveryPage = () => {
     const [movieCount, setMovieCount] = useState(0);
     const [resultList, setResultList] = useState([]);
     const [selectedMovies, setSelectedMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
@@ -33,11 +35,13 @@ const MovieDiscoveryPage = () => {
     };
     useEffect(() => {
         loadUserData();
+        setIsLoading(true);
         const saved = localStorage.getItem("discoveryResult");
             if (saved) {
                 const { resultList } = JSON.parse(saved);
                 setResultList(resultList);
                 setResult("result");
+                setIsLoading(false);
                 return;
         }
         fetch(`${Server_IP}/api/v1/movie/recom/discovery`,{
@@ -49,6 +53,7 @@ const MovieDiscoveryPage = () => {
                 const listName = data.result.date;
                 setListName(listName);
                 setMovieList(movieList);
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.error('Error fetching movie data:', error);
@@ -87,6 +92,9 @@ const MovieDiscoveryPage = () => {
 
     const renderSerchOrResurt = (result) => {
         if (result === "search") {
+            if (isLoading) {
+                return <LoadingPage />;
+            }
             return <DiscoveryMovie movie={movie} listName={listName} setMovieCount={setMovieCount} setSelectedMovies={setSelectedMovies} />;
         } else {
             return <DiscoveryResult resultList={resultList} />;
