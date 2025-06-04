@@ -87,7 +87,6 @@ export default function Contents() {
       { signUp.current ? (
         <div className='contents-signup'>
           <p className='signup-title'>정보 입력</p>
-          <p className='signup-detail'>회원님의 성별/나이를 입력해 주세요</p>
           <div className='signup-user-profile'>
             <img src={user.imageUrl} alt="프로필 이미지" />
           </div>
