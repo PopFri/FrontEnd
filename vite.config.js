@@ -7,5 +7,8 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
   },
+  build: {
+    target: 'es2022' // 또는 'es2022' 도 가능
+  },
   plugins: [react()],
 })
