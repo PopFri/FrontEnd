@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import PosterSection from "../components/movieDetail/PosterSection";
@@ -15,11 +15,11 @@ import LoadingPage from './LoadingPage';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const MovieDetailPage = () => {
-    const { trackPageView } = useMatomo()
+    const { trackPageView } = useMatomo();
 
     // Track page view
-    React.useEffect(() => {
-        trackPageView()
+    useEffect(() => {
+        trackPageView();
     }, [])
 
     //movie

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header'
 import { useNavigate } from 'react-router-dom';
 import '../styles/discoveryFilm/MovieDiscoveryPage.css';
@@ -9,11 +9,11 @@ import LoadingPage from './LoadingPage';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const MovieDiscoveryPage = () => {
-    const { trackPageView } = useMatomo()
+    const { trackPageView } = useMatomo();
 
     // Track page view
-    React.useEffect(() => {
-        trackPageView()
+    useEffect(() => {
+        trackPageView();
     }, [])
 
     const [result, setResult] = useState("search");

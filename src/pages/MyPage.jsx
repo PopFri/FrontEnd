@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/myPage/myPage.css'
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
@@ -12,8 +12,7 @@ export default function MyPage() {
   const { trackPageView } = useMatomo();
 
   // Track page view
-  React.useEffect(() => {
-    console.log("myPage track");
+  useEffect(() => {
     trackPageView();
   }, [])
 

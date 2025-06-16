@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/discovery/home.css'
 import RecSituation from '../components/discovery/RecSituation'
@@ -10,13 +10,13 @@ import DiscoveryFilm from '../components/discovery/DiscoveryFilm'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 export default function Discovery() {
-  const { trackPageView } = useMatomo()
+  const { trackPageView } = useMatomo();
 
   // Track page view
-  React.useEffect(() => {
-    trackPageView()
+  useEffect(() => {
+    trackPageView();
   }, [])
-  
+
   const Server_IP = import.meta.env.VITE_SERVER_IP;
   const [user, setUser] = useState(null);
   const navigate = useNavigate();

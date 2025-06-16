@@ -9,11 +9,10 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const Home = () => {
     const { trackPageView } = useMatomo();
-    
+
     // Track page view
-    React.useEffect(() => {
-    console.log("Home track");
-    trackPageView();
+    useEffect(() => {
+        trackPageView();
     }, [])
 
     const [movieList, setMovieList] = useState([]);
