@@ -6,8 +6,16 @@ import DiscoveryMovie from '../components/discoveryFilm/DiscoveryMovie';
 import DiscoveryResult from '../components/discoveryFilm/DiscoveryResult';
 import '../styles/common.css'
 import LoadingPage from './LoadingPage';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const MovieDiscoveryPage = () => {
+    const { trackPageView } = useMatomo()
+
+    // Track page view
+    React.useEffect(() => {
+        trackPageView()
+    }, [])
+
     const [result, setResult] = useState("search");
     const [movieList, setMovieList] = useState([]);
     const [movie, setMovie] = useState(null);

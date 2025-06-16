@@ -10,6 +10,13 @@ import DiscoveryFilm from '../components/discovery/DiscoveryFilm'
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 export default function Discovery() {
+  const { trackPageView } = useMatomo()
+
+  // Track page view
+  React.useEffect(() => {
+    trackPageView()
+  }, [])
+  
   const Server_IP = import.meta.env.VITE_SERVER_IP;
   const [user, setUser] = useState(null);
   const navigate = useNavigate();

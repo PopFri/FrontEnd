@@ -12,8 +12,16 @@ import ReviewPagination from '../components/movieDetail/ReviewPagination';
 import Header from '../components/Header'
 import '../styles/common.css'
 import LoadingPage from './LoadingPage';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const MovieDetailPage = () => {
+    const { trackPageView } = useMatomo()
+
+    // Track page view
+    React.useEffect(() => {
+        trackPageView()
+    }, [])
+
     //movie
     const { movieId } = useParams();
     const [user, setUser] = useState(null);
