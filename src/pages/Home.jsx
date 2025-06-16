@@ -8,6 +8,13 @@ import ChooseAgeRange from '../components/home/ChooseAgeRange';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const Home = () => {
+    const { trackPageView } = useMatomo();
+
+    // Track page view
+    useEffect(() => {
+        trackPageView();
+    }, [])
+
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
     const [showCriterionModal, setShowCriterionModal] = useState(false);

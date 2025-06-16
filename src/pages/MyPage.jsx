@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/myPage/myPage.css'
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header'
@@ -6,8 +6,16 @@ import Profile from '../components/myPage/Profile'
 import PopFriHistory from '../components/myPage/PopFriHistory';
 import ReviewHistory from '../components/myPage/ReviewHistory';
 import VisitHistory from '../components/myPage/VisitHistory';
+import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 export default function MyPage() {
+  const { trackPageView } = useMatomo();
+
+  // Track page view
+  useEffect(() => {
+    trackPageView();
+  }, [])
+
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const Server_IP = import.meta.env.VITE_SERVER_IP;
