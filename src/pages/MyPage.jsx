@@ -9,11 +9,12 @@ import VisitHistory from '../components/myPage/VisitHistory';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 export default function MyPage() {
-  const { trackPageView } = useMatomo()
+  const { trackPageView } = useMatomo();
 
   // Track page view
   React.useEffect(() => {
-    trackPageView()
+    console.log("myPage track");
+    trackPageView();
   }, [])
 
   const navigate = useNavigate();

@@ -8,11 +8,12 @@ import ChooseAgeRange from '../components/home/ChooseAgeRange';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const Home = () => {
-    const { trackPageView } = useMatomo()
-
+    const { trackPageView } = useMatomo();
+    
     // Track page view
     React.useEffect(() => {
-        trackPageView()
+    console.log("Home track");
+    trackPageView();
     }, [])
 
     const [movieList, setMovieList] = useState([]);
