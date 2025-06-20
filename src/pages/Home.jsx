@@ -10,11 +10,6 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 const Home = () => {
     const { trackPageView } = useMatomo();
 
-    // Track page view
-    useEffect(() => {
-        trackPageView();
-    }, [])
-
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
     const [showCriterionModal, setShowCriterionModal] = useState(false);
@@ -86,9 +81,30 @@ const Home = () => {
             break;
         default:
     }
+    useEffect(() => {
+        loadUserData()
+    }, []);
+    useEffect(()=>{
+        if(user != null)
+            trackPageView({
+                customDimensions: [
+                    {
+                        id: 1,
+                        value: null
+                    },
+                    {
+                        id: 2,
+                        value: user != null ? user.birth : "null"
+                    },
+                    {
+                        id: 3,
+                        value: user != null ? user.gender : "null"
+                    },
+                ],
+            });
+    }, [user])
 
     useEffect(() => {
-        loadUserData();
         if(criterion !== "연령별 추천") {
             setAgeRange(null);
             fetch('data/mainPageData.json'/* ${criterion} */)
