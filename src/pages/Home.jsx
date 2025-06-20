@@ -6,16 +6,19 @@ import '../styles/common.css'
 import MainMovieList from '../components/home/MainMovieList';
 import ChooseAgeRange from '../components/home/ChooseAgeRange';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import LoadingPage from './LoadingPage';
 
 const Home = () => {
     const { trackPageView } = useMatomo();
-
+    const [isLoading, setIsLoading] = useState(true);
+    const [personalRecommend, setPersonalRecommend] = useState([]);
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
+    const [type, setType] = useState("default"); 
     const [showCriterionModal, setShowCriterionModal] = useState(false);
-    const [showTooltip, setShowTooltip] = useState(false);
+    //const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const [ageRange, setAgeRange] = useState(null);
+    const [ageRange, setAgeRange] = useState('10');
     const [user, setUser] = useState(null);
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     const navigate = useNavigate();
@@ -28,8 +31,53 @@ const Home = () => {
             const userData = await userRes.json();
         
             setUser(userData.result);
+            if( userData.result.gender === 'MALE') {
+                setPersonalRecommend("male");
+            }else if (userData.result.gender === 'FEMALE') {
+                setPersonalRecommend("female");
+            }else {
+                setPersonalRecommend("default");
+            }
+
         } catch {
             navigate('/login');
+        }
+    };
+
+    const loadMovieData = async (type) => {
+        try {
+                const res = await fetch(`${Server_IP}/sse/analysis/visit?date=month&type=${type}`, {
+                    method: 'GET',
+                });
+                const data = await res.json();
+
+                if (!res.ok || !data.isSuccess) {
+                    alert(data.message); 
+                    return;
+                }
+
+                const top10 = data.result.slice(0, 10);
+
+                // 개별 영화 상세 정보 병렬 호출
+                const detailPromises = top10.map(movie =>
+                    fetch(`${Server_IP}/api/v1/movie/${movie.movieId}`, {
+                        method: 'GET',
+                        credentials: 'include',
+                    })
+                        .then(res => res.json())
+                        .then(data => data.result)
+                        .catch(() => {
+                            return null; // 실패한 건 제외 처리
+                        })
+                );
+
+                const movieDetails = await Promise.all(detailPromises);
+                const filteredDetails = movieDetails.filter(detail => detail !== null);
+
+                setMovieList(filteredDetails);
+                setIsLoading(false);
+        } catch {
+            alert("데이터 로드 중 오류가 발생했습니다.");
         }
     };
 
@@ -48,13 +96,13 @@ const Home = () => {
         else openModal();
     };
 
-    const toggleTooltipModal = () => {
-        setShowTooltip(!showTooltip);
-    }
+    // const toggleTooltipModal = () => {
+    //     setShowTooltip(!showTooltip);
+    // }
 
-    const closeTooltipModal = () => {
-        setShowTooltip(false);
-    }
+    // const closeTooltipModal = () => {
+    //     setShowTooltip(false);
+    // }
 
     const chooseAgeRangeButton = (criterion) => {
         if (criterion === "연령별 추천") {
@@ -81,9 +129,11 @@ const Home = () => {
             break;
         default:
     }
+    
     useEffect(() => {
         loadUserData()
     }, []);
+
     useEffect(()=>{
         if(user != null)
             trackPageView({
@@ -106,29 +156,17 @@ const Home = () => {
 
     useEffect(() => {
         if(criterion !== "연령별 추천") {
-            setAgeRange(null);
-            fetch('data/mainPageData.json'/* ${criterion} */)
-                .then((response) => response.json())
-                .then((data) => {
-                    const movieList = data.result.movies;
-                    setMovieList(movieList);
-                })
-                .catch((error) => {
-                    console.error('Error fetching movie data:', error);
-            });
-        } else {
-            setAgeRange("10");
-            fetch('data/mainPageData.json'/* ${criterion} /${ageRange} */)
-                .then((response) => response.json())
-                .then((data) => {
-                    const movieList = data.result.movies;
-                    setMovieList(movieList);
-                })
-                .catch((error) => {
-                    console.error('Error fetching movie data:', error);
-            });
+            setAgeRange('10'); 
+            setIsLoading(true);
+            loadMovieData(type);
+        } else if (criterion === "개인 추천") {
+            setIsLoading(true);
+            loadMovieData(personalRecommend);
+        }else {
+            setIsLoading(true);
+            loadMovieData(ageRange);
         }
-    }, [criterion]);
+    }, [criterion, ageRange, type]);
 
     return (
         <div className="main-page-wrapper">
@@ -143,16 +181,16 @@ const Home = () => {
                         <img src="images/Vector.png" alt="vector" className="vector-icon" />
                     </button>
                     {showCriterionModal && (
-                    <div className="main-page-criterion-modal-wrapper" onClick={() => {closeModal(); closeTooltipModal();}}>
+                    <div className="main-page-criterion-modal-wrapper" onClick={() => {closeModal(); }}>
                         <div className={`main-page-criterion-modal ${isClosing ? 'slide-down' : 'slide-up'}`}>
-                        <button className="main-page-criterion-close" onClick={() => { closeModal(); closeTooltipModal(); }}>
+                        <button className="main-page-criterion-close" onClick={() => { closeModal(); }}>
 
                         </button>
-                            <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); closeModal(); }} style={{color: `${optionColorPersonal}`}}>
+                            <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); setType('default'); closeModal(); }} style={{color: `${optionColorPersonal}`}}>
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
-                                <div className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
+                                {/* <div className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
                                     <img src="images/criterion_info_icon.png" alt="tooltip" className="tooltip-icon" />
                                 </div>
                                 {showTooltip && (
@@ -160,19 +198,23 @@ const Home = () => {
                                         <img src="images/CancelLogo.png" alt="close" className="tooltip-close-icon" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}} />
                                         <p className="tooltip-text">PopFri 내 활동을 기반으로 추천합니다.</p>
                                     </div>
-                                )}
+                                )} */}
                             </button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorFemale}`}}>여성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAge}`}}>연령별 추천</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); setType('default'); closeModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); setType('male'); closeModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); setType('female'); closeModal(); }} style={{color: `${optionColorFemale}`}}>여성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); }} style={{color: `${optionColorAge}`}}>연령별 추천</button>
                         </div>
                     </div>
                     )}
                 </div>
             </div>
             {chooseAgeRangeButton(criterion)}
-            <MainMovieList movieList={movieList} />
+            {isLoading ? (
+                <LoadingPage page={'home'} />
+            ) : (
+                <MainMovieList movieList={movieList} />
+            )}
         </div>
     );
 

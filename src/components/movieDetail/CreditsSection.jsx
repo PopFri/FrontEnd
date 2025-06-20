@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/movieDetail/CreditsSection.css';
-
+import CustomImage from '../../CustomImage';
 
 const CreditsSection = ({actors, actorsCharacter, actorImages}) => {
   
@@ -10,7 +10,7 @@ const CreditsSection = ({actors, actorsCharacter, actorImages}) => {
             <div className="credits-container">
                 {actors.map((actor, index) => (
                 <div key={index} className="actor-card">
-                    <img
+                    <CustomImage
                     src={actorImages[index]}
                     alt={actor.name}
                     className="actor-image"

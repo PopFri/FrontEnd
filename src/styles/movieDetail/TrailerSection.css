@@ -42,3 +42,18 @@
 .video-container {
   flex: 0 0 auto;       /* 영상 크기 고정 */
 }
+
+.trailer-error-message {
+  height: 302.98px;
+  width: 171.6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+}
