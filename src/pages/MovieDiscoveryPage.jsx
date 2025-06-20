@@ -113,9 +113,9 @@ const MovieDiscoveryPage = () => {
             const movie = movieList[movieCount];
             setMovie(movie);
         }
-    }, [movieCount, movieList.length]);
+    }, [movieCount, movieList]);
 
-    const renderSerchOrResurt = (result) => {
+    const renderSerchOrResult = (result) => {
         if (result === "search") {
             if (isLoading) {
                 return <LoadingPage page={"movie"} />;
@@ -137,7 +137,7 @@ const MovieDiscoveryPage = () => {
         <div className="discovery-wrapper">
             <Header user={user} />
             <div className="discovery-title">Discovery Film</div>
-            {renderSerchOrResurt(result)}
+            {renderSerchOrResult(result)}
         </div>
     );
 };

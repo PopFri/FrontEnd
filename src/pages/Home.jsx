@@ -16,7 +16,7 @@ const Home = () => {
     const [criterion, setCriterion] = useState("개인 추천");
     const [type, setType] = useState("default"); 
     const [showCriterionModal, setShowCriterionModal] = useState(false);
-    const [showTooltip, setShowTooltip] = useState(false);
+    //const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState('10');
     const [user, setUser] = useState(null);
@@ -58,8 +58,7 @@ const Home = () => {
                     })
                         .then(res => res.json())
                         .then(data => data.result)
-                        .catch(err => {
-                            console.error(`ID ${movie.movieId} 호출 실패`, err);
+                        .catch(() => {
                             return null; // 실패한 건 제외 처리
                         })
                 );
@@ -69,7 +68,6 @@ const Home = () => {
 
                 setMovieList(filteredDetails);
                 setIsLoading(false);
-                console.log("영화 데이터 로드 완료:", filteredDetails);
         } catch {
             alert("데이터 로드 중 오류가 발생했습니다.");
         }
@@ -90,13 +88,13 @@ const Home = () => {
         else openModal();
     };
 
-    const toggleTooltipModal = () => {
-        setShowTooltip(!showTooltip);
-    }
+    // const toggleTooltipModal = () => {
+    //     setShowTooltip(!showTooltip);
+    // }
 
-    const closeTooltipModal = () => {
-        setShowTooltip(false);
-    }
+    // const closeTooltipModal = () => {
+    //     setShowTooltip(false);
+    // }
 
     const chooseAgeRangeButton = (criterion) => {
         if (criterion === "연령별 추천") {
@@ -172,16 +170,16 @@ const Home = () => {
                         <img src="images/Vector.png" alt="vector" className="vector-icon" />
                     </button>
                     {showCriterionModal && (
-                    <div className="main-page-criterion-modal-wrapper" onClick={() => {closeModal(); closeTooltipModal();}}>
+                    <div className="main-page-criterion-modal-wrapper" onClick={() => {closeModal(); }}>
                         <div className={`main-page-criterion-modal ${isClosing ? 'slide-down' : 'slide-up'}`}>
-                        <button className="main-page-criterion-close" onClick={() => { closeModal(); closeTooltipModal(); }}>
+                        <button className="main-page-criterion-close" onClick={() => { closeModal(); }}>
 
                         </button>
                             <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); setType('default'); closeModal(); }} style={{color: `${optionColorPersonal}`}}>
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
-                                <div className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
+                                {/* <div className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
                                     <img src="images/criterion_info_icon.png" alt="tooltip" className="tooltip-icon" />
                                 </div>
                                 {showTooltip && (
@@ -189,12 +187,12 @@ const Home = () => {
                                         <img src="images/CancelLogo.png" alt="close" className="tooltip-close-icon" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}} />
                                         <p className="tooltip-text">PopFri 내 활동을 기반으로 추천합니다.</p>
                                     </div>
-                                )}
+                                )} */}
                             </button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); setType('default'); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); setType('male'); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); setType('female'); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorFemale}`}}>여성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAge}`}}>연령별 추천</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); setType('default'); closeModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); setType('male'); closeModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); setType('female'); closeModal(); }} style={{color: `${optionColorFemale}`}}>여성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); }} style={{color: `${optionColorAge}`}}>연령별 추천</button>
                         </div>
                     </div>
                     )}

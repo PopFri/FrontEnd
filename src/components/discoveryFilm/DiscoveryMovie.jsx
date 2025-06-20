@@ -29,7 +29,7 @@ const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => 
             </div>
             <div className="discovery-trailer-wrapper">
                 <YouTube
-                    videoId={movie?.videos?.key} // 비디오 ID
+                    videoId={movie?.videos[0]?.key} // 비디오 ID
                     className="discovery-video"
                     opts={{
                         height: '386.1',
