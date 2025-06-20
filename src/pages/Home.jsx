@@ -17,6 +17,7 @@ const Home = () => {
 
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
+    const [type, setType] = useState("default"); 
     const [showCriterionModal, setShowCriterionModal] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -35,6 +36,43 @@ const Home = () => {
             setUser(userData.result);
         } catch {
             navigate('/login');
+        }
+    };
+
+    const loadMovieData = async (type) => {
+        try {
+                const res = await fetch(`${Server_IP}/sse/analysis/visit?date=month&type=${type}`, {
+                    method: 'GET',
+                });
+                const data = await res.json();
+
+                if (!res.ok || !data.isSuccess) {
+                    alert(data.message); 
+                    return;
+                }
+
+                const top10 = data.result.slice(0, 10);
+
+                // 개별 영화 상세 정보 병렬 호출
+                const detailPromises = top10.map(movie =>
+                    fetch(`${Server_IP}/api/v1/movie/${movie.movieId}`, {
+                        method: 'GET',
+                        credentials: 'include',
+                    })
+                        .then(res => res.json())
+                        .catch(err => {
+                            console.error(`ID ${movie.movieId} 호출 실패`, err);
+                            return null; // 실패한 건 제외 처리
+                        })
+                );
+
+                const movieDetails = await Promise.all(detailPromises);
+                const filteredDetails = movieDetails.filter(detail => detail !== null);
+
+                setMovieList(filteredDetails);
+                console.log("영화 데이터 로드 완료:", filteredDetails);
+        } catch {
+            alert("데이터 로드 중 오류가 발생했습니다.");
         }
     };
 
@@ -91,28 +129,12 @@ const Home = () => {
         loadUserData();
         if(criterion !== "연령별 추천") {
             setAgeRange(null);
-            fetch('data/mainPageData.json'/* ${criterion} */)
-                .then((response) => response.json())
-                .then((data) => {
-                    const movieList = data.result.movies;
-                    setMovieList(movieList);
-                })
-                .catch((error) => {
-                    console.error('Error fetching movie data:', error);
-            });
+            loadMovieData(type);
         } else {
             setAgeRange("10");
-            fetch('data/mainPageData.json'/* ${criterion} /${ageRange} */)
-                .then((response) => response.json())
-                .then((data) => {
-                    const movieList = data.result.movies;
-                    setMovieList(movieList);
-                })
-                .catch((error) => {
-                    console.error('Error fetching movie data:', error);
-            });
+            loadMovieData(ageRange);
         }
-    }, [criterion]);
+    }, [criterion, ageRange, type]);
 
     return (
         <div className="main-page-wrapper">
