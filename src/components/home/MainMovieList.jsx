@@ -8,7 +8,7 @@ const MainMovieList = ({movieList}) => {
     return (
         <div className="main-movie-list-wrapper">
             <div className="main-movie-card">
-                {movieList.map((movie, index) => (
+                {movieList && movieList.length > 0 ? (movieList.map((movie, index) => (
                     <div className="main-movie-item" key={index}>
                         <div className="main-movie-wrapper">
                             <Link to={`/movie/${movie.movieId}`}>
@@ -23,7 +23,11 @@ const MainMovieList = ({movieList}) => {
                             : "줄거리 정보 없음"}
                         </div>
                     </div>
-                ))}
+                ))) : (
+                    <div className="main-movie-no-item">
+                        <p className="main-movie-item-no-data">영화 정보가 없습니다.</p>
+                    </div>
+                )}
             </div>
         </div>
     );
