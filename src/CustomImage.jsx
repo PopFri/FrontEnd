@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultImage from '../assets/default-image.png'; 
+import defaultImage from '/images/default-img.png'; 
 
 const CustomImage = ({ src, alt, ...props }) => {
     const handleError = (e) => {

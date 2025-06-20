@@ -11,7 +11,7 @@ import LoadingPage from './LoadingPage';
 const Home = () => {
     const { trackPageView } = useMatomo();
     const [isLoading, setIsLoading] = useState(true);
-
+    const [personalRecommend, setPersonalRecommend] = useState([]);
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
     const [type, setType] = useState("default"); 
@@ -31,6 +31,14 @@ const Home = () => {
             const userData = await userRes.json();
         
             setUser(userData.result);
+            if( userData.result.gender === 'MALE') {
+                setPersonalRecommend("male");
+            }else if (userData.result.gender === 'FEMALE') {
+                setPersonalRecommend("female");
+            }else {
+                setPersonalRecommend("default");
+            }
+
         } catch {
             navigate('/login');
         }
@@ -151,7 +159,10 @@ const Home = () => {
             setAgeRange('10'); 
             setIsLoading(true);
             loadMovieData(type);
-        } else {
+        } else if (criterion === "개인 추천") {
+            setIsLoading(true);
+            loadMovieData(personalRecommend);
+        }else {
             setIsLoading(true);
             loadMovieData(ageRange);
         }
