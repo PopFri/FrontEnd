@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/discoveryFilm/DiscoveryMovie.css';
 import YouTube from 'react-youtube';
 
@@ -27,6 +27,10 @@ const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => 
     const handleGoodButtonClick = () => {
         setMovieCount((prevCount) => prevCount + 1);
     }
+
+    useEffect(() => {
+        setHasError(false); 
+    }, [movie?.videos?.[0]?.key]);
 
     return (
         <div className="discovery-movie-wrapper">
