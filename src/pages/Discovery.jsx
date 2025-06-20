@@ -12,11 +12,6 @@ import { useMatomo } from '@datapunt/matomo-tracker-react'
 export default function Discovery() {
   const { trackPageView } = useMatomo();
 
-  // Track page view
-  useEffect(() => {
-    trackPageView();
-  }, [])
-
   const Server_IP = import.meta.env.VITE_SERVER_IP;
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -35,8 +30,27 @@ export default function Discovery() {
       }
   };
   useEffect(() => {
-      loadUserData();
+      loadUserData()
   }, []);
+  useEffect(()=>{
+    if(user != null)
+        trackPageView({
+            customDimensions: [
+                {
+                    id: 1,
+                    value: null
+                },
+                {
+                    id: 2,
+                    value: user != null ? user.birth : "null"
+                },
+                {
+                    id: 3,
+                    value: user != null ? user.gender : "null"
+                },
+            ],
+        });
+  }, [user])
   return (
     <div className='home'>
         <Header user={user}/>

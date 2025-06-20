@@ -17,11 +17,6 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 const MovieDetailPage = () => {
     const { trackPageView } = useMatomo();
 
-    // Track page view
-    useEffect(() => {
-        trackPageView();
-    }, [])
-
     //movie
     const { movieId } = useParams();
     const [user, setUser] = useState(null);
@@ -150,7 +145,6 @@ const MovieDetailPage = () => {
                     credentials: "include",
                     body: JSON.stringify({ movieId: movieId, movieName: title, imageUrl: data.result.imageUrl}),
                 });
-
             } catch (error) {
                 console.error('Error loading page:', error);
             }
@@ -158,7 +152,25 @@ const MovieDetailPage = () => {
 
         loadPage();
     }, []);
-
+    useEffect(()=>{
+        if(title != null)
+            trackPageView({
+                    customDimensions: [
+                        {
+                            id: 1,
+                            value: title
+                        },
+                        {
+                            id: 2,
+                            value: user.birth
+                        },
+                        {
+                            id: 3,
+                            value: user.gender
+                        },
+                    ],
+                });
+    }, [title])
     useEffect(() => {
         fetchReviews();
     }, [page, sort]);
