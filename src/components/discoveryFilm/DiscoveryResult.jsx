@@ -3,6 +3,7 @@ import '../../styles/discoveryFilm/DiscoveryResult.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import LoadingPage from '../../pages/LoadingPage';
+import BackgroundImageDiv from '../../BackgroundImageDiv';
 
 const DiscoveryResult = ({resultList}) => {
     const navigate = useNavigate();
@@ -22,15 +23,13 @@ const DiscoveryResult = ({resultList}) => {
 
                             return (
                                 <Link key={movie.id || index} to={movieUrl} className="movieList-movie">
-                                <div
+                                    <BackgroundImageDiv
                                     className="movie-image"
-                                    style={{
-                                    backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.imageUrl})`,
-                                    }}
-                                />
-                                <div className="movie-name">
-                                    <p className="name-text">{movieName}</p>
-                                </div>
+                                    imageUrl={`https://image.tmdb.org/t/p/w500${movie.imageUrl}`}
+                                    />
+                                    <div className="movie-name">
+                                        <p className="name-text">{movieName}</p>
+                                    </div>
                                 </Link>
                             );
                         })}
@@ -45,11 +44,9 @@ const DiscoveryResult = ({resultList}) => {
 
                             return (
                                 <Link key={movie.movieId || index} to={movieUrl} className="movieList-movie">
-                                    <div
-                                        className="movie-image"
-                                        style={{
-                                        backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.imageUrl})`,
-                                        }}
+                                    <BackgroundImageDiv
+                                    className="movie-image"
+                                    imageUrl={`https://image.tmdb.org/t/p/w500${movie.imageUrl}`}
                                     />
                                     <div className="movie-name">
                                         <p className="name-text">{movieName}</p>
