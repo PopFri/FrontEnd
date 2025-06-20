@@ -6,9 +6,11 @@ import '../styles/common.css'
 import MainMovieList from '../components/home/MainMovieList';
 import ChooseAgeRange from '../components/home/ChooseAgeRange';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
+import LoadingPage from './LoadingPage';
 
 const Home = () => {
     const { trackPageView } = useMatomo();
+    const [isLoading, setIsLoading] = useState(true);
 
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
@@ -66,6 +68,7 @@ const Home = () => {
                 const filteredDetails = movieDetails.filter(detail => detail !== null);
 
                 setMovieList(filteredDetails);
+                setIsLoading(false);
                 console.log("영화 데이터 로드 완료:", filteredDetails);
         } catch {
             alert("데이터 로드 중 오류가 발생했습니다.");
@@ -147,8 +150,11 @@ const Home = () => {
 
     useEffect(() => {
         if(criterion !== "연령별 추천") {
+            setAgeRange('10'); 
+            setIsLoading(true);
             loadMovieData(type);
         } else {
+            setIsLoading(true);
             loadMovieData(ageRange);
         }
     }, [criterion, ageRange, type]);
@@ -195,7 +201,11 @@ const Home = () => {
                 </div>
             </div>
             {chooseAgeRangeButton(criterion)}
-            <MainMovieList movieList={movieList} />
+            {isLoading ? (
+                <LoadingPage page={'home'} />
+            ) : (
+                <MainMovieList movieList={movieList} />
+            )}
         </div>
     );
 

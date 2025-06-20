@@ -1,10 +1,11 @@
 .overview-wrapper {
-    width: 600.6px;
-    height: 187.2px;
+    width: 90%;
+    height: auto;
     justify-content: center;
     align-items: flex-start;
     gap: 1rem;
     padding: 2rem;
+    padding-bottom: 0;
     padding-top: 0%;
 }
 
