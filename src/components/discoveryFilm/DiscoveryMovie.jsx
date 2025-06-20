@@ -5,8 +5,7 @@ import YouTube from 'react-youtube';
 const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => {
     const [hasError, setHasError] = useState(false);
 
-    const handleYouTubeError = (e) => {
-        console.error("유튜브 에러 발생:", e.data);
+    const handleYouTubeError = () => {
         setHasError(true); // 유튜브 재생 에러 상태로 변경
     };
 
