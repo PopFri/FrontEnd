@@ -82,6 +82,7 @@
     font-family: 'GasoekOne-Regular';
     text-decoration: none;
     color: #1ED863;
+    z-index: 1000;
 }
     
   /* 설명 */

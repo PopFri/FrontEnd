@@ -14,7 +14,7 @@ const MainMovieList = ({movieList}) => {
                             <Link to={`/movie/${movie.movieId}`}>
                                 <img src={baseImageUrl + movie.backgroundImageUrl} alt={movie.title} className="main-movie-item-background" />
                                 <img src={baseImageUrl + movie.imageUrl} alt={movie.title} className="main-movie-item-poster" />
-                                <p className="main-movie-item-title">{movie.title}</p>
+                                <p className="main-movie-item-title">{movie.title.length > 7 ? movie.title.slice(0, 7) + "..." : movie.title}</p>
                             </Link>
                         </div>
                         <div className="main-movie-item-overview">
