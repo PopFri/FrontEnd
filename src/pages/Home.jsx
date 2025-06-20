@@ -16,7 +16,7 @@ const Home = () => {
     const [showCriterionModal, setShowCriterionModal] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const [ageRange, setAgeRange] = useState(null);
+    const [ageRange, setAgeRange] = useState('10');
     const [user, setUser] = useState(null);
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     const navigate = useNavigate();
@@ -55,6 +55,7 @@ const Home = () => {
                         credentials: 'include',
                     })
                         .then(res => res.json())
+                        .then(data => data.result)
                         .catch(err => {
                             console.error(`ID ${movie.movieId} 호출 실패`, err);
                             return null; // 실패한 건 제외 처리
@@ -119,9 +120,11 @@ const Home = () => {
             break;
         default:
     }
+    
     useEffect(() => {
         loadUserData()
     }, []);
+
     useEffect(()=>{
         if(user != null)
             trackPageView({
@@ -144,10 +147,8 @@ const Home = () => {
 
     useEffect(() => {
         if(criterion !== "연령별 추천") {
-            setAgeRange(null);
             loadMovieData(type);
         } else {
-            setAgeRange("10");
             loadMovieData(ageRange);
         }
     }, [criterion, ageRange, type]);
@@ -170,7 +171,7 @@ const Home = () => {
                         <button className="main-page-criterion-close" onClick={() => { closeModal(); closeTooltipModal(); }}>
 
                         </button>
-                            <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); closeModal(); }} style={{color: `${optionColorPersonal}`}}>
+                            <button className="main-page-criterion-option personal-recommend-option" onClick={() => { setCriterion("개인 추천"); setType('default'); closeModal(); }} style={{color: `${optionColorPersonal}`}}>
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
@@ -184,9 +185,9 @@ const Home = () => {
                                     </div>
                                 )}
                             </button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>
-                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorFemale}`}}>여성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); setType('default'); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); setType('male'); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>
+                            <button className="main-page-criterion-option" onClick={() => { setCriterion("여성 인기순"); setType('female'); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorFemale}`}}>여성 인기순</button>
                             <button className="main-page-criterion-option" onClick={() => { setCriterion("연령별 추천"); closeModal(); closeTooltipModal(); }} style={{color: `${optionColorAge}`}}>연령별 추천</button>
                         </div>
                     </div>
