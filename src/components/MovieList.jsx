@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import "../styles/discovery/movieList.css";
+import BackgroundImageDiv from '../BackgroundImageDiv';
 
 export default function MovieList(props) {
     return (
@@ -15,11 +16,9 @@ export default function MovieList(props) {
 
                 return (
                     <Link key={key} to={movieUrl} className="movieList-movie">
-                        <div
-                            className="movie-image"
-                            style={{
-                                backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.imageUrl})`,
-                            }}
+                        <BackgroundImageDiv
+                        className="movie-image"
+                        imageUrl={`https://image.tmdb.org/t/p/w500${movie.imageUrl}`}
                         />
                         {movie.rank && (
                             <div className="movie-rank">
