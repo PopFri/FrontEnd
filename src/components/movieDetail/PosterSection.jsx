@@ -25,6 +25,8 @@ const PosterSection = ({backgroundImageUrl, imageUrl, title, directing, releaseD
                 return 'https://play.filmboxplus.com/';
             case 'Disney Plus':
                 return 'https://www.disneyplus.com/';
+            case 'Amazon Prime Video':
+                return 'https://www.primevideo.com/';
             default:
                 return null;
         };
