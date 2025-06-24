@@ -8,7 +8,7 @@ export default function RecTime() {
   const [timeOfDay, setTimeOfDay] = useState('');
   const Server_IP = import.meta.env.VITE_SERVER_IP;
   const [movieList, setMovieList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const isFetched = useRef(false);
 
   const getCurrentTimeOfDay = () => {
