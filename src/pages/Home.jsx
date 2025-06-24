@@ -17,7 +17,6 @@ const Home = () => {
     const [criterion, setCriterion] = useState("개인 추천");
     const [type, setType] = useState("default"); 
     const [showCriterionModal, setShowCriterionModal] = useState(false);
-    //const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState('10');
     const [user, setUser] = useState(null);
@@ -27,18 +26,15 @@ const Home = () => {
     const calculateAgeGroup = (birthStr) => {
         const today = new Date();
         const birth = new Date(birthStr);
-
-        // 생일 기준 나이 계산
         let age = today.getFullYear() - birth.getFullYear();
         const hasHadBirthdayThisYear =
         today.getMonth() > birth.getMonth() ||
         (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
 
         if (!hasHadBirthdayThisYear) {
-        age--;
+            age--;
         }
 
-        // 나이 기준으로 연령대 분류
         if (age < 10) return "10";
         if (age < 20) return "10";
         if (age < 30) return "20";
@@ -108,45 +104,37 @@ const Home = () => {
 
     const loadPersonalMovieData = async () => {
     try {
-        const genderRes = await fetch(`${Server_IP}/sse/analysis/visit?date=month&type=${userGender}`, {
-            method: 'GET',
-        });
-        const ageRes = await fetch(`${Server_IP}/sse/analysis/visit?date=month&type=${userAge}`, {
-            method: 'GET',
-        });
-
-        const [genderData, ageData] = await Promise.all([genderRes.json(), ageRes.json()]);
-
-        if (!genderRes.ok || !genderData.isSuccess || !ageRes.ok || !ageData.isSuccess) {
-            alert("추천 데이터 로드 실패");
-            return;
-        }
-
-        const genderTop5 = genderData.result.slice(0, 10);
-
-        const ageTop5 = ageData.result.slice(0, 10);
-
-        const combined = [...genderTop5, ...ageTop5];
-
-        const uniqueMovies = Array.from(new Map(combined.map(movie => [movie.movieId, movie])).values());
-
-        const detailPromises = uniqueMovies.map(movie =>
-            fetch(`${Server_IP}/api/v1/movie/${movie.movieId}`, {
+            const res = await fetch(`${Server_IP}/sse/analysis/personal?gender=${userGender}&age=${userAge}`, {
                 method: 'GET',
-                credentials: 'include',
-            })
-                .then(res => res.json())
-                .then(data => data.result)
-                .catch(() => null)
-        );
+            });
+            const data = await res.json();
 
-        const movieDetails = await Promise.all(detailPromises);
-        const filteredDetails = movieDetails.filter(detail => detail !== null);
+            if (!res.ok || !data.isSuccess) {
+                alert(data.message); 
+                return;
+            }
 
-        setMovieList(filteredDetails);
-        setIsLoading(false);
-        } catch (e) {
-            console.error(e);
+            const top10 = data.result.slice(0, 10);
+
+            // 개별 영화 상세 정보 병렬 호출
+            const detailPromises = top10.map(movie =>
+                fetch(`${Server_IP}/api/v1/movie/${movie.movieId}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                })
+                    .then(res => res.json())
+                    .then(data => data.result)
+                    .catch(() => {
+                        return null; // 실패한 건 제외 처리
+                    })
+            );
+
+            const movieDetails = await Promise.all(detailPromises);
+            const filteredDetails = movieDetails.filter(detail => detail !== null);
+
+            setMovieList(filteredDetails);
+            setIsLoading(false);
+        } catch {
             alert("데이터 로드 중 오류가 발생했습니다.");
         }
     };
