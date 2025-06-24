@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/discoveryFilm/DiscoveryMovie.css';
 import YouTube from 'react-youtube';
+import CustomImage from '../../CustomImage';
 
 const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => {
     const [hasError, setHasError] = useState(false);
@@ -71,8 +72,8 @@ const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => 
                 <div className="discovery-image-container">
                     <p className="discovery-image-title">주요 장면</p>
                     <div className="discovery-image-list">
-                        {movie?.images?.slice(0, 8).map((image, index) => (
-                        <img
+                        {movie?.images?.slice(0, 9).map((image, index) => (
+                        <CustomImage
                             key={index}
                             src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
                             alt={`movie-image-${index}`}
@@ -80,8 +81,8 @@ const DiscoveryMovie = ({movie, listName, setMovieCount, setSelectedMovies}) => 
                         />
                         ))}
 
-                        {Array.from({ length: 8 - (movie?.images?.length || 0) })
-                        .slice(0, 8)
+                        {Array.from({ length: 9 - (movie?.images?.length || 0) })
+                        .slice(0, 9)
                         .map((_, index) => (
                             <div key={`empty-${index}`} className="discovery-image empty-image" />
                         ))}
