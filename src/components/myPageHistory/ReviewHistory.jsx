@@ -61,7 +61,7 @@ export default function ReviewHistory() {
                         </div>
                     )}
                     <div className='result-reviewList'>
-                        {reviewList.length > 0 && reviewList.map((review) => {
+                        {reviewList.length > 0 && reviewList.map((review, index) => {
                             const movieUrl = `/movie/${review.movieId}`;
                             return(
                             <div className="reviewList-container"
@@ -69,6 +69,7 @@ export default function ReviewHistory() {
                                 style={{
                                     backgroundImage: `url(${resultBackImgsrc})`,
                                 }}
+                                key={index}
                             > 
                                     <Link
                                         className="contanier-poster"
