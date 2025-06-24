@@ -29,7 +29,6 @@ export default function RecTime() {
         setTimeOfDay(parsed.time);
         setMovieList(parsed.movieList);
         isFetched.current = true;
-        console.log('로컬스토리지에서 시간별 추천 영화 데이터 로드:', parsed.movieList);
         setIsLoading(false);
         return;
       }
@@ -46,7 +45,6 @@ export default function RecTime() {
       .then((response) => response.json())
       .then((data) => {
         const movieList = data.result;
-        console.log('시간별 추천 영화:', movieList);
         setMovieList(movieList);
         localStorage.setItem("recTimeResult", JSON.stringify({
           movieList: movieList,
