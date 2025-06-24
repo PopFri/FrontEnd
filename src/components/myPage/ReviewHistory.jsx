@@ -36,13 +36,14 @@ export default function ReviewHistory() {
                     <p className='no-review'>작성한 리뷰가 없습니다.</p>
                 </div>
             )}
-            {reviewList.length > 0 && reviewList.map((review) => {
+            {reviewList.length > 0 && reviewList.map((review, index) => {
                 return (
                     <Link className="reviewList-container"
                         to={movieUrl + `/${review.movieId}`}
                         style={{
                             backgroundImage: `url(${resultBackImgsrc})`,
                         }}
+                        key={index}
                     > 
                             <div
                                 className="contanier-poster"
