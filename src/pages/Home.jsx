@@ -11,17 +11,37 @@ import LoadingPage from './LoadingPage';
 const Home = () => {
     const { trackPageView } = useMatomo();
     const [isLoading, setIsLoading] = useState(true);
-    const [personalRecommend, setPersonalRecommend] = useState([]);
+    const [userGender, setUserGender] = useState([]);
+    const [userAge, setUserAge] = useState([]);
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
     const [type, setType] = useState("default"); 
     const [showCriterionModal, setShowCriterionModal] = useState(false);
-    //const [showTooltip, setShowTooltip] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState('10');
     const [user, setUser] = useState(null);
     const Server_IP = import.meta.env.VITE_SERVER_IP;
     const navigate = useNavigate();
+
+    const calculateAgeGroup = (birthStr) => {
+        const today = new Date();
+        const birth = new Date(birthStr);
+        let age = today.getFullYear() - birth.getFullYear();
+        const hasHadBirthdayThisYear =
+        today.getMonth() > birth.getMonth() ||
+        (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+
+        if (!hasHadBirthdayThisYear) {
+            age--;
+        }
+
+        if (age < 10) return "10";
+        if (age < 20) return "10";
+        if (age < 30) return "20";
+        if (age < 40) return "30";
+        return "40";
+    };
+
     const loadUserData = async () => {
         try {
             const userRes = await fetch(`${Server_IP}/api/v1/user`, {
@@ -32,12 +52,13 @@ const Home = () => {
         
             setUser(userData.result);
             if( userData.result.gender === 'MALE') {
-                setPersonalRecommend("male");
+                setUserGender("male");
             }else if (userData.result.gender === 'FEMALE') {
-                setPersonalRecommend("female");
+                setUserGender("female");
             }else {
-                setPersonalRecommend("default");
+                setUserGender("default");
             }
+            setUserAge(calculateAgeGroup(userData.result.birth));
 
         } catch {
             navigate('/login');
@@ -81,6 +102,43 @@ const Home = () => {
         }
     };
 
+    const loadPersonalMovieData = async () => {
+    try {
+            const res = await fetch(`${Server_IP}/sse/analysis/personal?gender=${userGender}&age=${userAge}`, {
+                method: 'GET',
+            });
+            const data = await res.json();
+
+            if (!res.ok || !data.isSuccess) {
+                alert(data.message); 
+                return;
+            }
+
+            const top10 = data.result.slice(0, 10);
+
+            // 개별 영화 상세 정보 병렬 호출
+            const detailPromises = top10.map(movie =>
+                fetch(`${Server_IP}/api/v1/movie/${movie.movieId}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                })
+                    .then(res => res.json())
+                    .then(data => data.result)
+                    .catch(() => {
+                        return null; // 실패한 건 제외 처리
+                    })
+            );
+
+            const movieDetails = await Promise.all(detailPromises);
+            const filteredDetails = movieDetails.filter(detail => detail !== null);
+
+            setMovieList(filteredDetails);
+            setIsLoading(false);
+        } catch {
+            alert("데이터 로드 중 오류가 발생했습니다.");
+        }
+    };
+
     const openModal = () => setShowCriterionModal(true);
 
     const closeModal = () => {
@@ -95,14 +153,6 @@ const Home = () => {
         if (showCriterionModal) closeModal();
         else openModal();
     };
-
-    // const toggleTooltipModal = () => {
-    //     setShowTooltip(!showTooltip);
-    // }
-
-    // const closeTooltipModal = () => {
-    //     setShowTooltip(false);
-    // }
 
     const chooseAgeRangeButton = (criterion) => {
         if (criterion === "연령별 추천") {
@@ -155,18 +205,18 @@ const Home = () => {
     }, [user])
 
     useEffect(() => {
-        if(criterion !== "연령별 추천") {
+        if(criterion === "개인 추천" && user) {
+            setIsLoading(true);
+            loadPersonalMovieData();
+        } else if (criterion !== "연령별 추천") {
             setAgeRange('10'); 
             setIsLoading(true);
             loadMovieData(type);
-        } else if (criterion === "개인 추천") {
-            setIsLoading(true);
-            loadMovieData(personalRecommend);
         }else {
             setIsLoading(true);
             loadMovieData(ageRange);
         }
-    }, [criterion, ageRange, type]);
+    }, [criterion, ageRange, type, user]);
 
     return (
         <div className="main-page-wrapper">
@@ -190,15 +240,6 @@ const Home = () => {
                                 <div className="personal-recommend-text">
                                     개인 추천
                                 </div> 
-                                {/* <div className="criterion-info" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}}>
-                                    <img src="images/criterion_info_icon.png" alt="tooltip" className="tooltip-icon" />
-                                </div>
-                                {showTooltip && (
-                                    <div className="tooltip">
-                                        <img src="images/CancelLogo.png" alt="close" className="tooltip-close-icon" onClick={(e) => {e.stopPropagation(); toggleTooltipModal();}} />
-                                        <p className="tooltip-text">PopFri 내 활동을 기반으로 추천합니다.</p>
-                                    </div>
-                                )} */}
                             </button>
                             <button className="main-page-criterion-option" onClick={() => { setCriterion("전체 인기순"); setType('default'); closeModal(); }} style={{color: `${optionColorAll}`}}>전체 인기순</button>
                             <button className="main-page-criterion-option" onClick={() => { setCriterion("남성 인기순"); setType('male'); closeModal(); }} style={{color: `${optionColorMale}`}}>남성 인기순</button>

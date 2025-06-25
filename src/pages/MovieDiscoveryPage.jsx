@@ -97,6 +97,7 @@ const MovieDiscoveryPage = () => {
                 .then((response) => response.json())
                 .then((data) => {
                     const resultList = data.result;
+                    console.log("resultList", resultList);
                     setResultList(resultList);
                     localStorage.setItem(
                         "discoveryResult",

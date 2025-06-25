@@ -7,7 +7,7 @@ import BackgroundImageDiv from '../../BackgroundImageDiv';
 
 const DiscoveryResult = ({resultList}) => {
     const navigate = useNavigate();
-
+    
     return (
         <div className="discovery-result-wrapper">
             {resultList.length <= 0 ? (
