@@ -11,8 +11,8 @@ import LoadingPage from './LoadingPage';
 const Home = () => {
     const { trackPageView } = useMatomo();
     const [isLoading, setIsLoading] = useState(true);
-    const [userGender, setUserGender] = useState([]);
-    const [userAge, setUserAge] = useState([]);
+    const [userGender, setUserGender] = useState(null);
+    const [userAge, setUserAge] = useState(null);
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("개인 추천");
     const [type, setType] = useState("default"); 
@@ -205,18 +205,21 @@ const Home = () => {
     }, [user])
 
     useEffect(() => {
-        if(criterion === "개인 추천" && user) {
-            setIsLoading(true);
-            loadPersonalMovieData();
+        setIsLoading(true);
+
+        if (criterion === "개인 추천") {
+            if (userGender && userAge) {
+                loadPersonalMovieData();
+            } else {
+                setIsLoading(false); 
+            }
         } else if (criterion !== "연령별 추천") {
             setAgeRange('10'); 
-            setIsLoading(true);
             loadMovieData(type);
         }else {
-            setIsLoading(true);
             loadMovieData(ageRange);
         }
-    }, [criterion, ageRange, type, user]);
+    }, [criterion, ageRange, type, user, userGender, userAge]);
 
     return (
         <div className="main-page-wrapper">
