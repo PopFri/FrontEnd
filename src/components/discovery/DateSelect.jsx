@@ -17,7 +17,7 @@ export default function DateSelect(props) {
     const years = Array.from(
         { length: maxYear - minYear + 1 },
         (_, i) => minYear + i
-    );
+    ).reverse();
 
     const months = selectedYear
         ? Array.from({ length: 12 }, (_, i) => i + 1).filter((month) => {
