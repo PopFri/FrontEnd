@@ -14,7 +14,7 @@ const Home = () => {
     const [userGender, setUserGender] = useState([]);
     const [userAge, setUserAge] = useState([]);
     const [movieList, setMovieList] = useState([]);
-    const [criterion, setCriterion] = useState("개인 추천");
+    const [criterion, setCriterion] = useState("전체 인기순");
     const [type, setType] = useState("default"); 
     const [showCriterionModal, setShowCriterionModal] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
