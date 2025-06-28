@@ -97,8 +97,9 @@ const Home = () => {
 
                 setMovieList(filteredDetails);
                 setIsLoading(false);
-        } catch {
-            alert("데이터 로드 중 오류가 발생했습니다.");
+        } catch (err){
+            throw new Error(err.message);
+            
         }
     };
 
@@ -134,8 +135,8 @@ const Home = () => {
 
             setMovieList(filteredDetails);
             setIsLoading(false);
-        } catch {
-            alert("데이터 로드 중 오류가 발생했습니다.");
+        } catch (err) {
+            throw new Error(err.message);
         }
     };
 
