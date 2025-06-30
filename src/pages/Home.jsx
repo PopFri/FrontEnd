@@ -14,7 +14,7 @@ const Home = () => {
     const [userGender, setUserGender] = useState([]);
     const [userAge, setUserAge] = useState([]);
     const [movieList, setMovieList] = useState([]);
-    const [criterion, setCriterion] = useState("개인 추천");
+    const [criterion, setCriterion] = useState("전체 인기순");
     const [type, setType] = useState("default"); 
     const [showCriterionModal, setShowCriterionModal] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -73,7 +73,6 @@ const Home = () => {
                 const data = await res.json();
 
                 if (!res.ok || !data.isSuccess) {
-                    alert(data.message); 
                     return;
                 }
 
@@ -98,7 +97,7 @@ const Home = () => {
                 setMovieList(filteredDetails);
                 setIsLoading(false);
         } catch {
-            alert("데이터 로드 중 오류가 발생했습니다.");
+            throw new Error("영화 정보 로드 오류");
         }
     };
 
@@ -135,7 +134,7 @@ const Home = () => {
             setMovieList(filteredDetails);
             setIsLoading(false);
         } catch {
-            alert("데이터 로드 중 오류가 발생했습니다.");
+            throw new Error("영화 정보 로드 오류");
         }
     };
 
