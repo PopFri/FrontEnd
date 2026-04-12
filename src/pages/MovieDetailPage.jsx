@@ -15,7 +15,7 @@ import LoadingPage from './LoadingPage';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 const MovieDetailPage = () => {
-    const { trackPageView } = useMatomo();
+    const { trackPageView, trackEvent } = useMatomo();
 
     //movie
     const { movieId } = useParams();
@@ -152,24 +152,26 @@ const MovieDetailPage = () => {
 
         loadPage();
     }, []);
-    useEffect(()=>{
-        if(title != null)
-            trackPageView({
-                    customDimensions: [
-                        {
-                            id: 1,
-                            value: title
-                        },
-                        {
-                            id: 2,
-                            value: user.birth
-                        },
-                        {
-                            id: 3,
-                            value: user.gender
-                        },
-                    ],
-                });
+    useEffect(() => {
+        if (title == null || user == null) return;
+        const startTime = Date.now();
+        const genreNames = genres?.map(g => g.name).join(',') || 'unknown';
+        trackPageView({
+            customDimensions: [
+                { id: 1, value: title },
+                { id: 2, value: user.birth },
+                { id: 3, value: user.gender },
+            ],
+        });
+        return () => {
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            trackEvent({
+                category: genreNames,
+                action: 'time_spent',
+                name: title,
+                value: timeSpent,
+            });
+        };
     }, [title])
     useEffect(() => {
         fetchReviews();

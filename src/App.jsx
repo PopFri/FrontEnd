@@ -29,12 +29,15 @@ const userId = () => {
 }
 const userProvideId = await userId();
 
+const matomoUrl = import.meta.env.VITE_MATOMO_URL;
+
 const instance = createInstance({
-  urlBase: 'http://14.63.178.153:80',
+  urlBase: matomoUrl,
   siteId: 1,
   userId: `${userProvideId}`, // optional, default value: `undefined`.
-  trackerUrl: 'http://14.63.178.153:80/matomo.php', // optional, default value: `${urlBase}matomo.php`
-  srcUrl: 'http://14.63.178.153:80/js/container_hCOAARUa.js', // optional, default value: `${urlBase}matomo.js`
+  trackerUrl: `${matomoUrl}/matomo.php`,
+  srcUrl: `${matomoUrl}/js/container_XPfB3WAc.js`,
+  linkTracking: false,
 })
 
 function App() {
