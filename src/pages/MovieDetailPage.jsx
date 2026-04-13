@@ -161,6 +161,7 @@ const MovieDetailPage = () => {
                 { id: 1, value: title },
                 { id: 2, value: user.birth },
                 { id: 3, value: user.gender },
+                { id: 4, value: movieId },
             ],
         });
         return () => {

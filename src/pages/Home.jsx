@@ -15,12 +15,13 @@ const Home = () => {
     const [userAge, setUserAge] = useState([]);
     const [movieList, setMovieList] = useState([]);
     const [criterion, setCriterion] = useState("전체 인기순");
-    const [type, setType] = useState("default"); 
+    const [type, setType] = useState("default");
     const [showCriterionModal, setShowCriterionModal] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [ageRange, setAgeRange] = useState('10');
     const [user, setUser] = useState(null);
     const Server_IP = import.meta.env.VITE_SERVER_IP;
+    const Analysis_Server_IP = import.meta.env.VITE_ANALYSIS_SERVER_IP;
     const navigate = useNavigate();
 
     const calculateAgeGroup = (birthStr) => {
@@ -67,16 +68,37 @@ const Home = () => {
 
     const loadMovieData = async (type) => {
         try {
-                const res = await fetch(`${Server_IP}/sse/analysis/visit?date=month&type=${type}`, {
-                    method: 'GET',
-                });
-                const data = await res.json();
+                const [visitRes, dwellRes] = await Promise.all([
+                    fetch(`${Analysis_Server_IP}/analysis/visit?date=month&type=${type}`),
+                    fetch(`${Analysis_Server_IP}/analysis/dwell-time?date=month&type=${type}`),
+                ]);
+                const [visitData, dwellData] = await Promise.all([visitRes.json(), dwellRes.json()]);
 
-                if (!res.ok || !data.isSuccess) {
-                    return;
+                if (!visitRes.ok || !visitData.isSuccess) return;
+
+                // 방문횟수 맵 (movieName → { count, movieId })
+                const visitMap = {};
+                visitData.result.forEach(item => { visitMap[item.movieName] = { count: item.count, movieId: item.movieId }; });
+
+                // 체류시간 맵 (movieName → count)
+                const dwellMap = {};
+                if (dwellRes.ok && dwellData.isSuccess) {
+                    dwellData.result.forEach(item => { dwellMap[item.movieName] = item.count; });
                 }
 
-                const top10 = data.result.slice(0, 10);
+                // 정규화 후 가중 합산 (방문횟수 50% + 체류시간 50%)
+                const visitMax = Math.max(...Object.values(visitMap).map(v => v.count), 1);
+                const dwellMax = Math.max(...Object.values(dwellMap), 1);
+
+                const allMovies = Object.keys(visitMap);
+                const scored = allMovies.map(name => ({
+                    movieName: name,
+                    movieId: visitMap[name].movieId,
+                    score: (visitMap[name].count / visitMax) * 0.2 + ((dwellMap[name] ?? 0) / dwellMax) * 0.8,
+                }));
+                scored.sort((a, b) => b.score - a.score);
+
+                const top10 = scored.slice(0, 10);
 
                 // 개별 영화 상세 정보 병렬 호출
                 const detailPromises = top10.map(movie =>
@@ -86,9 +108,7 @@ const Home = () => {
                     })
                         .then(res => res.json())
                         .then(data => data.result)
-                        .catch(() => {
-                            return null; // 실패한 건 제외 처리
-                        })
+                        .catch(() => null)
                 );
 
                 const movieDetails = await Promise.all(detailPromises);
@@ -210,12 +230,12 @@ const Home = () => {
             if (userGender && userAge) {
                 loadPersonalMovieData();
             } else {
-                setIsLoading(false); 
+                setIsLoading(false);
             }
         } else if (criterion !== "연령별 추천") {
-            setAgeRange('10'); 
+            setAgeRange('10');
             loadMovieData(type);
-        }else {
+        } else {
             loadMovieData(ageRange);
         }
     }, [criterion, ageRange, type, user, userGender, userAge]);
